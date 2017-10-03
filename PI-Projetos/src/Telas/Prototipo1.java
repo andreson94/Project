@@ -34,6 +34,7 @@ public class Prototipo1 extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jTextField8 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         alterarCliente = new javax.swing.JPanel();
         cadastroClientes = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -97,20 +98,24 @@ public class Prototipo1 extends javax.swing.JFrame {
 
         jLabel10.setText("Cliente:");
 
+        jButton2.setText("Pesquisar");
+
         javax.swing.GroupLayout pesquisarClientesLayout = new javax.swing.GroupLayout(pesquisarClientes);
         pesquisarClientes.setLayout(pesquisarClientesLayout);
         pesquisarClientesLayout.setHorizontalGroup(
             pesquisarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pesquisarClientesLayout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(pesquisarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(99, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pesquisarClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(pesquisarClientesLayout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addGroup(pesquisarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2)
+                    .addGroup(pesquisarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel10)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         pesquisarClientesLayout.setVerticalGroup(
             pesquisarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +124,9 @@ public class Prototipo1 extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addGap(39, 39, 39)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -435,6 +442,7 @@ public class Prototipo1 extends javax.swing.JFrame {
     private javax.swing.JPanel cadastroProduto;
     private javax.swing.JPanel cadastroProdutos;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
