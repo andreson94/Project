@@ -5,6 +5,8 @@
  */
 package Telas;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author andreson.csilva
@@ -27,7 +29,7 @@ public class Prototipo1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        telaPrincipal = new javax.swing.JPanel();
+        panelPrincipal = new javax.swing.JPanel();
         cadastroClientes = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -169,21 +171,20 @@ public class Prototipo1 extends javax.swing.JFrame {
         jLabel63 = new javax.swing.JLabel();
         jTextField51 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        menuClientes = new javax.swing.JMenu();
+        itemCadastroClientes = new javax.swing.JMenuItem();
+        itemConsultarClientes = new javax.swing.JMenuItem();
+        menuProdutos = new javax.swing.JMenu();
+        itemCadastrarProduto = new javax.swing.JMenuItem();
+        itemPesquisarProduto = new javax.swing.JMenuItem();
+        menuVendas = new javax.swing.JMenu();
+        itemLancamentos = new javax.swing.JMenuItem();
+        menuRelatorio = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
 
-        telaPrincipal.setLayout(new java.awt.CardLayout());
+        panelPrincipal.setLayout(new java.awt.CardLayout());
 
         cadastroClientes.setOpaque(false);
 
@@ -424,7 +425,7 @@ public class Prototipo1 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        telaPrincipal.add(cadastroClientes, "cadastroCliente");
+        panelPrincipal.add(cadastroClientes, "cadastroCliente");
         cadastroClientes.getAccessibleContext().setAccessibleName("");
 
         jButton4.setText("Salvar");
@@ -690,7 +691,8 @@ public class Prototipo1 extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        telaPrincipal.add(consultarCliente, "alterarCliente");
+        panelPrincipal.add(consultarCliente, "consultarCliente");
+        consultarCliente.getAccessibleContext().setAccessibleName("");
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino", "Outros" }));
 
@@ -776,7 +778,7 @@ public class Prototipo1 extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
-        telaPrincipal.add(cadastroProdutos, "cadastroProdutos");
+        panelPrincipal.add(cadastroProdutos, "cadastroProdutos");
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -887,7 +889,7 @@ public class Prototipo1 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        telaPrincipal.add(pesquisarProduto, "pesquisarProduto");
+        panelPrincipal.add(pesquisarProduto, "pesquisarProduto");
 
         jLabel23.setText("Cód. Produto");
 
@@ -1014,7 +1016,7 @@ public class Prototipo1 extends javax.swing.JFrame {
                 .addGap(128, 128, 128))
         );
 
-        telaPrincipal.add(vendasLancamento, "alterarProduto");
+        panelPrincipal.add(vendasLancamento, "alterarProduto");
 
         Relatório.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar Clientes"));
 
@@ -1206,50 +1208,49 @@ public class Prototipo1 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        telaPrincipal.add(Relatório, "pesquisarCliente");
+        panelPrincipal.add(Relatório, "pesquisarCliente");
 
-        jMenu1.setText("Clientes");
+        menuClientes.setText("Clientes");
 
-        jMenuItem1.setText("Cadastrar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        itemCadastroClientes.setText("Cadastrar");
+        itemCadastroClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                itemCadastroClientesActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        menuClientes.add(itemCadastroClientes);
+        itemCadastroClientes.getAccessibleContext().setAccessibleName("tela1");
 
-        jMenuItem3.setText("Consultar");
-        jMenu1.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Produtos");
-
-        jMenuItem4.setText("Cadastrar");
-        jMenu2.add(jMenuItem4);
-
-        jMenuItem6.setText("Pesquisar");
-        jMenu2.add(jMenuItem6);
-
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Vendas");
-
-        jMenuItem7.setText("Lançamentos");
-        jMenu3.add(jMenuItem7);
-
-        jMenuItem8.setText("Trocas");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        itemConsultarClientes.setText("Consultar");
+        itemConsultarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                itemConsultarClientesActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem8);
+        menuClientes.add(itemConsultarClientes);
+        itemConsultarClientes.getAccessibleContext().setAccessibleName("tela2");
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(menuClientes);
 
-        jMenu4.setText("Relatório");
-        jMenuBar1.add(jMenu4);
+        menuProdutos.setText("Produtos");
+
+        itemCadastrarProduto.setText("Cadastrar");
+        menuProdutos.add(itemCadastrarProduto);
+
+        itemPesquisarProduto.setText("Pesquisar");
+        menuProdutos.add(itemPesquisarProduto);
+
+        jMenuBar1.add(menuProdutos);
+
+        menuVendas.setText("Vendas");
+
+        itemLancamentos.setText("Lançamentos");
+        menuVendas.add(itemLancamentos);
+
+        jMenuBar1.add(menuVendas);
+
+        menuRelatorio.setText("Relatório");
+        jMenuBar1.add(menuRelatorio);
 
         setJMenuBar(jMenuBar1);
 
@@ -1257,23 +1258,20 @@ public class Prototipo1 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(telaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(telaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    private void itemCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadastroClientesActionPerformed
+        CardLayout cadastro = (CardLayout) panelPrincipal.getLayout();
+        cadastro.show(panelPrincipal, "cadastroCliente");
+    }//GEN-LAST:event_itemCadastroClientesActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -1298,6 +1296,11 @@ public class Prototipo1 extends javax.swing.JFrame {
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void itemConsultarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConsultarClientesActionPerformed
+         CardLayout consulta = (CardLayout) panelPrincipal.getLayout();
+        consulta.show(panelPrincipal, "consultarCliente");
+    }//GEN-LAST:event_itemConsultarClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1339,6 +1342,11 @@ public class Prototipo1 extends javax.swing.JFrame {
     private javax.swing.JPanel cadastroClientes;
     private javax.swing.JPanel cadastroProdutos;
     private javax.swing.JPanel consultarCliente;
+    private javax.swing.JMenuItem itemCadastrarProduto;
+    private javax.swing.JMenuItem itemCadastroClientes;
+    private javax.swing.JMenuItem itemConsultarClientes;
+    private javax.swing.JMenuItem itemLancamentos;
+    private javax.swing.JMenuItem itemPesquisarProduto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1421,17 +1429,7 @@ public class Prototipo1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1484,8 +1482,12 @@ public class Prototipo1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JMenu menuClientes;
+    private javax.swing.JMenu menuProdutos;
+    private javax.swing.JMenu menuRelatorio;
+    private javax.swing.JMenu menuVendas;
+    private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel pesquisarProduto;
-    private javax.swing.JPanel telaPrincipal;
     private javax.swing.JPanel vendasLancamento;
     // End of variables declaration//GEN-END:variables
 }
