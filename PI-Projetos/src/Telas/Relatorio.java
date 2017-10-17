@@ -5,22 +5,16 @@
  */
 package Telas;
 
-import java.awt.CardLayout;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import javax.imageio.ImageIO;
-
 /**
  *
  * @author andreson.csilva
  */
-public class Prototipo1 extends javax.swing.JFrame {
+public class Relatorio extends javax.swing.JPanel {
 
     /**
-     * Creates new form Prototipo1
+     * Creates new form Relatorio
      */
-    public Prototipo1() {
+    public Relatorio() {
         initComponents();
     }
 
@@ -33,28 +27,6 @@ public class Prototipo1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelPrincipal = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel() {
-            private Image image;
-            {
-                try {
-                    image = ImageIO.read(new File("src/resources/tenis.jpg"));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
-        cadastrarProdutos1 = new Telas.CadastrarProdutos();
-        consultarClientes1 = new Telas.ConsultarClientes();
-        cadastrarClientes1 = new Telas.CadastrarClientes();
-        vandasProdutos1 = new Telas.VandasProdutos();
-        relatorioVendas = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -94,38 +66,6 @@ public class Prototipo1 extends javax.swing.JFrame {
         jButton16 = new javax.swing.JButton();
         jTextField9 = new javax.swing.JTextField();
         jButton18 = new javax.swing.JButton();
-        BarraMenu = new javax.swing.JMenuBar();
-        menuClientes = new javax.swing.JMenu();
-        itemCadastroClientes = new javax.swing.JMenuItem();
-        itemConsultarClientes = new javax.swing.JMenuItem();
-        menuProdutos = new javax.swing.JMenu();
-        itemCadastrarProduto = new javax.swing.JMenuItem();
-        itemPesquisarProduto = new javax.swing.JMenuItem();
-        menuVendas = new javax.swing.JMenu();
-        itemLancamentos = new javax.swing.JMenuItem();
-        menuRelatorio = new javax.swing.JMenu();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Tela Principal");
-
-        panelPrincipal.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1189, Short.MAX_VALUE)
-        );
-
-        panelPrincipal.add(jPanel5, "card8");
-        panelPrincipal.add(cadastrarProdutos1, "card8");
-        panelPrincipal.add(consultarClientes1, "card8");
-        panelPrincipal.add(cadastrarClientes1, "card8");
-        panelPrincipal.add(vandasProdutos1, "card7");
 
         jButton4.setText("Salvar");
 
@@ -338,13 +278,13 @@ public class Prototipo1 extends javax.swing.JFrame {
 
         jButton18.setText("Alterar");
 
-        javax.swing.GroupLayout relatorioVendasLayout = new javax.swing.GroupLayout(relatorioVendas);
-        relatorioVendas.setLayout(relatorioVendasLayout);
-        relatorioVendasLayout.setHorizontalGroup(
-            relatorioVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, relatorioVendasLayout.createSequentialGroup()
-                .addGroup(relatorioVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(relatorioVendasLayout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -353,12 +293,12 @@ public class Prototipo1 extends javax.swing.JFrame {
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton6))
-                    .addGroup(relatorioVendasLayout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(relatorioVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(relatorioVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(relatorioVendasLayout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel11)
                                     .addGap(18, 18, 18)
                                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -367,11 +307,11 @@ public class Prototipo1 extends javax.swing.JFrame {
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(21, 21, 21))
         );
-        relatorioVendasLayout.setVerticalGroup(
-            relatorioVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, relatorioVendasLayout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(relatorioVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(jButton16))
@@ -380,134 +320,21 @@ public class Prototipo1 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(relatorioVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton5)
                     .addComponent(jButton4)
                     .addComponent(jButton18))
                 .addGap(15, 15, 15))
         );
-
-        panelPrincipal.add(relatorioVendas, "consultarCliente");
-        relatorioVendas.getAccessibleContext().setAccessibleName("");
-
-        menuClientes.setText("Clientes");
-
-        itemCadastroClientes.setText("Cadastrar");
-        itemCadastroClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemCadastroClientesActionPerformed(evt);
-            }
-        });
-        menuClientes.add(itemCadastroClientes);
-        itemCadastroClientes.getAccessibleContext().setAccessibleName("tela1");
-
-        itemConsultarClientes.setText("Consultar");
-        itemConsultarClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemConsultarClientesActionPerformed(evt);
-            }
-        });
-        menuClientes.add(itemConsultarClientes);
-        itemConsultarClientes.getAccessibleContext().setAccessibleName("tela2");
-
-        BarraMenu.add(menuClientes);
-
-        menuProdutos.setText("Produtos");
-
-        itemCadastrarProduto.setText("Cadastrar");
-        menuProdutos.add(itemCadastrarProduto);
-
-        itemPesquisarProduto.setText("Pesquisar");
-        menuProdutos.add(itemPesquisarProduto);
-
-        BarraMenu.add(menuProdutos);
-
-        menuVendas.setText("Vendas");
-
-        itemLancamentos.setText("Lançamentos");
-        menuVendas.add(itemLancamentos);
-
-        BarraMenu.add(menuVendas);
-
-        menuRelatorio.setText("Relatório");
-        BarraMenu.add(menuRelatorio);
-
-        setJMenuBar(BarraMenu);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void itemCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadastroClientesActionPerformed
-        CardLayout cadastro = (CardLayout) panelPrincipal.getLayout();
-        cadastro.show(panelPrincipal, "cadastroCliente");
-    }//GEN-LAST:event_itemCadastroClientesActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
 
-    private void itemConsultarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConsultarClientesActionPerformed
-         CardLayout consulta = (CardLayout) panelPrincipal.getLayout();
-        consulta.show(panelPrincipal, "consultarCliente");
-    }//GEN-LAST:event_itemConsultarClientesActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Prototipo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Prototipo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Prototipo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Prototipo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Prototipo1().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar BarraMenu;
-    private Telas.CadastrarClientes cadastrarClientes1;
-    private Telas.CadastrarProdutos cadastrarProdutos1;
-    private Telas.ConsultarClientes consultarClientes1;
-    private javax.swing.JMenuItem itemCadastrarProduto;
-    private javax.swing.JMenuItem itemCadastroClientes;
-    private javax.swing.JMenuItem itemConsultarClientes;
-    private javax.swing.JMenuItem itemLancamentos;
-    private javax.swing.JMenuItem itemPesquisarProduto;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton4;
@@ -534,7 +361,6 @@ public class Prototipo1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField34;
     private javax.swing.JTextField jTextField35;
     private javax.swing.JTextField jTextField36;
@@ -548,12 +374,5 @@ public class Prototipo1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField44;
     private javax.swing.JTextField jTextField45;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JMenu menuClientes;
-    private javax.swing.JMenu menuProdutos;
-    private javax.swing.JMenu menuRelatorio;
-    private javax.swing.JMenu menuVendas;
-    private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JPanel relatorioVendas;
-    private Telas.VandasProdutos vandasProdutos1;
     // End of variables declaration//GEN-END:variables
 }
