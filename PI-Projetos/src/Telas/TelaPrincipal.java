@@ -64,8 +64,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemCadastrarProduto = new javax.swing.JMenuItem();
         itemPesquisarProduto = new javax.swing.JMenuItem();
         menuVendas = new javax.swing.JMenu();
-        itemLancamentos = new javax.swing.JMenuItem();
+        itemLançamentos = new javax.swing.JMenuItem();
         menuRelatorio = new javax.swing.JMenu();
+        itemConsultarRelatorio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -78,14 +79,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaPrincipal.setLayout(telaPrincipalLayout);
         telaPrincipalLayout.setHorizontalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 739, Short.MAX_VALUE)
+            .addGap(0, 782, Short.MAX_VALUE)
         );
         telaPrincipalLayout.setVerticalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 751, Short.MAX_VALUE)
+            .addGap(0, 882, Short.MAX_VALUE)
         );
 
-        panelPrincipal.add(telaPrincipal, "card8");
+        panelPrincipal.add(telaPrincipal, "telaPrincipal");
         panelPrincipal.add(cadastrarClientes, "cadastrarClientes");
         panelPrincipal.add(consultarClientes, "consultarClientes");
         panelPrincipal.add(cadastrarProdutos, "cadastrarProdutos");
@@ -118,21 +119,55 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuProdutos.setText("Produtos");
 
         itemCadastrarProduto.setText("Cadastrar");
+        itemCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadastrarProdutoActionPerformed(evt);
+            }
+        });
         menuProdutos.add(itemCadastrarProduto);
 
-        itemPesquisarProduto.setText("Pesquisar");
+        itemPesquisarProduto.setText("Consultar");
+        itemPesquisarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemPesquisarProdutoActionPerformed(evt);
+            }
+        });
         menuProdutos.add(itemPesquisarProduto);
 
         BarraMenu.add(menuProdutos);
 
         menuVendas.setText("Vendas");
+        menuVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVendasActionPerformed(evt);
+            }
+        });
 
-        itemLancamentos.setText("Lançamentos");
-        menuVendas.add(itemLancamentos);
+        itemLançamentos.setText("Lançamentos");
+        itemLançamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemLançamentosActionPerformed(evt);
+            }
+        });
+        menuVendas.add(itemLançamentos);
 
         BarraMenu.add(menuVendas);
 
         menuRelatorio.setText("Relatório");
+        menuRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRelatorioActionPerformed(evt);
+            }
+        });
+
+        itemConsultarRelatorio.setText("Consultar");
+        itemConsultarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemConsultarRelatorioActionPerformed(evt);
+            }
+        });
+        menuRelatorio.add(itemConsultarRelatorio);
+
         BarraMenu.add(menuRelatorio);
 
         setJMenuBar(BarraMenu);
@@ -162,6 +197,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
          CardLayout consulta = (CardLayout) panelPrincipal.getLayout();
         consulta.show(panelPrincipal, "consultarClientes");
     }//GEN-LAST:event_itemConsultarClientesActionPerformed
+
+    private void itemCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadastrarProdutoActionPerformed
+         CardLayout cadastro = (CardLayout) panelPrincipal.getLayout();
+        cadastro.show(panelPrincipal, "cadastrarProdutos");
+    }//GEN-LAST:event_itemCadastrarProdutoActionPerformed
+
+    private void itemPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPesquisarProdutoActionPerformed
+         CardLayout consulta = (CardLayout) panelPrincipal.getLayout();
+        consulta.show(panelPrincipal, "consultarProdutos");
+    }//GEN-LAST:event_itemPesquisarProdutoActionPerformed
+
+    private void menuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVendasActionPerformed
+    }//GEN-LAST:event_menuVendasActionPerformed
+
+    private void menuRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRelatorioActionPerformed
+    }//GEN-LAST:event_menuRelatorioActionPerformed
+
+    private void itemLançamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLançamentosActionPerformed
+        CardLayout lancamentos = (CardLayout) panelPrincipal.getLayout();
+        lancamentos.show(panelPrincipal, "vendaProdutos");
+    }//GEN-LAST:event_itemLançamentosActionPerformed
+
+    private void itemConsultarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConsultarRelatorioActionPerformed
+        CardLayout consulta = (CardLayout) panelPrincipal.getLayout();
+        consulta.show(panelPrincipal, "relatorio");
+    }//GEN-LAST:event_itemConsultarRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,7 +269,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCadastrarProduto;
     private javax.swing.JMenuItem itemCadastroClientes;
     private javax.swing.JMenuItem itemConsultarClientes;
-    private javax.swing.JMenuItem itemLancamentos;
+    private javax.swing.JMenuItem itemConsultarRelatorio;
+    private javax.swing.JMenuItem itemLançamentos;
     private javax.swing.JMenuItem itemPesquisarProduto;
     private javax.swing.JMenu menuClientes;
     private javax.swing.JMenu menuProdutos;
