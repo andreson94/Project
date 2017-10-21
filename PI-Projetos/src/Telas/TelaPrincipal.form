@@ -119,13 +119,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelPrincipal" alignment="0" pref="782" max="32767" attributes="0"/>
+          <Component id="panelPrincipal" alignment="0" pref="701" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="panelPrincipal" min="-2" pref="882" max="-2" attributes="0"/>
+              <Component id="panelPrincipal" min="-2" pref="744" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -143,7 +143,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xd;&#xa;    private Image image;&#xd;&#xa;    {&#xd;&#xa;        try {&#xd;&#xa;            image = ImageIO.read(new File(&quot;src/resources/Win.jpg&quot;));&#xd;&#xa;        } catch (Exception e) {&#xd;&#xa;            e.printStackTrace();&#xd;&#xa;        }&#xd;&#xa;    }&#xd;&#xa;&#xd;&#xa;    @Override&#xd;&#xa;    protected void paintComponent(Graphics g) {&#xd;&#xa;        super.paintComponent(g);&#xd;&#xa;        g.drawImage(image, 0, 0, getWidth(), getHeight(), this);&#xd;&#xa;    }&#xd;&#xa;};"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xd;&#xa;    private Image image;&#xd;&#xa;    {&#xd;&#xa;        try {&#xd;&#xa;            image = ImageIO.read(new File(&quot;src/Imagens/Win.jpg&quot;));&#xd;&#xa;        } catch (Exception e) {&#xd;&#xa;            e.printStackTrace();&#xd;&#xa;        }&#xd;&#xa;    }&#xd;&#xa;&#xd;&#xa;    @Override&#xd;&#xa;    protected void paintComponent(Graphics g) {&#xd;&#xa;        super.paintComponent(g);&#xd;&#xa;        g.drawImage(image, 0, 0, getWidth(), getHeight(), this);&#xd;&#xa;    }&#xd;&#xa;};"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
@@ -154,52 +154,52 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="782" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="701" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="882" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="744" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
         </Container>
-        <Component class="Telas.CadastrarClientes" name="cadastrarClientes">
+        <Component class="Telas.CadastrarClientes" name="cadastrarClientes1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="cadastrarClientes"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Telas.ConsultarClientes" name="consultarClientes">
+        <Component class="Telas.ConsultarClientes" name="consultarClientes1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="consultarClientes"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Telas.CadastrarProdutos" name="cadastrarProdutos">
+        <Component class="Telas.CadastrarProdutos" name="cadastrarProdutos1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="cadastrarProdutos"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Telas.ConsultarProdutos" name="consultarProdutos">
+        <Component class="Telas.ConsultarProdutos" name="consultarProdutos1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="consultarProdutos"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Telas.VendasProdutos" name="vendaProdutos">
+        <Component class="Telas.VendasProdutos" name="vendasProdutos1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="vendaProdutos"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Telas.Relatorio" name="relatorio">
+        <Component class="Telas.Relatorio" name="relatorio1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="relatorio"/>
