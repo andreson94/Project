@@ -16,10 +16,8 @@ import javax.imageio.ImageIO;
  * @author andreson.csilva
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Prototipo1
-     */
+    
+    
     public TelaPrincipal() {
         initComponents();
     }
