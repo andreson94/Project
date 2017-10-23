@@ -51,8 +51,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         };
         cadastrarClientes1 = new Telas.CadastrarClientes();
-        consultarClientes1 = new Telas.ConsultarClientes();
         cadastrarProdutos1 = new Telas.CadastrarProdutos();
+        consultarClientes1 = new Telas.ConsultarClientes();
         consultarProdutos1 = new Telas.ConsultarProdutos();
         vendasProdutos1 = new Telas.VendasProdutos();
         relatorio1 = new Telas.Relatorio();
@@ -79,17 +79,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaPrincipal.setLayout(telaPrincipalLayout);
         telaPrincipalLayout.setHorizontalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 701, Short.MAX_VALUE)
+            .addGap(0, 674, Short.MAX_VALUE)
         );
         telaPrincipalLayout.setVerticalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 744, Short.MAX_VALUE)
+            .addGap(0, 628, Short.MAX_VALUE)
         );
 
         panelPrincipal.add(telaPrincipal, "telaPrincipal");
         panelPrincipal.add(cadastrarClientes1, "cadastrarClientes");
-        panelPrincipal.add(consultarClientes1, "consultarClientes");
         panelPrincipal.add(cadastrarProdutos1, "cadastrarProdutos");
+        panelPrincipal.add(consultarClientes1, "consultarClientes");
         panelPrincipal.add(consultarProdutos1, "consultarProdutos");
         panelPrincipal.add(vendasProdutos1, "vendaProdutos");
         panelPrincipal.add(relatorio1, "relatorio");
@@ -176,7 +176,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 701, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
