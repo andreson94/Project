@@ -8,18 +8,13 @@ public class Produto {
     private String marca;
     private String cor;
     private float preco;
-
-//metodo construtor
-    public Produto(String modelo,String tamanho,String marca,String cor,float preco){
-        this.modelo = modelo;
-        this.tamanho = tamanho;
-        this.marca = marca;
-        this.cor = cor;
-        this.preco = preco;
-    }
+  
 //metodo para acessar valor do codigo
     public int getCodProduto() {
         return codProduto;
+    }
+    public void setCodProduto(int codProduto){
+        this.codProduto = codProduto;
     }
 //motodo para acessar o modelo
     public String getModelo() {
