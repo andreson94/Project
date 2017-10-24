@@ -2,6 +2,8 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Component class="Telas.VendasProdutos" name="vendasProdutos1">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="BarraMenu">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuClientes">
@@ -159,7 +161,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="628" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="744" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -174,35 +176,28 @@
         <Component class="Telas.CadastrarProdutos" name="cadastrarProdutos1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="cadastrarProdutos"/>
+              <CardConstraints cardName="card4"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="Telas.ConsultarClientes" name="consultarClientes1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="consultarClientes"/>
+              <CardConstraints cardName="card5"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="Telas.ConsultarProdutos" name="consultarProdutos1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="consultarProdutos"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="Telas.VendasProdutos" name="vendasProdutos1">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="vendaProdutos"/>
+              <CardConstraints cardName="card6"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="Telas.Relatorio" name="relatorio1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="relatorio"/>
+              <CardConstraints cardName="card7"/>
             </Constraint>
           </Constraints>
         </Component>
