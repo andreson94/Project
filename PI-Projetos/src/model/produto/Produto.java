@@ -2,7 +2,8 @@ package model.produto;
 
 
 public class Produto {
-    private int codProduto;
+    private Integer id;
+    private Long numero;
     private String modelo;
     private String tamanho;
     private String marca;
@@ -10,11 +11,17 @@ public class Produto {
     private float preco;
   
 //metodo para acessar valor do codigo
-    public int getCodProduto() {
-        return codProduto;
+    public Long getNumero(){
+        return numero;
     }
-    public void setCodProduto(int codProduto){
-        this.codProduto = codProduto;
+    public void setNumero(Long numero){
+        this.numero = numero;
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id){
+        this.id = id;
     }
 //motodo para acessar o modelo
     public String getModelo() {

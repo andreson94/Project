@@ -147,7 +147,7 @@ public class CadastrarProdutos extends javax.swing.JPanel {
     private void Cadastrar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cadastrar_buttonActionPerformed
         Produto  p = new Produto();
         
-        p.getCodProduto();
+        
         
         
         
