@@ -3,19 +3,19 @@ package model.produto;
 
 public class Produto {
     private Integer id;
-    private Long numero;
+    private Long cod_produto;
     private String modelo;
     private String tamanho;
     private String marca;
     private String cor;
-    private float preco;
+    private Float preco;
   
 //metodo para acessar valor do codigo
-    public Long getNumero(){
-        return numero;
+    public Long getCod_produto(){
+        return cod_produto;
     }
-    public void setNumero(Long numero){
-        this.numero = numero;
+    public void setCod_produto(Long cod_produto){
+        this.cod_produto = cod_produto;
     }
     public Integer getId() {
         return id;
@@ -57,12 +57,12 @@ public class Produto {
     }
 
     
-    public float getPreco() {
+    public Float getPreco() {
         return preco;
     }
 
     
-    public void setPreco(float preco) {
+    public void setPreco(Float preco) {
         this.preco = preco;
     }
     

@@ -64,8 +64,8 @@ public class MockProduto {
         
         if(valor != null && !listaProduto.isEmpty()){
             for(Produto produtoLa : listaProduto){
-                if(produtoLa != null && produtoLa.getNumero() != null ){
-                    if(produtoLa.getNumero()== valor){
+                if(produtoLa != null && produtoLa.getCod_produto() != null ){
+                    if(produtoLa.getCod_produto()== valor){
                         listaResultado.add(produtoLa);
                     }
                 }
