@@ -84,8 +84,23 @@ public class MockCliente {
                 }
             }
         }
+        //Returna a lista de clientes encontrados
         return listaResultado;
     }
+    
+     //Obtém um cliente da lista
+    public static Cliente obter (Integer id)
+            throws Exception{
+        if(id != null && !listaCliente.isEmpty()){
+            for(int i=0;  i<listaCliente.size(); i++){
+                if(listaCliente.get(i) != null && listaCliente.get(i).getId() == id ){
+                    return listaCliente.get(i);
+                }
+            }
+        }
+        return null;
+    }
+    
     
     
     
