@@ -35,32 +35,48 @@ public class ValidadorCliente {
                 || (!cliente.getSexo().equals("Masculino"))
                 && !cliente.getSexo().equals("Feminino")) {
             throw new ClienteException("Por favor informe o "
-                    + "gênero do cliente");
+                    + "sexo do cliente");
         }
         if (cliente.getEstadoCivil()== null || "".equals(cliente.getEstadoCivil())
                 || (!cliente.getEstadoCivil().equals("Solteiro"))
                 && !cliente.getEstadoCivil().equals("Casado")) {
             throw new ClienteException("Por favor informe o "
-                    + "Estado Civil do cliente");
+                    + "estado civil do cliente");
         }
         if(cliente.getEmail()== null || "".equals(cliente.getEmail())){
             throw new ClienteException("Por favor informe o"
-                   + "o Email do cliente");
+                   + "o tmail do cliente");
         }
         if(cliente.getTelefone()== null || "".equals(cliente.getTelefone())){
             throw new ClienteException("Por favor informe o"
-                   + "o Telefone do cliente");
+                   + "o telefone do cliente");
         }
         if(cliente.getCep()== null || "".equals(cliente.getCep())){
             throw new ClienteException("Por favor informe o"
-                   + "o Cep do cliente");
+                   + "o cep do cliente");
         }
-        if(cliente.getCep()== null || "".equals(cliente.getCep())){
+        
+        if(cliente.getEndereco()== null || "".equals(cliente.getEndereco())){
             throw new ClienteException("Por favor informe o"
-                   + "o Cep do cliente");
+                   + "o Endereço do cliente");
+        }
+        if(cliente.getNumEnd()== null || "".equals(cliente.getNumEnd())){
+            throw new ClienteException("Por favor informe o"
+                   + "o numero do cliente");
         }
         
-        
+        if(cliente.getBairro()== null || "".equals(cliente.getBairro())){
+            throw new ClienteException("Por favor informe o"
+                   + "o bairro do cliente");
+        }    
+        if(cliente.getCidade()== null || "".equals(cliente.getCidade())){
+            throw new ClienteException("Por favor informe o"
+                   + "o cidade do cliente");
+        }    
+        if(cliente.getEstado()== null || "".equals(cliente.getEstado())){
+            throw new ClienteException("Por favor informe o"
+                   + "o estado do cliente");
+        }    
     }
 }
 

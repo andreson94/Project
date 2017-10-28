@@ -31,12 +31,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        vendasProdutos1 = new Telas.VendasProdutos();
         panelPrincipal = new javax.swing.JPanel();
         telaPrincipal = new javax.swing.JPanel() {
             private Image image;
             {
                 try {
-                    image = ImageIO.read(new File("src/Imagens/Win.jpg"));
+                    image = ImageIO.read(new File("src/Imagens/logo1.png"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -52,7 +53,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cadastrarProdutos1 = new Telas.CadastrarProdutos();
         consultarClientes1 = new Telas.ConsultarClientes();
         consultarProdutos1 = new Telas.ConsultarProdutos();
-        vendasProdutos1 = new Telas.VendasProdutos();
         relatorio1 = new Telas.Relatorio();
         BarraMenu = new javax.swing.JMenuBar();
         menuClientes = new javax.swing.JMenu();
@@ -81,16 +81,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         telaPrincipalLayout.setVerticalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 628, Short.MAX_VALUE)
+            .addGap(0, 744, Short.MAX_VALUE)
         );
 
         panelPrincipal.add(telaPrincipal, "telaPrincipal");
         panelPrincipal.add(cadastrarClientes1, "cadastrarClientes");
-        panelPrincipal.add(cadastrarProdutos1, "cadastrarProdutos");
-        panelPrincipal.add(consultarClientes1, "consultarClientes");
-        panelPrincipal.add(consultarProdutos1, "consultarProdutos");
-        panelPrincipal.add(vendasProdutos1, "vendaProdutos");
-        panelPrincipal.add(relatorio1, "relatorio");
+        panelPrincipal.add(cadastrarProdutos1, "card4");
+        panelPrincipal.add(consultarClientes1, "card5");
+        panelPrincipal.add(consultarProdutos1, "card6");
+        panelPrincipal.add(relatorio1, "card7");
 
         menuClientes.setText("Clientes");
 
