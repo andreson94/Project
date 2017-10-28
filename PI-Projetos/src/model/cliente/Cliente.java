@@ -3,7 +3,7 @@ package model.cliente;
 
 
 public class Cliente {
-    private int idCliente;
+    private Integer id;
     private String nome;
     private String sobrenome;
     private String dataNasc;
@@ -15,43 +15,20 @@ public class Cliente {
     private String telefone;
     private String cep;
     private String endereco;
-    private String numEnd;
+    private String NumEnd;
     private String complemento;
     private String bairro;
     private String cidade;
     private String estado;
     
-    public Cliente(int idCliente,String nome,String sobrenome,String datanasc,String rg,String cpf,
-            String sexo,String estadoCivil,String email,String telefone,String cep,
-            String endereco,String numEnd,String complemento,String bairro,String cidade,String estado){
-        
-        this.idCliente = idCliente;
-        this.nome=nome;
-        this.sobrenome = sobrenome;
-        this.dataNasc=datanasc;
-        this.rg = rg;
-        this.cpf=cpf;
-        this.sexo = sexo;
-        this.estadoCivil=estadoCivil;
-        this.email = email;
-        this.telefone = telefone;
-        this.cep = cep;
-        this.endereco = endereco;
-        this.numEnd = numEnd;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
+   public Integer getId() {
+        return id;
     }
 
-    public int idCliente() {
-        return idCliente;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    
-    public void setidCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
 
     public String getNome() {
         return nome;
@@ -143,11 +120,11 @@ public class Cliente {
     }
 
     public String getNumEnd() {
-        return numEnd;
+        return NumEnd;
     }
 
-    public void setNumEnd(String numEnd) {
-        this.numEnd = numEnd;
+    public void setNumEnd(String NumEnd) {
+        this.NumEnd = NumEnd;
     }
 
     public String getComplemento() {
