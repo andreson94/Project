@@ -41,6 +41,7 @@ public class VendasProdutos extends javax.swing.JPanel {
         labelValorPagamento = new javax.swing.JLabel();
         labelCliente = new javax.swing.JLabel();
         TextCliente = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
 
         labelCodProd.setText("Cód. Produto");
 
@@ -110,21 +111,19 @@ public class VendasProdutos extends javax.swing.JPanel {
             }
         });
 
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout vendasLancamentoLayout = new javax.swing.GroupLayout(vendasLancamento);
         vendasLancamento.setLayout(vendasLancamentoLayout);
         vendasLancamentoLayout.setHorizontalGroup(
             vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(vendasLancamentoLayout.createSequentialGroup()
                 .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(vendasLancamentoLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(ButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonFinalVenda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelSaldo)
-                        .addGap(27, 27, 27)
-                        .addComponent(labelValorSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vendasLancamentoLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelPagamento)
@@ -144,7 +143,21 @@ public class VendasProdutos extends javax.swing.JPanel {
                             .addComponent(TextCliente))
                         .addGap(33, 33, 33)
                         .addComponent(ButtonIncluir)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                                .addComponent(btnCancelar)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                                .addComponent(ButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ButtonFinalVenda)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelSaldo)
+                                .addGap(27, 27, 27)
+                                .addComponent(labelValorSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         vendasLancamentoLayout.setVerticalGroup(
@@ -176,7 +189,9 @@ public class VendasProdutos extends javax.swing.JPanel {
                 .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPagamento)
                     .addComponent(labelValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
+                .addGap(35, 35, 35)
+                .addComponent(btnCancelar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -207,6 +222,10 @@ public class VendasProdutos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextClienteActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonExcluir;
@@ -216,6 +235,7 @@ public class VendasProdutos extends javax.swing.JPanel {
     private javax.swing.JTable TableVendas;
     private javax.swing.JTextField TextCliente;
     private javax.swing.JTextField TextCodProd;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelCodProd;
     private javax.swing.JLabel labelPagamento;

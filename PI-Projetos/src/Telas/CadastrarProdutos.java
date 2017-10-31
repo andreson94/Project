@@ -157,12 +157,13 @@ public class CadastrarProdutos extends javax.swing.JPanel {
                 .addComponent(Cor_text)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Preco_label)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(Preco_float))
-                    .addComponent(Cadastrar_button)
-                    .addComponent(Cancelar_button))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Cadastrar_button)
+                        .addComponent(Cancelar_button)))
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
