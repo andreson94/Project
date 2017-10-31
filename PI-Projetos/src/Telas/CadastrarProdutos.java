@@ -5,7 +5,10 @@
  */
 package Telas;
 
+
+import javax.swing.JOptionPane;
 import model.produto.Produto;
+import service.produto.ServicoProduto;
 
 /**
  *
@@ -72,6 +75,11 @@ public class CadastrarProdutos extends javax.swing.JPanel {
         });
 
         Cancelar_button.setText("Cancelar");
+        Cancelar_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cancelar_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -143,17 +151,64 @@ public class CadastrarProdutos extends javax.swing.JPanel {
     private void Cor_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cor_textActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Cor_textActionPerformed
-
+        //Listener do botão cadastrar
     private void Cadastrar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cadastrar_buttonActionPerformed
         Produto  p = new Produto();
         
+        Long cod_produto = null;
+        try{
+            Number number = (Number) Codigo_text.getValue;
+            cod_produto = number.longValue();
+        }catch(Exception e){
+            
+        }
+        p.setCod_produto(cod_produto);
         
         
+         Float preco = null;
+        try {
+            Number number = (Number) Preco_float.getValue;
+            preco =  number.floatValue();
+        } catch (Exception e) {
+
+        }
+        p.setPreco(preco);
         
+        p.setModelo(Modelo_text.getText());
         
+        p.setMarca(Marca_text.getText());
         
+        p.setCor(Cor_text.getText());
         
+        p.setTamanho((String) Tamanho_combo.getSelectedItem());
+        
+        try{
+            //Chama o serviço quarto
+            ServicoProduto.cadastrarProduto(p);
+        }catch (Exception e){
+            //tratamento de erro
+            JOptionPane.showMessageDialog(null, e.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+            
+        }
+        
+        //Inserido com sucesso
+        JOptionPane.showMessageDialog(null, "Produto inserido",
+                "Cadastro bem-sucedido", JOptionPane.INFORMATION_MESSAGE);
+        
+        //limpa os campos
+        Codigo_text.setValue(null);
+        Preco_float.setValue(null);
+        Modelo_text.setText("");
+        Tamanho_combo.setSelectedIndex(0);
+        Marca_text.setText("");
+        Cor_text.setText("");
     }//GEN-LAST:event_Cadastrar_buttonActionPerformed
+    //Listener para cancelar(fechar)
+    private void Cancelar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar_buttonActionPerformed
+        
+    }//GEN-LAST:event_Cancelar_buttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
