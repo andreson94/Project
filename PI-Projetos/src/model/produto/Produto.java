@@ -8,6 +8,7 @@ public class Produto {
     private String tamanho;
     private String marca;
     private String cor;
+    private String genero;
     private Float preco;
   
 //metodo para acessar valor do codigo
@@ -16,6 +17,12 @@ public class Produto {
     }
     public void setCod_produto(Long cod_produto){
         this.cod_produto = cod_produto;
+    }
+    public String getGenero(){
+        return genero;
+    }
+    public void setGenero(String genero){
+        this.genero = genero;
     }
     public Integer getId() {
         return id;
