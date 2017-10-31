@@ -157,13 +157,12 @@ public class CadastrarProdutos extends javax.swing.JPanel {
                 .addComponent(Cor_text)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Preco_label)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(Preco_float))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Cadastrar_button)
-                        .addComponent(Cancelar_button)))
+                    .addComponent(Cadastrar_button)
+                    .addComponent(Cancelar_button))
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -218,8 +217,7 @@ public class CadastrarProdutos extends javax.swing.JPanel {
     }//GEN-LAST:event_Cadastrar_buttonActionPerformed
     //Listener para cancelar(fechar)
     private void Cancelar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar_buttonActionPerformed
-    TelaPrincipal tp = (TelaPrincipal)getRootPane().getParent();
-        tp.returnToTitle();
+        
     }//GEN-LAST:event_Cancelar_buttonActionPerformed
 
     private void Tamanho_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tamanho_textActionPerformed
