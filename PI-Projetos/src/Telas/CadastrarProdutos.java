@@ -157,8 +157,8 @@ public class CadastrarProdutos extends javax.swing.JPanel {
         
         Long cod_produto = null;
         try{
-            Number number = (Number) Codigo_text.getValue;
-            cod_produto = number.longValue();
+           // Number number = (Number) Codigo_t();
+            //cod_produto = number.longValue();
         }catch(Exception e){
             
         }
@@ -167,8 +167,8 @@ public class CadastrarProdutos extends javax.swing.JPanel {
         
          Float preco = null;
         try {
-            Number number = (Number) Preco_float.getValue;
-            preco =  number.floatValue();
+            //Number number = (Number) Preco_float.getValue();
+            //preco =  number.floatValue();
         } catch (Exception e) {
 
         }
@@ -198,8 +198,8 @@ public class CadastrarProdutos extends javax.swing.JPanel {
                 "Cadastro bem-sucedido", JOptionPane.INFORMATION_MESSAGE);
         
         //limpa os campos
-        Codigo_text.setValue(null);
-        Preco_float.setValue(null);
+        //Codigo_text.setValue(null);
+        //Preco_float.setValue(null);
         Modelo_text.setText("");
         Tamanho_combo.setSelectedIndex(0);
         Marca_text.setText("");
