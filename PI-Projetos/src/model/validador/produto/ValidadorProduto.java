@@ -14,7 +14,7 @@ public class ValidadorProduto {
             throw new ProdutoException("Não foi informado um Produto");
         }
       if(produto.getCod_produto() == null || produto.getCod_produto() <= 0){
-          throw new ProdutoException("o número do produto precisa ser "+
+          throw new ProdutoException("o código do produto precisa ser "+
                   "um valor positivo e maior que zero");
       }
       if(produto.getModelo() == null || "".equals(produto.getModelo())){

@@ -155,24 +155,17 @@ public class CadastrarProdutos extends javax.swing.JPanel {
     private void Cadastrar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cadastrar_buttonActionPerformed
         Produto  p = new Produto();
         
-        Long cod_produto = null;
         try{
-           // Number number = (Number) Codigo_t();
-            //cod_produto = number.longValue();
+          p.setCod_produto(Long.parseLong(Codigo_text.getText().toString()));
         }catch(Exception e){
-            
+           
         }
-        p.setCod_produto(cod_produto);
-        
-        
-         Float preco = null;
+         
         try {
-            //Number number = (Number) Preco_float.getValue();
-            //preco =  number.floatValue();
+          p.setPreco(Float.parseFloat(Preco_float.getText().toString()));
         } catch (Exception e) {
 
         }
-        p.setPreco(preco);
         
         p.setModelo(Modelo_text.getText());
         
@@ -198,8 +191,8 @@ public class CadastrarProdutos extends javax.swing.JPanel {
                 "Cadastro bem-sucedido", JOptionPane.INFORMATION_MESSAGE);
         
         //limpa os campos
-        //Codigo_text.setValue(null);
-        //Preco_float.setValue(null);
+        Codigo_text.setText("");
+        Preco_float.setText("");
         Modelo_text.setText("");
         Tamanho_combo.setSelectedIndex(0);
         Marca_text.setText("");
