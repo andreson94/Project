@@ -223,7 +223,8 @@ public class VendasProdutos extends javax.swing.JPanel {
     }//GEN-LAST:event_TextClienteActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+         TelaPrincipal tp = (TelaPrincipal)getRootPane().getParent();
+        tp.returnToTitle();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 
