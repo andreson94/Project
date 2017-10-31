@@ -53,7 +53,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cadastrarProdutos1 = new Telas.CadastrarProdutos();
         consultarClientes1 = new Telas.ConsultarClientes();
         consultarProdutos1 = new Telas.ConsultarProdutos();
-        vendasProdutos2 = new Telas.VendasProdutos();
         relatorio1 = new Telas.Relatorio();
         BarraMenu = new javax.swing.JMenuBar();
         menuClientes = new javax.swing.JMenu();
@@ -78,7 +77,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaPrincipal.setLayout(telaPrincipalLayout);
         telaPrincipalLayout.setHorizontalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 754, Short.MAX_VALUE)
+            .addGap(0, 674, Short.MAX_VALUE)
         );
         telaPrincipalLayout.setVerticalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,11 +86,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         panelPrincipal.add(telaPrincipal, "telaPrincipal");
         panelPrincipal.add(cadastrarClientes1, "cadastrarClientes");
-        panelPrincipal.add(cadastrarProdutos1, "cadastrarProdutos");
-        panelPrincipal.add(consultarClientes1, "consultarClientes");
-        panelPrincipal.add(consultarProdutos1, "consultarProdutos");
-        panelPrincipal.add(vendasProdutos2, "vendaProdutos");
-        panelPrincipal.add(relatorio1, "relatorio");
+        panelPrincipal.add(cadastrarProdutos1, "card4");
+        panelPrincipal.add(consultarClientes1, "card5");
+        panelPrincipal.add(consultarProdutos1, "card6");
+        panelPrincipal.add(relatorio1, "card7");
 
         menuClientes.setText("Clientes");
 
@@ -175,7 +173,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,6 +277,5 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private Telas.Relatorio relatorio1;
     private javax.swing.JPanel telaPrincipal;
     private Telas.VendasProdutos vendasProdutos1;
-    private Telas.VendasProdutos vendasProdutos2;
     // End of variables declaration//GEN-END:variables
 }
