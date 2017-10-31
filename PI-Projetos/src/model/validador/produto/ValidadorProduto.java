@@ -22,9 +22,10 @@ public class ValidadorProduto {
                   " do produto"); 
       }
       if(produto.getTamanho() == null || "".equals(produto.getTamanho())){
-          throw new ProdutoException("Por favor informe o tamanho "+
-                  " do produto");   
+          throw new ProdutoException("Por favor informe o tamanho"+
+                  "do produto");
       }
+     
       if(produto.getMarca() == null || "".equals(produto.getMarca())){
           throw new ProdutoException("Por favor informe a marca "+
                   " do produto");   
