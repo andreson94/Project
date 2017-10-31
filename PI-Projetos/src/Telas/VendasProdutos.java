@@ -28,28 +28,30 @@ public class VendasProdutos extends javax.swing.JPanel {
     private void initComponents() {
 
         vendasLancamento = new javax.swing.JPanel();
-        jLabel23 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
-        jButton20 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        labelCodProd = new javax.swing.JLabel();
+        TextCodProd = new javax.swing.JTextField();
+        ButtonFinalVenda = new javax.swing.JButton();
+        PaneVendas = new javax.swing.JScrollPane();
+        TableVendas = new javax.swing.JTable();
+        ButtonIncluir = new javax.swing.JButton();
+        ButtonExcluir = new javax.swing.JButton();
+        labelSaldo = new javax.swing.JLabel();
+        labelValorSaldo = new javax.swing.JLabel();
+        labelPagamento = new javax.swing.JLabel();
+        labelValorPagamento = new javax.swing.JLabel();
+        labelCliente = new javax.swing.JLabel();
+        TextCliente = new javax.swing.JTextField();
 
-        jLabel23.setText("Cód. Produto");
+        labelCodProd.setText("Cód. Produto");
 
-        jButton20.setText("Finalizar Venda");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        ButtonFinalVenda.setText("Finalizar Venda");
+        ButtonFinalVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                ButtonFinalVendaActionPerformed(evt);
             }
         });
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        TableVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -72,33 +74,41 @@ public class VendasProdutos extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable4);
+        PaneVendas.setViewportView(TableVendas);
 
-        jButton21.setText("Incluir");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
+        ButtonIncluir.setText("Incluir");
+        ButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
+                ButtonIncluirActionPerformed(evt);
             }
         });
 
-        jButton22.setText("Excluir");
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
+        ButtonExcluir.setText("Excluir");
+        ButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
+                ButtonExcluirActionPerformed(evt);
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("Saldo:");
+        labelSaldo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelSaldo.setText("Saldo:");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("0,0");
+        labelValorSaldo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelValorSaldo.setText("0,0");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel16.setText("A Pagar:");
+        labelPagamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelPagamento.setText("A Pagar:");
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setText("0,0");
+        labelValorPagamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelValorPagamento.setText("0,0");
+
+        labelCliente.setText("Cliente");
+
+        TextCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout vendasLancamentoLayout = new javax.swing.GroupLayout(vendasLancamento);
         vendasLancamento.setLayout(vendasLancamentoLayout);
@@ -107,52 +117,65 @@ public class VendasProdutos extends javax.swing.JPanel {
             .addGroup(vendasLancamentoLayout.createSequentialGroup()
                 .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(vendasLancamentoLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton21)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(vendasLancamentoLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton20)
+                        .addComponent(ButtonFinalVenda)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12)
+                        .addComponent(labelSaldo)
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelValorSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vendasLancamentoLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel16)
+                        .addComponent(labelPagamento)
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(vendasLancamentoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)))
+                        .addComponent(PaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE))
+                    .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCodProd)
+                            .addComponent(labelCliente))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TextCodProd, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(TextCliente))
+                        .addGap(33, 33, 33)
+                        .addComponent(ButtonIncluir)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         vendasLancamentoLayout.setVerticalGroup(
             vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vendasLancamentoLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(jButton21))
-                .addGap(55, 55, 55)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelCodProd))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelCliente)
+                            .addComponent(TextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vendasLancamentoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ButtonIncluir)
+                        .addGap(35, 35, 35)))
+                .addComponent(PaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton22)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton20))
+                    .addComponent(ButtonExcluir)
+                    .addComponent(labelSaldo)
+                    .addComponent(labelValorSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonFinalVenda))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelPagamento)
+                    .addComponent(labelValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69))
         );
 
@@ -168,31 +191,37 @@ public class VendasProdutos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+    private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton22ActionPerformed
+    }//GEN-LAST:event_ButtonExcluirActionPerformed
 
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+    private void ButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIncluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton21ActionPerformed
+    }//GEN-LAST:event_ButtonIncluirActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    private void ButtonFinalVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonFinalVendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
+    }//GEN-LAST:event_ButtonFinalVendaActionPerformed
+
+    private void TextClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTextField jTextField21;
+    private javax.swing.JButton ButtonExcluir;
+    private javax.swing.JButton ButtonFinalVenda;
+    private javax.swing.JButton ButtonIncluir;
+    private javax.swing.JScrollPane PaneVendas;
+    private javax.swing.JTable TableVendas;
+    private javax.swing.JTextField TextCliente;
+    private javax.swing.JTextField TextCodProd;
+    private javax.swing.JLabel labelCliente;
+    private javax.swing.JLabel labelCodProd;
+    private javax.swing.JLabel labelPagamento;
+    private javax.swing.JLabel labelSaldo;
+    private javax.swing.JLabel labelValorPagamento;
+    private javax.swing.JLabel labelValorSaldo;
     private javax.swing.JPanel vendasLancamento;
     // End of variables declaration//GEN-END:variables
 }

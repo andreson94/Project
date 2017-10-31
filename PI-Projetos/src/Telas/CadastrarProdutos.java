@@ -5,6 +5,11 @@
  */
 package Telas;
 
+
+import javax.swing.JOptionPane;
+import model.produto.Produto;
+import service.produto.ServicoProduto;
+
 /**
  *
  * @author andreson.csilva
@@ -27,38 +32,54 @@ public class CadastrarProdutos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField19 = new javax.swing.JTextField();
-        jTextField20 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        Cor_text = new javax.swing.JTextField();
+        Modelo_text = new javax.swing.JTextField();
+        Codigo_text = new javax.swing.JTextField();
+        Tamanho_combo = new javax.swing.JComboBox<>();
+        Preco_float = new javax.swing.JTextField();
+        Marca_text = new javax.swing.JTextField();
+        Codigo_label = new javax.swing.JLabel();
+        Preco_label = new javax.swing.JLabel();
+        Cor_label = new javax.swing.JLabel();
+        Modelo_label = new javax.swing.JLabel();
+        Tamanho_label = new javax.swing.JLabel();
+        Marca_label = new javax.swing.JLabel();
+        Cadastrar_button = new javax.swing.JButton();
+        Cancelar_button = new javax.swing.JButton();
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino", "Outros" }));
+        Cor_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cor_textActionPerformed(evt);
+            }
+        });
 
-        jLabel21.setText("Código:");
+        Tamanho_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino", "Outros" }));
 
-        jLabel22.setText("Preço:");
+        Codigo_label.setText("Código:");
 
-        jLabel24.setText("Cor:");
+        Preco_label.setText("Preço:");
 
-        jLabel25.setText("Modelo:");
+        Cor_label.setText("Cor:");
 
-        jLabel26.setText("Tamanho:");
+        Modelo_label.setText("Modelo:");
 
-        jLabel28.setText("Marca:");
+        Tamanho_label.setText("Tamanho:");
 
-        jButton7.setText("Cadastrar");
+        Marca_label.setText("Marca:");
 
-        jButton8.setText("Cancelar");
+        Cadastrar_button.setText("Cadastrar");
+        Cadastrar_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cadastrar_buttonActionPerformed(evt);
+            }
+        });
+
+        Cancelar_button.setText("Cancelar");
+        Cancelar_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cancelar_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -68,80 +89,142 @@ public class CadastrarProdutos extends javax.swing.JPanel {
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel21)
+                        .addComponent(Codigo_label)
                         .addGap(0, 475, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField17)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField20, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Codigo_text)
+                            .addComponent(Modelo_label, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Modelo_text, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(Tamanho_label, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Tamanho_combo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel28)
-                            .addComponent(jLabel22)
-                            .addComponent(jTextField22)
-                            .addComponent(jTextField19)
-                            .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Cor_label)
+                            .addComponent(Marca_label)
+                            .addComponent(Preco_label)
+                            .addComponent(Marca_text)
+                            .addComponent(Cor_text)
+                            .addComponent(Preco_float, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7)
+                        .addComponent(Cadastrar_button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton8)
+                        .addComponent(Cancelar_button)
                         .addGap(23, 23, 23))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel21)
+                .addComponent(Codigo_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Codigo_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel25)
+                .addComponent(Modelo_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Modelo_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jLabel26)
+                .addComponent(Tamanho_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Tamanho_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel28)
+                .addComponent(Marca_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Marca_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel24)
+                .addComponent(Cor_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Cor_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22)
+                .addComponent(Preco_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton7)
-                        .addComponent(jButton8)))
+                        .addComponent(Cadastrar_button)
+                        .addComponent(Cancelar_button))
+                    .addComponent(Preco_float, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Cor_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cor_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Cor_textActionPerformed
+        //Listener do botão cadastrar
+    private void Cadastrar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cadastrar_buttonActionPerformed
+        Produto  p = new Produto();
+        
+        Long cod_produto = null;
+        try{
+           // Number number = (Number) Codigo_t();
+            //cod_produto = number.longValue();
+        }catch(Exception e){
+            
+        }
+        p.setCod_produto(cod_produto);
+        
+        
+         Float preco = null;
+        try {
+            //Number number = (Number) Preco_float.getValue();
+            //preco =  number.floatValue();
+        } catch (Exception e) {
+
+        }
+        p.setPreco(preco);
+        
+        p.setModelo(Modelo_text.getText());
+        
+        p.setMarca(Marca_text.getText());
+        
+        p.setCor(Cor_text.getText());
+        
+        p.setTamanho((String) Tamanho_combo.getSelectedItem());
+        
+        try{
+            //Chama o serviço quarto
+            ServicoProduto.cadastrarProduto(p);
+        }catch (Exception e){
+            //tratamento de erro
+            JOptionPane.showMessageDialog(null, e.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+            
+        }
+        
+        //Inserido com sucesso
+        JOptionPane.showMessageDialog(null, "Produto inserido",
+                "Cadastro bem-sucedido", JOptionPane.INFORMATION_MESSAGE);
+        
+        //limpa os campos
+        //Codigo_text.setValue(null);
+        //Preco_float.setValue(null);
+        Modelo_text.setText("");
+        Tamanho_combo.setSelectedIndex(0);
+        Marca_text.setText("");
+        Cor_text.setText("");
+    }//GEN-LAST:event_Cadastrar_buttonActionPerformed
+    //Listener para cancelar(fechar)
+    private void Cancelar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar_buttonActionPerformed
+        
+    }//GEN-LAST:event_Cancelar_buttonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField22;
+    private javax.swing.JButton Cadastrar_button;
+    private javax.swing.JButton Cancelar_button;
+    private javax.swing.JLabel Codigo_label;
+    private javax.swing.JTextField Codigo_text;
+    private javax.swing.JLabel Cor_label;
+    private javax.swing.JTextField Cor_text;
+    private javax.swing.JLabel Marca_label;
+    private javax.swing.JTextField Marca_text;
+    private javax.swing.JLabel Modelo_label;
+    private javax.swing.JTextField Modelo_text;
+    private javax.swing.JTextField Preco_float;
+    private javax.swing.JLabel Preco_label;
+    private javax.swing.JComboBox<String> Tamanho_combo;
+    private javax.swing.JLabel Tamanho_label;
     // End of variables declaration//GEN-END:variables
 }

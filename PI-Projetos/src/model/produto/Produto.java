@@ -2,24 +2,26 @@ package model.produto;
 
 
 public class Produto {
-    private int codProduto;
+    private Integer id;
+    private Long cod_produto;
     private String modelo;
     private String tamanho;
     private String marca;
     private String cor;
-    private float preco;
-
-//metodo construtor
-    public Produto(String modelo,String tamanho,String marca,String cor,float preco){
-        this.modelo = modelo;
-        this.tamanho = tamanho;
-        this.marca = marca;
-        this.cor = cor;
-        this.preco = preco;
-    }
+    private Float preco;
+  
 //metodo para acessar valor do codigo
-    public int getCodProduto() {
-        return codProduto;
+    public Long getCod_produto(){
+        return cod_produto;
+    }
+    public void setCod_produto(Long cod_produto){
+        this.cod_produto = cod_produto;
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id){
+        this.id = id;
     }
 //motodo para acessar o modelo
     public String getModelo() {
@@ -55,12 +57,12 @@ public class Produto {
     }
 
     
-    public float getPreco() {
+    public Float getPreco() {
         return preco;
     }
 
     
-    public void setPreco(float preco) {
+    public void setPreco(Float preco) {
         this.preco = preco;
     }
     

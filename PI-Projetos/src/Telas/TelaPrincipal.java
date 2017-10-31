@@ -36,7 +36,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             private Image image;
             {
                 try {
-                    image = ImageIO.read(new File("src/Imagens/Win.jpg"));
+                    image = ImageIO.read(new File("src/Imagens/logo3.png"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -48,12 +48,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
             }
         };
-        cadastrarClientes1 = new Telas.CadastrarClientes();
-        cadastrarProdutos1 = new Telas.CadastrarProdutos();
-        consultarClientes1 = new Telas.ConsultarClientes();
-        consultarProdutos1 = new Telas.ConsultarProdutos();
-        vendasProdutos1 = new Telas.VendasProdutos();
-        relatorio1 = new Telas.Relatorio();
+        cadastrarClientes = new Telas.CadastrarClientes();
+        cadastrarProdutos = new Telas.CadastrarProdutos();
+        consultarClientes = new Telas.ConsultarClientes();
+        consultarProdutos = new Telas.ConsultarProdutos();
+        vendasProdutos = new Telas.VendasProdutos();
+        relatorio = new Telas.Relatorio();
         BarraMenu = new javax.swing.JMenuBar();
         menuClientes = new javax.swing.JMenu();
         itemCadastroClientes = new javax.swing.JMenuItem();
@@ -77,20 +77,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaPrincipal.setLayout(telaPrincipalLayout);
         telaPrincipalLayout.setHorizontalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 674, Short.MAX_VALUE)
+            .addGap(0, 754, Short.MAX_VALUE)
         );
         telaPrincipalLayout.setVerticalGroup(
             telaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 628, Short.MAX_VALUE)
+            .addGap(0, 744, Short.MAX_VALUE)
         );
 
         panelPrincipal.add(telaPrincipal, "telaPrincipal");
-        panelPrincipal.add(cadastrarClientes1, "cadastrarClientes");
-        panelPrincipal.add(cadastrarProdutos1, "cadastrarProdutos");
-        panelPrincipal.add(consultarClientes1, "consultarClientes");
-        panelPrincipal.add(consultarProdutos1, "consultarProdutos");
-        panelPrincipal.add(vendasProdutos1, "vendaProdutos");
-        panelPrincipal.add(relatorio1, "relatorio");
+        panelPrincipal.add(cadastrarClientes, "cadastrarClientes");
+        panelPrincipal.add(cadastrarProdutos, "cadastrarProdutos");
+        panelPrincipal.add(consultarClientes, "consultarClientes");
+        panelPrincipal.add(consultarProdutos, "consultarProdutos");
+        panelPrincipal.add(vendasProdutos, "vendaProdutos");
+        panelPrincipal.add(relatorio, "relatorio");
 
         menuClientes.setText("Clientes");
 
@@ -174,7 +174,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,10 +260,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarraMenu;
-    private Telas.CadastrarClientes cadastrarClientes1;
-    private Telas.CadastrarProdutos cadastrarProdutos1;
-    private Telas.ConsultarClientes consultarClientes1;
-    private Telas.ConsultarProdutos consultarProdutos1;
+    private Telas.CadastrarClientes cadastrarClientes;
+    private Telas.CadastrarProdutos cadastrarProdutos;
+    private Telas.ConsultarClientes consultarClientes;
+    private Telas.ConsultarProdutos consultarProdutos;
     private javax.swing.JMenuItem itemCadastrarProduto;
     private javax.swing.JMenuItem itemCadastroClientes;
     private javax.swing.JMenuItem itemConsultarClientes;
@@ -275,8 +275,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuRelatorio;
     private javax.swing.JMenu menuVendas;
     private javax.swing.JPanel panelPrincipal;
-    private Telas.Relatorio relatorio1;
+    private Telas.Relatorio relatorio;
     private javax.swing.JPanel telaPrincipal;
-    private Telas.VendasProdutos vendasProdutos1;
+    private Telas.VendasProdutos vendasProdutos;
     // End of variables declaration//GEN-END:variables
 }
