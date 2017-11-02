@@ -1,12 +1,14 @@
 
 package model.cliente;
 
+import java.util.Date;
+
 
 public class Cliente {
     private Integer id;
     private String nome;
     private String sobrenome;
-    private String dataNasc;
+    private Date dataNasc;
     private String rg;
     private String cpf;
     private String sexo;
@@ -47,11 +49,11 @@ public class Cliente {
         this.sobrenome = sobrenome;
     }
 
-    public String getDataNasc() {
+    public Date getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(String dataNasc) {
+    public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
     }
 
