@@ -107,9 +107,11 @@ public class CadastrarClientes extends javax.swing.JPanel {
                             .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblComplemento)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnCancelar)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,8 +121,6 @@ public class CadastrarClientes extends javax.swing.JPanel {
                 .addContainerGap(63, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addGap(81, 81, 81)
                 .addComponent(btnSalvar)
                 .addContainerGap())
         );
@@ -164,7 +164,7 @@ public class CadastrarClientes extends javax.swing.JPanel {
                                 .addComponent(lblCidade)
                                 .addGap(3, 3, 3)
                                 .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnCancelar)))
@@ -329,12 +329,6 @@ public class CadastrarClientes extends javax.swing.JPanel {
         getAccessibleContext().setAccessibleName("cadastrarClientes");
     }// </editor-fold>//GEN-END:initComponents
 
-    //Listener do botão Cancelar
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        TelaPrincipal tp = (TelaPrincipal)getRootPane().getParent();
-        tp.returnToTitle();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
     //Listener do botão Cadastrar
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         //Cria uma instância do cliente e obtém
@@ -366,12 +360,14 @@ public class CadastrarClientes extends javax.swing.JPanel {
         try {
             //Chama o serviço para cadastro do cliente
             ServicoCliente.cadastrarCliente(cliente);
-        } catch (Exception ev) {
+        } catch (Exception e2) {
             //Exibe mensagens de erro para o usuário
             JOptionPane.showMessageDialog(this, e.getMessage(),
                     "Erro", JOptionPane.ERROR_MESSAGE);
             return;
+        
         }
+        
         
         //Caso tenha chegado até aqui, o cliente foi inserido com sucesso
         //Então exibe uma mensagem de sucesso para o usuário
@@ -396,8 +392,15 @@ public class CadastrarClientes extends javax.swing.JPanel {
         txtbairro.setText("");
         txtCidade.setText("");
         cbEstado.setSelectedItem(0);
-        
+        }
+       
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    //Listener do botão Cancelar
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        TelaPrincipal tp = (TelaPrincipal)getRootPane().getParent();
+        tp.returnToTitle();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
