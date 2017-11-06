@@ -5,6 +5,10 @@
  */
 package Telas;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import model.produto.Produto;
+
 /**
  *
  * @author andreson.csilva
@@ -44,6 +48,12 @@ public class VendasProdutos extends javax.swing.JPanel {
         btnCancelar = new javax.swing.JButton();
 
         labelCodProd.setText("Cód. Produto");
+
+        TextCodProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextCodProdActionPerformed(evt);
+            }
+        });
 
         ButtonFinalVenda.setText("Finalizar Venda");
         ButtonFinalVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -207,15 +217,30 @@ public class VendasProdutos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
-        // TODO add your handling code here:
+        
+        ((DefaultTableModel)TableVendas.getModel()).removeRow(TableVendas.getSelectedRow());
+        
     }//GEN-LAST:event_ButtonExcluirActionPerformed
 
     private void ButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIncluirActionPerformed
-        // TODO add your handling code here:
+   
+        String codProd = labelCodProd.getText().trim();
+        String cliente = labelCliente.getText().trim();
+       
+        DefaultTableModel validacao = (DefaultTableModel)TableVendas.getModel();
+        validacao.addRow(new String[] {codProd, cliente});
+        
+        labelCodProd.setText(TextCodProd.getText());
+        labelCliente.setText(TextCliente.getText());
+        
+        labelCodProd.requestFocus();
+        
     }//GEN-LAST:event_ButtonIncluirActionPerformed
 
     private void ButtonFinalVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonFinalVendaActionPerformed
-        // TODO add your handling code here:
+    
+        
+        
     }//GEN-LAST:event_ButtonFinalVendaActionPerformed
 
     private void TextClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextClienteActionPerformed
@@ -226,6 +251,10 @@ public class VendasProdutos extends javax.swing.JPanel {
          TelaPrincipal tp = (TelaPrincipal)getRootPane().getParent();
         tp.returnToTitle();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void TextCodProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCodProdActionPerformed
+      
+    }//GEN-LAST:event_TextCodProdActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
