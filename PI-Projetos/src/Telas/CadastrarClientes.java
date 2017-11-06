@@ -185,7 +185,7 @@ public class CadastrarClientes extends javax.swing.JPanel {
 
         lblSexo.setText("Sexo:");
 
-        cbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino", "Outros" }));
+        cbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino" }));
 
         lblEstadoCivil.setText("Estado civil:");
 
