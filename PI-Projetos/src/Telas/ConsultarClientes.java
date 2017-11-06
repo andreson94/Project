@@ -359,13 +359,13 @@ public class ConsultarClientes extends javax.swing.JPanel {
                         Object[] obj = {nome, endereco, telefone, cpf, rg, sexo, cidade};
                         modelCliente.addRow(obj);
 
+                        modelCliente.isCellEditable(i, 0);
                         modelCliente.isCellEditable(i, 1);
                         modelCliente.isCellEditable(i, 2);
                         modelCliente.isCellEditable(i, 3);
                         modelCliente.isCellEditable(i, 4);
                         modelCliente.isCellEditable(i, 5);
                         modelCliente.isCellEditable(i, 6);
-                        modelCliente.isCellEditable(i, 7);
                     } 
 
                 }

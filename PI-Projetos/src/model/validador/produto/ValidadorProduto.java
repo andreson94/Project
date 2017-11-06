@@ -19,11 +19,18 @@ public class ValidadorProduto {
       }
       if(produto.getModelo() == null || "".equals(produto.getModelo())){
           throw new ProdutoException("Por favor informe o modelo "+
-                  " do produto"); 
+                  " do produto");
       }
+          if (produto.getGenero()== null || "".equals(produto.getGenero())
+                || (!produto.getGenero().equals("Masculino"))
+                && !produto.getGenero().equals("Feminino")) {
+            throw new ProdutoException("Por favor informe o "
+                    + " sexo do produto");
+        }
+      
       if(produto.getTamanho() == null || "".equals(produto.getTamanho())){
-          throw new ProdutoException("Por favor informe o tamanho"+
-                  "do produto");
+          throw new ProdutoException("Por favor informe o tamanho "+
+                  " do produto");
       }
      
       if(produto.getMarca() == null || "".equals(produto.getMarca())){
@@ -38,7 +45,7 @@ public class ValidadorProduto {
           throw new ProdutoException("Por favor informe o preço "+
                   " do produto");   
       }
-        
+      
     }
     
     
