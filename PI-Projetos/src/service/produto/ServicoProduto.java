@@ -46,7 +46,7 @@ public class ServicoProduto {
     }
 
     //Realiza a pesquisa de um quarto por número na fonte de dados
-    public static List<Produto> procurarQuarto(Long numero)
+    public static List<Produto> procurar(Long numero)
             throws ProdutoException, DataSourceException {
         try {
             //Verifica se um parâmetro de pesquisa não foi informado.

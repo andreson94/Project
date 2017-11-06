@@ -72,6 +72,14 @@ public class Produto {
     public void setPreco(Float preco) {
         this.preco = preco;
     }
+
+    public Object getCódigo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object getEstoque() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

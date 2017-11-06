@@ -141,6 +141,11 @@ public class ConsultarClientes extends javax.swing.JPanel {
         });
 
         jButton15.setText("Excluir");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         btnSalver.setText("Salvar");
         btnSalver.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +172,12 @@ public class ConsultarClientes extends javax.swing.JPanel {
         jLabel69.setText("Bairro:");
 
         jLabel70.setText("Cidade:");
+
+        txtCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCidadeActionPerformed(evt);
+            }
+        });
 
         jLabel71.setText("Nº:");
 
@@ -454,6 +465,14 @@ public class ConsultarClientes extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_tblClienteMouseClicked
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void txtCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCidadeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
