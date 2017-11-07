@@ -14,10 +14,8 @@ import service.produto.ServicoProduto;
 
 public class ConsultarProdutos extends javax.swing.JPanel {
 
-    //Instância O formato da tela Consulta
-    TelaEditarProdutos formEditarProdutos = new TelaEditarProdutos();
    //Vai Guarda a ultima consulta feita
-    Long ultima_consulta = null;
+    Long ultima_consulta;
    
     public ConsultarProdutos() {
         initComponents();
@@ -192,19 +190,19 @@ public class ConsultarProdutos extends javax.swing.JPanel {
     private void BotaoConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoConsultaActionPerformed
   //Inicializa o sucesso da pesquisa com valor negativo, indicando que
         //a pesquisa de Produtos teve resultado negativo.
-        boolean Resultado_Consulta = false;
+        boolean Resultado_Consulta;
         
         //Grava o campo de pesquisa como a última pesquisa válida. O valor
         //de última pesquisa válida é utilizado na atualização da lista
-        
-   
+       
         
         
         if (BarraConsulta.getText() != null &&
                 !BarraConsulta.getText().equals("")){
             
             try {
-                long Ultima_Consulta = Long.parseLong(BarraConsulta.getText());
+                ultima_consulta = Long.parseLong(BarraConsulta.getText());
+                
             } catch (Exception e) {
                 //Exibe mensagens de erro na fonte de dados e para o listener
                 JOptionPane.showMessageDialog(this, "Só é possível"
@@ -220,7 +218,7 @@ public class ConsultarProdutos extends javax.swing.JPanel {
         try {
             //Solicita a atualização da lista com o novo critério
             //de pesquisa (ultimaPesquisa)
-          Resultado_Consulta =Atualizacao();
+          Resultado_Consulta = Atualizacao();
         } catch (Exception e) {
             //Exibe mensagens de erro na fonte de dados e para o listener
             JOptionPane.showMessageDialog(this, e.getMessage(),
@@ -284,7 +282,7 @@ public class ConsultarProdutos extends javax.swing.JPanel {
     private void BarraConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarraConsultaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BarraConsultaActionPerformed
-   private void Tabela_Produtos (java.awt.event.MouseEvent evt) {                                              
+   private void Tabela_Produto (java.awt.event.MouseEvent evt) {                                              
         //Verifica se o clique é um clique duplo       
         if (evt.getClickCount() == 2) {
             try {                
@@ -302,12 +300,6 @@ public class ConsultarProdutos extends javax.swing.JPanel {
                 //ser editado e mostra a tela de edição.
                 //Para exibir a tela, é necessário adicioná-la ao
                 //componente de desktop, o "pai" da janela corrente
-                formEditarProdutos.dispose();
-                formEditarProdutos = new TelaEditarProdutos();
-                formEditarProdutos.setProdutos(produtos);
-                formEditarProdutos.setTitle("Codido " + produtos.getCod_produto()+ ", "
-                    + "Modelo " + produtos.getModelo());
-                
             } catch (Exception e) {
                 //Se ocorrer algum erro técnico, mostra-o no console,
                 //mas esconde-o do usuário
