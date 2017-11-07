@@ -119,9 +119,16 @@ public class ConsultarClientes extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,6 +148,11 @@ public class ConsultarClientes extends javax.swing.JPanel {
         });
 
         jButton15.setText("Excluir");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         btnSalver.setText("Salvar");
         btnSalver.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +179,12 @@ public class ConsultarClientes extends javax.swing.JPanel {
         jLabel69.setText("Bairro:");
 
         jLabel70.setText("Cidade:");
+
+        txtCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCidadeActionPerformed(evt);
+            }
+        });
 
         jLabel71.setText("Nº:");
 
@@ -352,13 +370,13 @@ public class ConsultarClientes extends javax.swing.JPanel {
                         Object[] obj = {nome, endereco, telefone, cpf, rg, sexo, cidade};
                         modelCliente.addRow(obj);
 
+                        modelCliente.isCellEditable(i, 0);
                         modelCliente.isCellEditable(i, 1);
                         modelCliente.isCellEditable(i, 2);
                         modelCliente.isCellEditable(i, 3);
                         modelCliente.isCellEditable(i, 4);
                         modelCliente.isCellEditable(i, 5);
                         modelCliente.isCellEditable(i, 6);
-                        modelCliente.isCellEditable(i, 7);
                     } 
 
                 }
@@ -454,6 +472,14 @@ public class ConsultarClientes extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_tblClienteMouseClicked
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void txtCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCidadeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
