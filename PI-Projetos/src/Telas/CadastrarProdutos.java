@@ -183,7 +183,7 @@ public class CadastrarProdutos extends javax.swing.JPanel {
         
         
         try{
-            //Chama o serviço quarto
+            //Chama o serviço produto
             ServicoProduto.cadastrarProduto(p);
         }catch (Exception e){
             //tratamento de erro
