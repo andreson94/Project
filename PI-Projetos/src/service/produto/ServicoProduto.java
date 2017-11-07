@@ -27,7 +27,7 @@ public class ServicoProduto {
         }
     }
     //Atualiza um quarto na fonte de dados
-    public static void atualizarQuarto(Produto produto)
+    public static void atualizarProduto(Produto produto)
             throws ProdutoException, DataSourceException {
         
         //Realiza validações no quarto
@@ -46,7 +46,7 @@ public class ServicoProduto {
     }
 
     //Realiza a pesquisa de um quarto por número na fonte de dados
-    public static List<Produto> procurar(Long numero)
+    public static List<Produto> procurarProduto(Long numero)
             throws ProdutoException, DataSourceException {
         try {
             //Verifica se um parâmetro de pesquisa não foi informado.

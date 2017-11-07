@@ -119,9 +119,16 @@ public class ConsultarClientes extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -363,13 +370,13 @@ public class ConsultarClientes extends javax.swing.JPanel {
                         Object[] obj = {nome, endereco, telefone, cpf, rg, sexo, cidade};
                         modelCliente.addRow(obj);
 
+                        modelCliente.isCellEditable(i, 0);
                         modelCliente.isCellEditable(i, 1);
                         modelCliente.isCellEditable(i, 2);
                         modelCliente.isCellEditable(i, 3);
                         modelCliente.isCellEditable(i, 4);
                         modelCliente.isCellEditable(i, 5);
                         modelCliente.isCellEditable(i, 6);
-                        modelCliente.isCellEditable(i, 7);
                     } 
 
                 }

@@ -27,7 +27,7 @@ public class ConsultarProdutos extends javax.swing.JPanel {
         //Realiza a pesquisa de quartos com o último valor de pesquisa
         //para atualizar a lista
         List<Produto> resultado = ServicoProduto.
-                procurar(ultima_consulta);
+                procurarProduto(ultima_consulta);
 
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) Tabela_Produtos.getModel();
