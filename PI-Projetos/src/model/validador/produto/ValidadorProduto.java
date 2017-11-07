@@ -21,11 +21,11 @@ public class ValidadorProduto {
           throw new ProdutoException("Por favor informe o modelo "+
                   " do produto");
       }
-          if (produto.getGenero()== null || "".equals(produto.getGenero())
+          if (produto.getGenero() == null || "".equals(produto.getGenero())
                 || (!produto.getGenero().equals("Masculino"))
                 && !produto.getGenero().equals("Feminino")) {
             throw new ProdutoException("Por favor informe o "
-                    + " sexo do produto");
+                    + " Genero do produto");
         }
       
       if(produto.getTamanho() == null || "".equals(produto.getTamanho())){

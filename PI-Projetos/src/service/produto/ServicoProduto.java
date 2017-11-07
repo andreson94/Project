@@ -13,39 +13,37 @@ import model.validador.produto.ValidadorProduto;
 public class ServicoProduto {
     public static void cadastrarProduto(Produto produto)
             throws ProdutoException, DataSourceException {
-    //Realiza validações no quarto
+    //Realiza validações do produto
         ValidadorProduto.validar(produto);
 
         try {
-            //Realiza a chamada de inserção na fonte de dados
+            //Realiza a chamada de inserção 
             MockProduto.inserir(produto);
         } catch (Exception e) {
-            //Imprime qualquer erro técnico no console e devolve
-            //uma exceção e uma mensagem amigável a camada de visão
+            //Imprime qualquer erro técnico no console 
             e.printStackTrace();
             throw new DataSourceException("Erro na fonte de dados", e);
         }
     }
-    //Atualiza um quarto na fonte de dados
+    //Atualiza um produto
     public static void atualizarProduto(Produto produto)
             throws ProdutoException, DataSourceException {
         
-        //Realiza validações no quarto
+        //Realiza validações do produto
         ValidadorProduto.validar(produto);
 
         try {
-            //Realiza a chamada de atualização na fonte de dados
+            //Realiza a chamada de atualização 
             MockProduto.atualizar(produto);
             return;
         } catch (Exception e) {
-            //Imprime qualquer erro técnico no console e devolve
-            //uma exceção e uma mensagem amigável a camada de visão
+            //Imprime qualquer erro técnico no console 
             e.printStackTrace();
             throw new DataSourceException("Erro na fonte de dados", e);
         }
     }
 
-    //Realiza a pesquisa de um quarto por número na fonte de dados
+    //Realiza a pesquisa de um produto por número 
     public static List<Produto> procurarProduto(Long numero)
             throws ProdutoException, DataSourceException {
         try {
@@ -58,22 +56,20 @@ public class ServicoProduto {
                 return MockProduto.procurar(numero);
             }
         } catch (Exception e) {
-            //Imprime qualquer erro técnico no console e devolve
-            //uma exceção e uma mensagem amigável a camada de visão
+            //Imprime qualquer erro técnico no console 
             e.printStackTrace();
             throw new DataSourceException("Erro na fonte de dados", e);
         }
     }
 
-    //Obtem o quarto com ID informado do mock
+    //Obtem o produto com ID informado do mock
     public static Produto obterProduto(Integer id)
             throws ProdutoException, DataSourceException {
         try {
-            //Retorna o quarto obtido com o DAO
+            //Retorna o produto obtido com o DAO
             return MockProduto.obter(id);
         } catch (Exception e) {
-            //Imprime qualquer erro técnico no console e devolve
-            //uma exceção e uma mensagem amigável a camada de visão
+            //Imprime qualquer erro técnico no console 
             e.printStackTrace();
             throw new DataSourceException("Erro na fonte de dados", e);
         }
@@ -83,11 +79,11 @@ public class ServicoProduto {
     public static void excluirProduto(Integer id)
             throws ProdutoException, DataSourceException {
         try {
-            //Solicita ao DAO a exclusão do quarto informado
+            //Solicita ao DAO a exclusão do produto informado
             MockProduto.excluir(id);
         } catch (Exception e) {
-            //Imprime qualquer erro técnico no console e devolve
-            //uma exceção e uma mensagem amigável a camada de visão
+            //Imprime qualquer erro técnico no console 
+
             e.printStackTrace();
             throw new DataSourceException("Erro na fonte de dados", e);
         }
