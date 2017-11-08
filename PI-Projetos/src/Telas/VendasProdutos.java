@@ -234,11 +234,11 @@ public class VendasProdutos extends javax.swing.JPanel {
 
     private void ButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIncluirActionPerformed
             
-        int codigoDigitado;
+        long codigoDigitado;
         
         try{
 
-            codigoDigitado = Integer.parseInt(txtCodProd.getText());
+            codigoDigitado = Long.parseLong(txtCodProd.getText());
         
         } catch (Exception e){
             JOptionPane.showMessageDialog(this, "O código informado não está no formato adequado"); 

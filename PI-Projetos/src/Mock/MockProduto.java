@@ -9,14 +9,14 @@ import model.produto.Produto;
 
 public class MockProduto {
     
-    private static int totalProduto = 0;
+    private static long totalProduto = 1;
     //Armazena a lista de produtos 
     private static List<Produto> listaProduto = new ArrayList<Produto>();
     
     //Inseri produtos
     public static void inserir(Produto produto)
             throws Exception {
-        produto.setId(totalProduto++);
+        setTotalProduto(getTotalProduto()+1);
         listaProduto.add(produto);
     }
     
@@ -25,7 +25,7 @@ public class MockProduto {
             throws Exception{
         if(produtoProcura != null && !listaProduto.isEmpty() ){
             for(Produto produtoAtz : listaProduto){
-                if(produtoAtz != null && produtoAtz.getId() == produtoProcura.getId()){
+                if(produtoAtz != null && produtoAtz.getCod_produto()== produtoProcura.getCod_produto()){
                    produtoAtz.setModelo(produtoProcura.getModelo());
                    produtoAtz.setTamanho(produtoProcura.getTamanho());
                    produtoAtz.setMarca(produtoProcura.getMarca());
@@ -39,11 +39,11 @@ public class MockProduto {
                 }
                 }
     //Exclui o produto com o cod.
-    public static void excluir(Integer id) throws Exception{
+    public static void excluir(Long id) throws Exception{
         if(id != null && !listaProduto.isEmpty()){
           for(int i=0; i < listaProduto.size(); i++){
               Produto produtoLa = listaProduto.get(i);
-              if(produtoLa != null && produtoLa.getId() == id){
+              if(produtoLa != null && produtoLa.getCod_produto()== id){
                   listaProduto.remove(i);
                   break;
               }
@@ -75,11 +75,11 @@ public class MockProduto {
         return listaResultado;   
     }
     //obtem um produto na lista 
-    public  static Produto obter(Integer id)
+    public  static Produto obter(Long id)
             throws Exception{
         if(id != null && !listaProduto.isEmpty()){
             for(int i=0 ; i<listaProduto.size(); i++){
-                if(listaProduto.get(i) != null && listaProduto.get(i).getId() == id){
+                if(listaProduto.get(i) != null && listaProduto.get(i).getCod_produto()== id){
                     return listaProduto.get(i);
                     
                 }}
@@ -88,6 +88,16 @@ public class MockProduto {
     
     return  null;
 }
+
+    public static long getTotalProduto() {
+        return totalProduto;
+    }
+
+    public static void setTotalProduto(long totalProduto) {
+        MockProduto.totalProduto = totalProduto;
+    }
+    
+    
     
 }
     

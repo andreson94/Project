@@ -11,9 +11,12 @@ import model.validador.produto.ValidadorProduto;
  * @author andreson.csilva
  */
 public class ServicoProduto {
+
     public static void cadastrarProduto(Produto produto)
             throws ProdutoException, DataSourceException {
-    //Realiza validações do produto
+        
+        produto.setCod_produto(MockProduto.getTotalProduto());
+        //Realiza validações do produto
         ValidadorProduto.validar(produto);
 
         try {
@@ -25,10 +28,11 @@ public class ServicoProduto {
             throw new DataSourceException("Erro na fonte de dados", e);
         }
     }
+
     //Atualiza um produto
     public static void atualizarProduto(Produto produto)
             throws ProdutoException, DataSourceException {
-        
+
         //Realiza validações do produto
         ValidadorProduto.validar(produto);
 
@@ -63,7 +67,7 @@ public class ServicoProduto {
     }
 
     //Obtem o produto com ID informado do mock
-    public static Produto obterProduto(Integer id)
+    public static Produto obterProduto(Long id)
             throws ProdutoException, DataSourceException {
         try {
             //Retorna o produto obtido com o DAO
@@ -76,7 +80,7 @@ public class ServicoProduto {
     }
 
     //Exclui o quarto com ID informado do mock
-    public static void excluirProduto(Integer id)
+    public static void excluirProduto(Long id)
             throws ProdutoException, DataSourceException {
         try {
             //Solicita ao DAO a exclusão do produto informado
@@ -87,5 +91,5 @@ public class ServicoProduto {
             e.printStackTrace();
             throw new DataSourceException("Erro na fonte de dados", e);
         }
-    }    
+    }
 }

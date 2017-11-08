@@ -44,13 +44,12 @@ public class ConsultarProdutos extends javax.swing.JPanel {
            Produto cli = resultado.get(i);
             if (cli != null) {
                 Object[] row = new Object[7];
-                row[0] = cli.getCódigo();
+                row[0] = cli.getCod_produto();
                 row[1] = cli.getModelo();
                 row[2] = cli.getMarca();
                 row[3] = cli.getTamanho();
                 row[4] = cli.getCor();
                 row[5] = cli.getPreco();
-                row[6] = cli.getEstoque();
                 model.addRow(row);
             }
         }
@@ -249,7 +248,7 @@ public class ConsultarProdutos extends javax.swing.JPanel {
             final int row = Tabela_Produtos.getSelectedRow();
             //Obtém o nome do quarto da linha indicada para exibição
             //de mensagem de confirmação de exclusão utilizando seu número
-            Long numero = (Long) Tabela_Produtos.getValueAt(row, 1);
+            Long numero = (Long) Tabela_Produtos.getValueAt(row, 0);
             //Mostra o diálogo de confirmação de exclusão
             int resposta = JOptionPane.showConfirmDialog(this,
                 "Excluir Produto \"" + numero + "\"?",
@@ -258,7 +257,7 @@ public class ConsultarProdutos extends javax.swing.JPanel {
             if (resposta == JOptionPane.YES_OPTION) {
                 try {
                     //Obtém o ID do quarto
-                    Integer codigo = (Integer) Tabela_Produtos.getValueAt(row, 0);
+                    Long codigo = (Long) Tabela_Produtos.getValueAt(row, 0);
                     //Solicita ao serviço a inativação do quarto com o ID
                     ServicoProduto.excluirProduto(codigo);
                     //Atualiza a lista após a "exclusão"
@@ -289,7 +288,7 @@ public class ConsultarProdutos extends javax.swing.JPanel {
                 //Obtém a linha selecionada da tabela de resultados
                 final int row = Tabela_Produtos.getSelectedRow();
                 //Obtém o valor do ID da coluna "ID" da tabela de resultados
-                Integer id = (Integer) Tabela_Produtos.getValueAt(row, 0);
+                Long id = (Long) Tabela_Produtos.getValueAt(row, 0);
                 
                 //Com o ID da coluna, chama o serviço de quarto para
                 //obter o quarto com dados atualizados do mock

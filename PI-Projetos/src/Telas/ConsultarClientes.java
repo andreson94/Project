@@ -138,6 +138,12 @@ public class ConsultarClientes extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblCliente);
 
+        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisaActionPerformed(evt);
+            }
+        });
+
         jLabel10.setText("Pesquisar:");
 
         btnConsulta.setText("Consultar");
@@ -480,6 +486,10 @@ public class ConsultarClientes extends javax.swing.JPanel {
     private void txtCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCidadeActionPerformed
+
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

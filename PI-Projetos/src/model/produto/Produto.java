@@ -2,7 +2,6 @@ package model.produto;
 
 
 public class Produto {
-    private Integer id;
     private Long cod_produto;
     private String modelo;
     private String tamanho;
@@ -23,12 +22,6 @@ public class Produto {
     }
     public void setGenero(String genero){
         this.genero = genero;
-    }
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id){
-        this.id = id;
     }
 //motodo para acessar o modelo
     public String getModelo() {
@@ -71,14 +64,6 @@ public class Produto {
     
     public void setPreco(Float preco) {
         this.preco = preco;
-    }
-
-    public Object getCódigo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object getEstoque() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
