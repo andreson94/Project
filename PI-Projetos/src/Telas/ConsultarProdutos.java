@@ -22,19 +22,20 @@ public class ConsultarProdutos extends javax.swing.JPanel {
     }
     
      public boolean Atualizacao() throws ProdutoException, Exception {
-        //Realiza a pesquisa de quartos com o último valor de pesquisa
+        //Realiza a pesquisa do produto com o resultado a ultima consulta feita. 
         //para atualizar a lista
         List<Produto> resultado = ServicoProduto.
                 procurarProduto(ultima_consulta);
 
         //Obtém o elemento representante do conteúdo da tabela na tela
         DefaultTableModel model = (DefaultTableModel) Tabela_Produtos.getModel();
-        //Indica que a tabela deve excluir todos seus elementos
-        //Isto limpará a lista, mesmo que a pesquisa não tenha sucesso
+        //Indica que a tabela deve excluir todos seus conteúdo.
+        //Isto limpará a lista, mesmo que a pesquisa não tenha sucesso.
         model.setRowCount(0);
 
-        //Verifica se não existiram resultados. Caso afirmativo, encerra a
-        //atualização e indica ao elemento acionador o não sucesso da pesquisa
+        /*Verifica se não existiram resultados. Caso afirmativo, encerra a
+        atualização e indica ao elemento acionador o não sucesso da pesquisa*/
+        
         if (resultado == null || resultado.size() <= 0) {
             return false;
         }
@@ -54,14 +55,15 @@ public class ConsultarProdutos extends javax.swing.JPanel {
             }
         }
 
-        //Se chegamos até aqui, a pesquisa teve sucesso, então
-        //retornamos "true" para o elemento acionante, indicando
-        //que não devem ser exibidas mensagens de erro
+        /*Se chega até aqui, a pesquisa teve sucesso, então
+        retornamos "true" para o elemento adicionante, indicando
+        que não devem ser exibidas mensagens de erro*/
+        
         return true;
     }
 
     
-    @SuppressWarnings("unchecked")
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -191,8 +193,8 @@ public class ConsultarProdutos extends javax.swing.JPanel {
         //a pesquisa de Produtos teve resultado negativo.
         boolean Resultado_Consulta;
         
-        //Grava o campo de pesquisa como a última pesquisa válida. O valor
-        //de última pesquisa válida é utilizado na atualização da lista
+        /*Grava o campo de pesquisa como a última pesquisa válida. O resultado da
+        última pesquisa válida é utilizado na atualização da lista*/
        
         
         
@@ -203,7 +205,8 @@ public class ConsultarProdutos extends javax.swing.JPanel {
                 ultima_consulta = Long.parseLong(BarraConsulta.getText());
                 
             } catch (Exception e) {
-                //Exibe mensagens de erro na fonte de dados e para o listener
+                //Exibe mensagens de erro na fonte de dados e para
+                
                 JOptionPane.showMessageDialog(this, "Só é possível"
                         + " pesquisar por um valor inteiro válido",
                         "Campo de pesquisa inválido", JOptionPane.ERROR_MESSAGE);
@@ -215,17 +218,17 @@ public class ConsultarProdutos extends javax.swing.JPanel {
         }
 
         try {
-            //Solicita a atualização da lista com o novo critério
-            //de pesquisa (ultimaPesquisa)
+            /*Solicita a atualização da lista com o novo critério
+            //de pesquisa (ultima_Pesquisa).*/
           Resultado_Consulta = Atualizacao();
         } catch (Exception e) {
-            //Exibe mensagens de erro na fonte de dados e para o listener
+            //Exibe mensagens de erro na fonte de dados e para o processo. 
             JOptionPane.showMessageDialog(this, e.getMessage(),
                     "Falha ao obter lista", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        //Exibe mensagem de erro caso a pesquisa não tenha resultados
+        //Exibe mensagem de erro caso a pesquisa não tenha resultados.
         if (!Resultado_Consulta) {
             JOptionPane.showMessageDialog(this, "A pesquisa não retornou "
                 + "resultados ", "Sem resultados",
@@ -236,37 +239,37 @@ public class ConsultarProdutos extends javax.swing.JPanel {
     private void BotaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarActionPerformed
          TelaPrincipal tp = (TelaPrincipal) getRootPane().getParent();
         tp.returnToTitle();
-        //Botão que cancela e volta a tela de início 
+        //Cancela a operação e volta para a tela principal.
     }//GEN-LAST:event_BotaoCancelarActionPerformed
 
     private void BotaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoExcluirActionPerformed
-  //Verifica se há itens selecionados para exclusão.
-        //Caso negativo, ignora o comando
+  /*Verifica se há itens selecionados para exclusão.
+    Caso negativo, ignora o comando.*/
+  
         if (Tabela_Produtos.getSelectedRow() >= 0) {
             
-            //Obtém a linha do item selecionado
+            //Obtém a linha do item selecionado.
             final int row = Tabela_Produtos.getSelectedRow();
-            //Obtém o nome do quarto da linha indicada para exibição
-            //de mensagem de confirmação de exclusão utilizando seu número
+            /*Obtém o nome do Produto em questão da linha indicada para exibição,
+            de mensagem de confirmação de exclusão utilizando seu codigo.*/
             Long numero = (Long) Tabela_Produtos.getValueAt(row, 0);
-            //Mostra o diálogo de confirmação de exclusão
+            //Mostra uma pequena tela de confirmação de exclusão.
             int resposta = JOptionPane.showConfirmDialog(this,
                 "Excluir Produto \"" + numero + "\"?",
                 "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
             //Se o valor de resposta for "Sim" para a exclusão
             if (resposta == JOptionPane.YES_OPTION) {
                 try {
-                    //Obtém o ID do quarto
+                    //Obtém o ID do produto.
                     Long codigo = (Long) Tabela_Produtos.getValueAt(row, 0);
-                    //Solicita ao serviço a inativação do quarto com o ID
+                    //Solicita ao serviço a exclusão do produto com o ID
                     ServicoProduto.excluirProduto(codigo);
                     //Atualiza a lista após a "exclusão"
                     this.Atualizacao();
                 } catch (Exception e) {
-                    //Se ocorrer algum erro técnico, mostra-o no console,
-                    //mas esconde-o do usuário
+                    
                     e.printStackTrace();
-                    //Exibe uma mensagem de erro genérica ao usuário
+                    //Exibe uma mensagem de erro genérica ao usuário.
                     JOptionPane.showMessageDialog(this, e.getMessage(),
                             "Falha na Exclusão", JOptionPane.ERROR_MESSAGE);
                 }
@@ -279,31 +282,31 @@ public class ConsultarProdutos extends javax.swing.JPanel {
     }//GEN-LAST:event_BotaoExcluirActionPerformed
 
     private void BarraConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BarraConsultaActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_BarraConsultaActionPerformed
    private void Tabela_Produto (java.awt.event.MouseEvent evt) {                                              
-        //Verifica se o clique é um clique duplo       
+        //Verifica se o clique é um clique duplo.      
         if (evt.getClickCount() == 2) {
             try {                
-                //Obtém a linha selecionada da tabela de resultados
+                //Obtém a linha selecionada da Tabela_Produto.
                 final int row = Tabela_Produtos.getSelectedRow();
-                //Obtém o valor do ID da coluna "ID" da tabela de resultados
+                //Obtém o valor do ID da coluna "ID" da Tabela_Produto.
                 Long id = (Long) Tabela_Produtos.getValueAt(row, 0);
                 
-                //Com o ID da coluna, chama o serviço de quarto para
-                //obter o quarto com dados atualizados do mock
+                /*Com o ID da coluna, chama o serviço  para
+                obter o Porduto com dados atualizados do mock*/
                 Produto produtos  = ServicoProduto.obterProduto(id);
 
-                //Cria uma nova instância da tela de edição,
-                //configura o quarto selecionado como elemento a
-                //ser editado e mostra a tela de edição.
-                //Para exibir a tela, é necessário adicioná-la ao
-                //componente de desktop, o "pai" da janela corrente
+                /*Cria uma nova instância da tela de edição,
+                configura o produto selecionado como elemento a
+                er editado e mostra a tela de edição.
+                Para exibir a tela, é necessário adicioná-la ao
+                componente de desktop.*/
             } catch (Exception e) {
-                //Se ocorrer algum erro técnico, mostra-o no console,
-                //mas esconde-o do usuário
+                /*Se ocorrer algum erro técnico, mostra-o no console,
+                mas esconde-o do usuário.*/
                 e.printStackTrace();
-                //Exibe uma mensagem de erro genérica ao usuário
+                //Exibe uma mensagem de erro genérica ao usuário.
                 JOptionPane.showMessageDialog(this, "Não é possível "
                     + "exibir os detalhes deste produto ",
                     "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
