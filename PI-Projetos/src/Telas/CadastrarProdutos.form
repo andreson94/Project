@@ -16,24 +16,25 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="143" max="32767" attributes="0"/>
+              <Component id="Cancelar_button" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+              <Component id="Cadastrar_button" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="Codigo_label" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Codigo_text" alignment="0" max="32767" attributes="0"/>
                           <Component id="Modelo_text" alignment="0" max="32767" attributes="0"/>
                           <Component id="Genero_combo" alignment="0" max="32767" attributes="0"/>
                           <Component id="Tamanho_text" alignment="0" max="32767" attributes="0"/>
                           <Component id="Marca_text" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Cor_text" alignment="0" pref="471" max="32767" attributes="0"/>
+                          <Component id="Cor_text" alignment="0" pref="477" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Modelo_label" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="Genero_label" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="Tamanho_label" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="Marca_label" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -42,53 +43,46 @@
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="Preco_float" alignment="0" pref="471" max="32767" attributes="0"/>
+                          <Component id="Preco_float" alignment="0" pref="477" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="Modelo_label" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="143" max="32767" attributes="0"/>
-              <Component id="Cancelar_button" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-              <Component id="Cadastrar_button" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="Codigo_label" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="Codigo_text" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="Modelo_label" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="Modelo_text" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="Genero_label" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="Genero_combo" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="Tamanho_label" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="Tamanho_text" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="Marca_label" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="Marca_text" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="Cor_label" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="Cor_text" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="Preco_label" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="9" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="Preco_float" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Cadastrar_button" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Cancelar_button" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -105,8 +99,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="Modelo_text">
-    </Component>
-    <Component class="javax.swing.JTextField" name="Codigo_text">
     </Component>
     <Component class="javax.swing.JComboBox" name="Genero_combo">
       <Properties>
@@ -126,11 +118,6 @@
     <Component class="javax.swing.JTextField" name="Preco_float">
     </Component>
     <Component class="javax.swing.JTextField" name="Marca_text">
-    </Component>
-    <Component class="javax.swing.JLabel" name="Codigo_label">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="C&#xf3;digo:"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Preco_label">
       <Properties>

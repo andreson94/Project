@@ -12,10 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.cliente.Cliente;
 
-/**
- *
- * @author andreson.csilva
- */
+
 public class ConsultarClientes extends javax.swing.JPanel {
 
     /**

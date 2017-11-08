@@ -13,10 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import model.produto.Produto;
 import service.produto.ServicoProduto;
 
-/**
- *
- * @author andreson.csilva
- */
+
 public class VendasProdutos extends javax.swing.JPanel {
 
     /**
