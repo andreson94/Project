@@ -7,9 +7,14 @@ package Telas;
 
 
 import Mock.MockProduto;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import model.produto.Produto;
 import service.produto.ServicoProduto;
 
@@ -275,9 +280,13 @@ public class VendasProdutos extends javax.swing.JPanel {
 
     private void ButtonFinalVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonFinalVendaActionPerformed
     
-  
+       
         
-        
+          int preco = Integer.parseInt(labelValorPagamento.getText());
+           int cont = preco+preco;
+           labelValorPagamento.setText(""+cont);
+           
+           
     }//GEN-LAST:event_ButtonFinalVendaActionPerformed
 
     private void TextClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextClienteActionPerformed
