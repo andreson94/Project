@@ -260,6 +260,14 @@ public class VendasProdutos extends javax.swing.JPanel {
         validacao.addRow(new Object[] {p.getCod_produto(), p.getModelo(), p.getMarca(),p.getTamanho(),p.getCor(), p.getPreco()});
         
             
+        Object[] row = new Object[6];
+                row[0] = p.getCod_produto();
+                row[1] = p.getModelo();
+                row[2] = p.getMarca();
+                row[3] = p.getTamanho();
+                row[4] = p.getCor();
+                row[5] = p.getPreco();
+                validacao.addRow(row);
         
         labelCodProd.requestFocus();
         
@@ -267,6 +275,7 @@ public class VendasProdutos extends javax.swing.JPanel {
 
     private void ButtonFinalVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonFinalVendaActionPerformed
     
+  
         
         
     }//GEN-LAST:event_ButtonFinalVendaActionPerformed
