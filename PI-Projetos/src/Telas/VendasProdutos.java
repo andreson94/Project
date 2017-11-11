@@ -5,21 +5,28 @@
  */
 package Telas;
 
-
+import Mock.MockCliente;
 import Mock.MockProduto;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import model.produto.Produto;
+import service.cliente.ServicoCliente;
 import service.produto.ServicoProduto;
 
-
 public class VendasProdutos extends javax.swing.JPanel {
+
+    private DefaultTableModel tableVendasModel;
 
     /**
      * Creates new form VandasProdutos
@@ -45,14 +52,15 @@ public class VendasProdutos extends javax.swing.JPanel {
         TableVendas = new javax.swing.JTable();
         ButtonIncluir = new javax.swing.JButton();
         ButtonExcluir = new javax.swing.JButton();
-        labelSaldo = new javax.swing.JLabel();
-        labelValorSaldo = new javax.swing.JLabel();
         labelPagamento = new javax.swing.JLabel();
-        labelValorPagamento = new javax.swing.JLabel();
         labelCliente = new javax.swing.JLabel();
         TextCliente = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         ButtonConsultar = new javax.swing.JToggleButton();
+        labelData = new javax.swing.JLabel();
+        textData = new javax.swing.JTextField();
+        txtValorPagamento = new javax.swing.JTextField();
+        textConsultaCliente = new javax.swing.JTextField();
 
         labelCodProd.setText("Cód. Produto");
 
@@ -92,6 +100,12 @@ public class VendasProdutos extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        TableVendas.setName("tableVendasElement"); // NOI18N
+        TableVendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableVendasMouseClicked(evt);
+            }
+        });
         PaneVendas.setViewportView(TableVendas);
 
         ButtonIncluir.setText("Incluir");
@@ -108,19 +122,9 @@ public class VendasProdutos extends javax.swing.JPanel {
             }
         });
 
-        labelSaldo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelSaldo.setText("Saldo:");
-
-        labelValorSaldo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelValorSaldo.setText("0,0");
-
-        labelPagamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelPagamento.setText("A Pagar:");
 
-        labelValorPagamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelValorPagamento.setText("0,0");
-
-        labelCliente.setText("Cliente");
+        labelCliente.setText("Id Cliente");
 
         TextCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,48 +146,68 @@ public class VendasProdutos extends javax.swing.JPanel {
             }
         });
 
+        labelData.setText("Data:");
+
+        textData.setEditable(false);
+        textData.setFocusable(false);
+
+        txtValorPagamento.setEditable(false);
+        txtValorPagamento.setText("0,0");
+        txtValorPagamento.setFocusable(false);
+
+        textConsultaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textConsultaClienteMouseClicked(evt);
+            }
+        });
+        textConsultaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textConsultaClienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout vendasLancamentoLayout = new javax.swing.GroupLayout(vendasLancamento);
         vendasLancamento.setLayout(vendasLancamentoLayout);
         vendasLancamentoLayout.setHorizontalGroup(
             vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vendasLancamentoLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelPagamento)
-                        .addGap(27, 27, 27)
-                        .addComponent(labelValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelCodProd)
+                    .addComponent(labelCliente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCodProd, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                    .addComponent(TextCliente))
+                .addGap(27, 27, 27)
+                .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonIncluir)
+                    .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                        .addComponent(ButtonConsultar)
+                        .addGap(34, 34, 34)
+                        .addComponent(textConsultaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(vendasLancamentoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(PaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE))
-                    .addGroup(vendasLancamentoLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelCodProd)
-                            .addComponent(labelCliente))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCodProd, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                            .addComponent(TextCliente))
-                        .addGap(27, 27, 27)
-                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ButtonIncluir)
-                            .addComponent(ButtonConsultar))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                        .addComponent(PaneVendas))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vendasLancamentoLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(vendasLancamentoLayout.createSequentialGroup()
-                                .addComponent(btnCancelar)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(btnCancelar)
                             .addGroup(vendasLancamentoLayout.createSequentialGroup()
                                 .addComponent(ButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ButtonFinalVenda)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelSaldo)
-                                .addGap(27, 27, 27)
-                                .addComponent(labelValorSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(ButtonFinalVenda)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPagamento)
+                            .addComponent(labelData))
+                        .addGap(18, 18, 18)
+                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         vendasLancamentoLayout.setVerticalGroup(
@@ -194,24 +218,30 @@ public class VendasProdutos extends javax.swing.JPanel {
                     .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelCodProd)
                     .addComponent(ButtonIncluir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
                 .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCliente)
                     .addComponent(TextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonConsultar))
-                .addGap(22, 22, 22)
-                .addComponent(PaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(ButtonConsultar)
+                    .addComponent(textConsultaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(PaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ButtonExcluir)
+                            .addComponent(ButtonFinalVenda))
+                        .addGap(17, 17, 17))
+                    .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelPagamento)
+                            .addComponent(txtValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonExcluir)
-                    .addComponent(labelSaldo)
-                    .addComponent(labelValorSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonFinalVenda))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPagamento)
-                    .addComponent(labelValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelData))
+                .addGap(11, 11, 11)
                 .addComponent(btnCancelar)
                 .addContainerGap())
         );
@@ -229,64 +259,73 @@ public class VendasProdutos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
-        
-        ((DefaultTableModel)TableVendas.getModel()).removeRow(TableVendas.getSelectedRow());
-        
+
+        ((DefaultTableModel) TableVendas.getModel()).removeRow(TableVendas.getSelectedRow());
+
     }//GEN-LAST:event_ButtonExcluirActionPerformed
 
     private void ButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIncluirActionPerformed
-            
+
         long codigoDigitado;
-        
-        try{
+
+        try {
 
             codigoDigitado = Long.parseLong(txtCodProd.getText());
-        
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(this, "O código informado não está no formato adequado"); 
-           return;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "O código informado não está no formato adequado");
+            return;
         }
-            
-            
-       if(txtCodProd.getText().isEmpty()){
-           JOptionPane.showMessageDialog(this, "Código inválido"); 
-           return; 
-       }
-        
-       Produto p = null;
-       
-       try{
-           p = ServicoProduto.obterProduto(codigoDigitado);
-       } catch(Exception e){
-           
-       }
-        
-        DefaultTableModel validacao = (DefaultTableModel)TableVendas.getModel();
-        validacao.addRow(new Object[] {p.getCod_produto(), p.getModelo(), p.getMarca(),p.getTamanho(),p.getCor(), p.getPreco()});
-        
-            
+
+        if (txtCodProd.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Código inválido");
+            return;
+        }
+
+        Produto p = null;
+
+        try {
+            p = ServicoProduto.obterProduto(codigoDigitado);
+        } catch (Exception e) {
+
+        }
+
+        tableVendasModel = (DefaultTableModel) TableVendas.getModel();
+
         Object[] row = new Object[6];
-                row[0] = p.getCod_produto();
-                row[1] = p.getModelo();
-                row[2] = p.getMarca();
-                row[3] = p.getTamanho();
-                row[4] = p.getCor();
-                row[5] = p.getPreco();
-                validacao.addRow(row);
-        
+        row[0] = p.getCod_produto();
+        row[1] = p.getModelo();
+        row[2] = p.getMarca();
+        row[3] = p.getTamanho();
+        row[4] = p.getCor();
+        row[5] = p.getPreco();
+        tableVendasModel.addRow(row);
+
+        System.out.println("Total de produtos: " + tableVendasModel.getRowCount());
+
         labelCodProd.requestFocus();
-        
+
     }//GEN-LAST:event_ButtonIncluirActionPerformed
 
     private void ButtonFinalVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonFinalVendaActionPerformed
-    
-       
-        
-          int preco = Integer.parseInt(labelValorPagamento.getText());
-           int cont = preco+preco;
-           labelValorPagamento.setText(""+cont);
-           
-           
+
+        initComponents();
+
+        String data = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+
+        System.out.println(data);
+        textData.setText(data);
+
+        float total = 0;
+
+        for (int i = 0; i < tableVendasModel.getRowCount(); i++) {
+            float valor = Float.valueOf("" + tableVendasModel.getValueAt(i, 5));
+            total += valor;
+        }
+
+        System.out.println("A Pagar: " + total);
+
+        txtValorPagamento.setText("" + total);
     }//GEN-LAST:event_ButtonFinalVendaActionPerformed
 
     private void TextClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextClienteActionPerformed
@@ -294,18 +333,52 @@ public class VendasProdutos extends javax.swing.JPanel {
     }//GEN-LAST:event_TextClienteActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-         TelaPrincipal tp = (TelaPrincipal)getRootPane().getParent();
+        TelaPrincipal tp = (TelaPrincipal) getRootPane().getParent();
         tp.returnToTitle();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtCodProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProdActionPerformed
-      
+
     }//GEN-LAST:event_txtCodProdActionPerformed
 
     private void ButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonConsultarActionPerformed
-        // TODO add your handling code here:
+
         
+        if (!TextCliente.getText().toString().isEmpty()) {
+            try{
+                for (int i = 0; i < MockCliente.listar().size(); i++) {
+                    if (MockCliente.listar().get(i).getId() == Integer.parseInt(TextCliente.getText().toString())){
+                        String nome = MockCliente.listar().get(i).getNome();
+                        String sobrenome = MockCliente.listar().get(i).getSobrenome();
+
+                        textConsultaCliente.setText(nome + " " + sobrenome);
+                    }
+                }
+                    
+            } catch (Exception ex) {
+                 ex.printStackTrace();
+            } 
+        }
+
     }//GEN-LAST:event_ButtonConsultarActionPerformed
+
+    private void textConsultaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textConsultaClienteMouseClicked
+
+        try {
+            //     textConsultaCliente.setText(MockCliente.listar().get(TableVendas.getSelectedRow()).getNome());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_textConsultaClienteMouseClicked
+
+    private void textConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textConsultaClienteActionPerformed
+
+    }//GEN-LAST:event_textConsultaClienteActionPerformed
+
+    private void TableVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableVendasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TableVendasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -319,11 +392,12 @@ public class VendasProdutos extends javax.swing.JPanel {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelCodProd;
+    private javax.swing.JLabel labelData;
     private javax.swing.JLabel labelPagamento;
-    private javax.swing.JLabel labelSaldo;
-    private javax.swing.JLabel labelValorPagamento;
-    private javax.swing.JLabel labelValorSaldo;
+    private javax.swing.JTextField textConsultaCliente;
+    private javax.swing.JTextField textData;
     private javax.swing.JTextField txtCodProd;
+    private javax.swing.JTextField txtValorPagamento;
     private javax.swing.JPanel vendasLancamento;
     // End of variables declaration//GEN-END:variables
 }
