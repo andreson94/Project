@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.cliente.Cliente;
-
+import service.cliente.ServicoCliente;
 
 public class ConsultarClientes extends javax.swing.JPanel {
 
@@ -33,6 +33,11 @@ public class ConsultarClientes extends javax.swing.JPanel {
         txtNumero.setEnabled(false);
         txtTelefone.setEnabled(false);
         cbxEstado.setEnabled(false);
+
+        tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
     }
 
     /**
@@ -63,7 +68,7 @@ public class ConsultarClientes extends javax.swing.JPanel {
         txtPesquisa = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnConsulta = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         btnSalver = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -110,14 +115,14 @@ public class ConsultarClientes extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nome", "Endereço", "Telefone", "CPF", "RG", "Sexo", "Cidade"
+                "codigo", "Nome", "Endereço", "Telefone", "CPF", "RG", "Sexo", "Cidade"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -150,10 +155,10 @@ public class ConsultarClientes extends javax.swing.JPanel {
             }
         });
 
-        jButton15.setText("Excluir");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -315,7 +320,7 @@ public class ConsultarClientes extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAtualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -339,7 +344,7 @@ public class ConsultarClientes extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton15)
+                    .addComponent(btnExcluir)
                     .addComponent(btnAtualizar)
                     .addComponent(btnSalver)
                     .addComponent(jButton1))
@@ -362,6 +367,7 @@ public class ConsultarClientes extends javax.swing.JPanel {
                 for (int i = 0; i < MockCliente.listar().size(); i++) {
                     if (MockCliente.listar().get(i).getNome().equals(txtPesquisa.getText().toString())) {
 
+                        int codigo = MockCliente.listar().get(i).getId();
                         String nome = MockCliente.listar().get(i).getNome();
                         String endereco = MockCliente.listar().get(i).getEndereco();
                         String telefone = MockCliente.listar().get(i).getTelefone();
@@ -370,23 +376,16 @@ public class ConsultarClientes extends javax.swing.JPanel {
                         String sexo = MockCliente.listar().get(i).getSexo();
                         String cidade = MockCliente.listar().get(i).getCidade();
 
-                        Object[] obj = {nome, endereco, telefone, cpf, rg, sexo, cidade};
+                        Object[] obj = {codigo, nome, endereco, telefone, cpf, rg, sexo, cidade};
                         modelCliente.addRow(obj);
-
-                        modelCliente.isCellEditable(i, 0);
-                        modelCliente.isCellEditable(i, 1);
-                        modelCliente.isCellEditable(i, 2);
-                        modelCliente.isCellEditable(i, 3);
-                        modelCliente.isCellEditable(i, 4);
-                        modelCliente.isCellEditable(i, 5);
-                        modelCliente.isCellEditable(i, 6);
-                    } 
+                    }
 
                 }
 
             } else {
                 for (int i = 0; i < MockCliente.listar().size(); i++) {
 
+                    int codigo = MockCliente.listar().get(i).getId();
                     String nome = MockCliente.listar().get(i).getNome();
                     String endereco = MockCliente.listar().get(i).getEndereco();
                     String telefone = MockCliente.listar().get(i).getTelefone();
@@ -395,21 +394,19 @@ public class ConsultarClientes extends javax.swing.JPanel {
                     String sexo = MockCliente.listar().get(i).getSexo();
                     String cidade = MockCliente.listar().get(i).getCidade();
 
-                    Object[] obj = {nome, endereco, telefone, cpf, rg, sexo, cidade};
+                    Object[] obj = {codigo, nome, endereco, telefone, cpf, rg, sexo, cidade};
                     modelCliente.addRow(obj);
-
-                    modelCliente.isCellEditable(i, 1);
-                    modelCliente.isCellEditable(i, 2);
-                    modelCliente.isCellEditable(i, 3);
-                    modelCliente.isCellEditable(i, 4);
-                    modelCliente.isCellEditable(i, 5);
-                    modelCliente.isCellEditable(i, 6);
-                    modelCliente.isCellEditable(i, 7);
                 }
+
             }
             tblCliente.setModel(modelCliente);
             DefaultTableModel ModeloClientes = (DefaultTableModel) tblCliente.getModel();
             tblCliente.setRowSorter(new TableRowSorter(ModeloClientes));
+
+            tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
+            tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -426,6 +423,7 @@ public class ConsultarClientes extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         Cliente cliente = new Cliente();
+        cliente.setId((int) tblCliente.getValueAt(tblCliente.getSelectedRow(), 0));
         cliente.setBairro(txtBairro.getText().toString());
         cliente.setCidade(txtCidade.getText().toString());
         cliente.setComplemento(txtComplemento.getText().toString());
@@ -437,8 +435,31 @@ public class ConsultarClientes extends javax.swing.JPanel {
         cliente.setEstado(cbxEstado.getSelectedItem().toString());
 
         try {
+            for (int i = 0; i < MockCliente.listar().size(); i++) {
+                if(MockCliente.listar().get(i).getId() == cliente.getId()){
+                    cliente.setCpf(MockCliente.listar().get(i).getCpf());
+                    cliente.setDataNasc(MockCliente.listar().get(i).getDataNasc());
+                    cliente.setEstadoCivil(MockCliente.listar().get(i).getEstadoCivil());
+                    cliente.setNome(MockCliente.listar().get(i).getNome());
+                    cliente.setRg(MockCliente.listar().get(i).getRg());
+                    cliente.setSexo(MockCliente.listar().get(i).getSexo());
+                    cliente.setSobrenome(MockCliente.listar().get(i).getSobrenome());
+                }
+            }
+        } catch (Exception ex) {
+
+        }
+
+        try {
             MockCliente.atualizar(cliente);
 
+            DefaultTableModel Modelo = (DefaultTableModel) tblCliente.getModel();
+            Modelo.setNumRows(0);
+
+            tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
+            tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
         } catch (Exception ex) {
             Logger.getLogger(ConsultarClientes.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -476,9 +497,46 @@ public class ConsultarClientes extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblClienteMouseClicked
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
+        service.cliente.ServicoCliente servico = new ServicoCliente();
+
+        try {
+
+            int codigo = (int) tblCliente.getValueAt(tblCliente.getSelectedRow(), 0);
+
+            servico.excluirCliente(codigo);
+
+            txtBairro.setText("");
+            txtCep.setText("");
+            txtCidade.setText("");
+            txtComplemento.setText("");
+            txtEmail.setText("");
+            txtEndereco.setText("");
+            txtNumero.setText("");
+            txtTelefone.setText("");
+
+            txtBairro.setEnabled(false);
+            txtCidade.setEnabled(false);
+            txtComplemento.setEnabled(false);
+            txtCep.setEnabled(false);
+            txtEmail.setEnabled(false);
+            txtEndereco.setEnabled(false);
+            txtNumero.setEnabled(false);
+            txtTelefone.setEnabled(false);
+            cbxEstado.setEnabled(false);
+
+            DefaultTableModel Modelo = (DefaultTableModel) tblCliente.getModel();
+            Modelo.setNumRows(0);
+
+            tblCliente.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblCliente.getColumnModel().getColumn(0).setMinWidth(0);
+            tblCliente.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+            tblCliente.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCidadeActionPerformed
         // TODO add your handling code here:
@@ -492,10 +550,10 @@ public class ConsultarClientes extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnConsulta;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalver;
     private javax.swing.JComboBox<String> cbxEstado;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBox5;
