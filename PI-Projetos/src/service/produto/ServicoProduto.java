@@ -1,9 +1,11 @@
 package service.produto;
 
 import Mock.MockProduto;
+import Telas.Relatorio;
 import exceptions.DataSourceException;
 import exceptions.ProdutoException;
 import java.util.List;
+import javax.swing.JFormattedTextField;
 import model.produto.Produto;
 import model.validador.produto.ValidadorProduto;
 
@@ -91,5 +93,9 @@ public class ServicoProduto {
             e.printStackTrace();
             throw new DataSourceException("Erro na fonte de dados", e);
         }
+    }
+
+    public static Relatorio obterProduto(JFormattedTextField textDataInicial) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

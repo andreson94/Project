@@ -5,8 +5,14 @@
  */
 package Telas;
 
+import Mock.MockCliente;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import service.produto.ServicoProduto;
 
 /**
  *
@@ -157,6 +163,74 @@ public class Relatorio extends javax.swing.JPanel {
             
         }
         
+      
+        
+        if (!textDataInicial.getText().toString().isEmpty()) {
+            try{
+                for (int i = 0; i < MockCliente.listar().size(); i++) {
+                    if (MockCliente.listar().get(i).getId() == Integer.parseInt(textDataInicial.getText().toString())){
+                        String nome = MockCliente.listar().get(i).getNome();
+                        String sobrenome = MockCliente.listar().get(i).getSobrenome();
+
+                        textDataInicial.setText(nome + " " + sobrenome);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                 ex.printStackTrace();
+            } 
+                
+           if (!textDataFinal.getText().toString().isEmpty()) {
+            try{
+                for (int i = 0; i < MockCliente.listar().size(); i++) {
+                    if (MockCliente.listar().get(i).getId() == Integer.parseInt(textDataFinal.getText().toString())){
+                        String nome = MockCliente.listar().get(i).getNome();
+                        String sobrenome = MockCliente.listar().get(i).getSobrenome();
+
+                        textDataFinal.setText(nome + " " + sobrenome);
+                    }
+                }
+            } catch (Exception ex) {
+                 ex.printStackTrace();
+            } 
+                  
+         DefaultTableModel tableRelatorioModel = (DefaultTableModel) tableRelatorio.getModel();
+         
+           Relatorio relatorio = null;
+
+            long produto;
+
+        try {
+
+            produto = Long.parseLong(textDataInicial.getText());
+            produto = Long.parseLong(textDataFinal.getText());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "A data informado não condiz com os ");
+            return;
+        }
+
+           
+        try {
+            relatorio = ServicoProduto.obterProduto(textDataInicial);
+            relatorio = ServicoProduto.obterProduto(textDataFinal);
+        } catch (Exception e) {
+
+        } 
+
+        Object[] row = new Object[5];
+        //row[0] = relatorio.getProduto();
+        //row[1] = relatorio.getPreco();
+        //row[2] = relatorio.getQnt();
+        //row[3] = relatorio.getData();
+        //row[4] = relatorio.getCliente();
+        tableRelatorioModel.addRow(row);
+
+        System.out.println("Total de produtos: " + tableRelatorioModel.getRowCount());
+       
+             
+        } 
+        }
         
         
     }//GEN-LAST:event_buttonConsultarActionPerformed
