@@ -358,14 +358,12 @@ public class ConsultarClientes extends javax.swing.JPanel {
         try {
             DefaultTableModel modelCliente = (DefaultTableModel) tblCliente.getModel();
 
-            for (int i = 0; i < modelCliente.getRowCount(); i++) {
-                modelCliente.removeRow(i);
-            }
+                modelCliente.setNumRows(0);
 
             if (!txtPesquisa.getText().toString().isEmpty()) {
 
                 for (int i = 0; i < MockCliente.listar().size(); i++) {
-                    if (MockCliente.listar().get(i).getNome().equals(txtPesquisa.getText().toString())) {
+                    if (MockCliente.listar().get(i).getNome().trim().equals(txtPesquisa.getText().toString().trim())) {
 
                         int codigo = MockCliente.listar().get(i).getId();
                         String nome = MockCliente.listar().get(i).getNome();

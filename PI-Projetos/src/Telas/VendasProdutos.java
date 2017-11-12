@@ -154,6 +154,11 @@ public class VendasProdutos extends javax.swing.JPanel {
         txtValorPagamento.setEditable(false);
         txtValorPagamento.setText("0,0");
         txtValorPagamento.setFocusable(false);
+        txtValorPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorPagamentoActionPerformed(evt);
+            }
+        });
 
         textConsultaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -188,26 +193,28 @@ public class VendasProdutos extends javax.swing.JPanel {
                         .addComponent(textConsultaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(vendasLancamentoLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(PaneVendas))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vendasLancamentoLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCancelar)
                             .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                                .addComponent(btnCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ButtonFinalVenda)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ButtonFinalVenda)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelPagamento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(vendasLancamentoLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(labelData)
+                                .addGap(25, 25, 25)))
                         .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelPagamento)
-                            .addComponent(labelData))
-                        .addGap(18, 18, 18)
-                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8))
+                    .addComponent(PaneVendas))
                 .addContainerGap())
         );
         vendasLancamentoLayout.setVerticalGroup(
@@ -224,26 +231,25 @@ public class VendasProdutos extends javax.swing.JPanel {
                     .addComponent(TextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonConsultar)
                     .addComponent(textConsultaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(22, 22, 22)
+                .addComponent(PaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(vendasLancamentoLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(PaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ButtonExcluir)
-                            .addComponent(ButtonFinalVenda))
-                        .addGap(17, 17, 17))
+                            .addComponent(ButtonFinalVenda)
+                            .addComponent(btnCancelar))
+                        .addGap(82, 82, 82))
                     .addGroup(vendasLancamentoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelPagamento)
-                            .addComponent(txtValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelData))
-                .addGap(11, 11, 11)
-                .addComponent(btnCancelar)
-                .addContainerGap())
+                            .addComponent(txtValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelData)
+                            .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(60, 60, 60))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -379,6 +385,10 @@ public class VendasProdutos extends javax.swing.JPanel {
     private void TableVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableVendasMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_TableVendasMouseClicked
+
+    private void txtValorPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorPagamentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorPagamentoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

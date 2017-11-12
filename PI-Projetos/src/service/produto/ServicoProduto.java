@@ -79,7 +79,7 @@ public class ServicoProduto {
         }
     }
 
-    //Exclui o quarto com ID informado do mock
+    //Exclui o produto com ID informado do mock
     public static void excluirProduto(Long id)
             throws ProdutoException, DataSourceException {
         try {

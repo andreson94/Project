@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -33,10 +34,6 @@ public class Relatorio extends javax.swing.JPanel {
         textDataFinal = new javax.swing.JFormattedTextField();
         labelDataInicial = new javax.swing.JLabel();
         labelDataFinal = new javax.swing.JLabel();
-        labelProduto = new javax.swing.JLabel();
-        textProduto = new javax.swing.JTextField();
-        labelCliente = new javax.swing.JLabel();
-        textCliente = new javax.swing.JTextField();
         buttonConsultar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -54,10 +51,6 @@ public class Relatorio extends javax.swing.JPanel {
         labelDataInicial.setText("Data inicial");
 
         labelDataFinal.setText("Data Final");
-
-        labelProduto.setText("Produto");
-
-        labelCliente.setText("Cliente");
 
         buttonConsultar.setText("Consultar");
         buttonConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -116,24 +109,15 @@ public class Relatorio extends javax.swing.JPanel {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelCliente)
-                            .addComponent(labelProduto))
-                        .addGap(182, 630, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(textCliente)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelDataInicial)
-                                    .addComponent(textDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelDataFinal)
-                                    .addComponent(textDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(textProduto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelDataInicial)
+                            .addComponent(textDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelDataFinal)
+                            .addComponent(textDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(91, 91, 91)
                         .addComponent(buttonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                         .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -150,16 +134,8 @@ public class Relatorio extends javax.swing.JPanel {
                     .addComponent(textDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonConsultar)
                     .addComponent(buttonCancelar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelProduto)
-                .addGap(9, 9, 9)
-                .addComponent(textProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelCliente)
-                .addGap(12, 12, 12)
-                .addComponent(textCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -168,17 +144,15 @@ public class Relatorio extends javax.swing.JPanel {
       
         
         //Usa o valor digitado em "Data inicial"
-        Date data1 = null;
+         SimpleDateFormat inicio = new SimpleDateFormat("dd/MM/yyyy");
+         SimpleDateFormat fim = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            data1 =  (Date)textDataInicial.getValue();
+            inicio.parse(textDataInicial.getText().toString());
         } catch (Exception e) {
             
         }
-        
-         //Usa o valor digitado em "Data final"
-        Date data2 = null;
         try {
-            data2 =  (Date)textDataFinal.getValue();
+            fim.parse(textDataFinal.getText().toString());
         } catch (Exception e) {
             
         }
@@ -201,14 +175,10 @@ public class Relatorio extends javax.swing.JPanel {
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonConsultar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelDataFinal;
     private javax.swing.JLabel labelDataInicial;
-    private javax.swing.JLabel labelProduto;
     private javax.swing.JTable tableRelatorio;
-    private javax.swing.JTextField textCliente;
     private javax.swing.JFormattedTextField textDataFinal;
     private javax.swing.JFormattedTextField textDataInicial;
-    private javax.swing.JTextField textProduto;
     // End of variables declaration//GEN-END:variables
 }

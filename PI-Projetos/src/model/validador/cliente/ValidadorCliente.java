@@ -38,8 +38,9 @@ public class ValidadorCliente {
                     + "sexo do cliente");
         }
         if (cliente.getEstadoCivil()== null || "".equals(cliente.getEstadoCivil())
-                || (!cliente.getEstadoCivil().equals("Solteiro"))
-                && !cliente.getEstadoCivil().equals("Casado")) {
+                || (!cliente.getEstadoCivil().equals("Solteiro")
+                && !cliente.getEstadoCivil().equals("Casado") 
+                && !cliente.getEstadoCivil().equals("Divorciado"))) {
             throw new ClienteException("Por favor informe o "
                     + "estado civil do cliente");
         }

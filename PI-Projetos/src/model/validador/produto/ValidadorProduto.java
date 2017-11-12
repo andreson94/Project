@@ -19,7 +19,8 @@ public class ValidadorProduto {
       }
           if (produto.getGenero() == null || "".equals(produto.getGenero())
                 || (!produto.getGenero().equals("Masculino"))
-                && !produto.getGenero().equals("Feminino")) {
+                && !produto.getGenero().equals("Feminino")
+                && !produto.getGenero().equals("Outros")) {
             throw new ProdutoException("Por favor informe o "
                     + " Genero do produto");
         }
@@ -37,7 +38,7 @@ public class ValidadorProduto {
           throw new ProdutoException("Por favor informe a cor "+
                   " do produto");   
       }
-      if(produto.getPreco() == null || "".equals(produto.getPreco())){
+      if(produto.getPreco() == null || "".equals(produto.getPreco()) || produto.getPreco() < 0){
           throw new ProdutoException("Por favor informe o preço "+
                   " do produto");   
       }
