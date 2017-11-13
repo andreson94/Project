@@ -17,7 +17,7 @@ public class ServicoCliente {
          throws ClienteException, DataSourceException {
 
         //Chama o validador para verificar o cliente
-        ValidadorCliente.validar(cliente);
+            ValidadorCliente.validar(cliente);
 
         try {
             //Realiza a chamada de inserção na fonte de dados

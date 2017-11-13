@@ -5,6 +5,15 @@
  */
 package Telas;
 
+import Mock.MockCliente;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import service.produto.ServicoProduto;
+
 /**
  *
  * @author andreson.csilva
@@ -27,37 +36,44 @@ public class Relatorio extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        textDataInicial = new javax.swing.JFormattedTextField();
+        textDataFinal = new javax.swing.JFormattedTextField();
+        labelDataInicial = new javax.swing.JLabel();
+        labelDataFinal = new javax.swing.JLabel();
+        buttonConsultar = new javax.swing.JButton();
+        buttonCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableRelatorio = new javax.swing.JTable();
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        textDataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        textDataInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textDataInicialActionPerformed(evt);
+            }
+        });
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        textDataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
-        jLabel1.setText("Data inicial");
+        labelDataInicial.setText("Data inicial");
 
-        jLabel2.setText("Data Final");
+        labelDataFinal.setText("Data Final");
 
-        jLabel3.setText("Produto");
+        buttonConsultar.setText("Consultar");
+        buttonConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonConsultarActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("Cliente");
+        buttonCancelar.setText("Cancelar");
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Consultar");
-
-        jButton2.setText("Cancelar");
-
-        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableRelatorio.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tableRelatorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -80,13 +96,13 @@ public class Relatorio extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(20);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(20);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(30);
-            jTable1.getColumnModel().getColumn(4).setMinWidth(50);
+        jScrollPane1.setViewportView(tableRelatorio);
+        if (tableRelatorio.getColumnModel().getColumnCount() > 0) {
+            tableRelatorio.getColumnModel().getColumn(0).setMinWidth(50);
+            tableRelatorio.getColumnModel().getColumn(1).setMinWidth(20);
+            tableRelatorio.getColumnModel().getColumn(2).setMinWidth(20);
+            tableRelatorio.getColumnModel().getColumn(3).setMinWidth(30);
+            tableRelatorio.getColumnModel().getColumn(4).setMinWidth(50);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -99,26 +115,16 @@ public class Relatorio extends javax.swing.JPanel {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(182, 630, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField2)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(91, 91, 91)
+                            .addComponent(labelDataInicial)
+                            .addComponent(textDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(labelDataFinal)
+                            .addComponent(textDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(91, 91, 91)
+                        .addComponent(buttonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -126,42 +132,127 @@ public class Relatorio extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(labelDataInicial)
+                    .addComponent(labelDataFinal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(12, 12, 12)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                    .addComponent(textDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonConsultar)
+                    .addComponent(buttonCancelar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConsultarActionPerformed
+      
+        
+        //Usa o valor digitado em "Data inicial"
+         SimpleDateFormat inicio = new SimpleDateFormat("dd/MM/yyyy");
+         SimpleDateFormat fim = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            inicio.parse(textDataInicial.getText().toString());
+        } catch (Exception e) {
+            
+        }
+        try {
+            fim.parse(textDataFinal.getText().toString());
+        } catch (Exception e) {
+            
+        }
+        
+      
+        
+        if (!textDataInicial.getText().toString().isEmpty()) {
+            try{
+                for (int i = 0; i < MockCliente.listar().size(); i++) {
+                    if (MockCliente.listar().get(i).getId() == Integer.parseInt(textDataInicial.getText().toString())){
+                        String nome = MockCliente.listar().get(i).getNome();
+                        String sobrenome = MockCliente.listar().get(i).getSobrenome();
+
+                        textDataInicial.setText(nome + " " + sobrenome);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                 ex.printStackTrace();
+            } 
+                
+           if (!textDataFinal.getText().toString().isEmpty()) {
+            try{
+                for (int i = 0; i < MockCliente.listar().size(); i++) {
+                    if (MockCliente.listar().get(i).getId() == Integer.parseInt(textDataFinal.getText().toString())){
+                        String nome = MockCliente.listar().get(i).getNome();
+                        String sobrenome = MockCliente.listar().get(i).getSobrenome();
+
+                        textDataFinal.setText(nome + " " + sobrenome);
+                    }
+                }
+            } catch (Exception ex) {
+                 ex.printStackTrace();
+            } 
+                  
+         DefaultTableModel tableRelatorioModel = (DefaultTableModel) tableRelatorio.getModel();
+         
+           Relatorio relatorio = null;
+
+            long produto;
+
+        try {
+
+            produto = Long.parseLong(textDataInicial.getText());
+            produto = Long.parseLong(textDataFinal.getText());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "A data informado não condiz com os ");
+            return;
+        }
+
+           
+        try {
+            relatorio = ServicoProduto.obterProduto(textDataInicial);
+            relatorio = ServicoProduto.obterProduto(textDataFinal);
+        } catch (Exception e) {
+
+        } 
+
+        Object[] row = new Object[5];
+        //row[0] = relatorio.getProduto();
+        //row[1] = relatorio.getPreco();
+        //row[2] = relatorio.getQnt();
+        //row[3] = relatorio.getData();
+        //row[4] = relatorio.getCliente();
+        tableRelatorioModel.addRow(row);
+
+        System.out.println("Total de produtos: " + tableRelatorioModel.getRowCount());
+       
+             
+        } 
+        }
+        
+        
+    }//GEN-LAST:event_buttonConsultarActionPerformed
+
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        TelaPrincipal tp = (TelaPrincipal)getRootPane().getParent();
+        tp.returnToTitle();
+    }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void textDataInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDataInicialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textDataInicialActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonConsultar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel labelDataFinal;
+    private javax.swing.JLabel labelDataInicial;
+    private javax.swing.JTable tableRelatorio;
+    private javax.swing.JFormattedTextField textDataFinal;
+    private javax.swing.JFormattedTextField textDataInicial;
     // End of variables declaration//GEN-END:variables
 }
