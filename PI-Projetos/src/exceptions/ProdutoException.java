@@ -1,6 +1,6 @@
 package exceptions;
 
-//Indica uma exceção de quarto
+//Indica uma exceção 
 public class ProdutoException extends Exception {
 
     //Construtor de exceções que permite informar uma mensagem

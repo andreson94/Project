@@ -6,6 +6,7 @@
 package Telas;
 
 import Mock.MockCliente;
+import Mock.MockVenda;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -167,12 +168,11 @@ public class Relatorio extends javax.swing.JPanel {
         
         if (!textDataInicial.getText().toString().isEmpty()) {
             try{
-                for (int i = 0; i < MockCliente.listar().size(); i++) {
-                    if (MockCliente.listar().get(i).getId() == Integer.parseInt(textDataInicial.getText().toString())){
-                        String nome = MockCliente.listar().get(i).getNome();
-                        String sobrenome = MockCliente.listar().get(i).getSobrenome();
+                for (int i = 0; i < MockVenda.listar().size(); i++) {
+                    if (MockVenda.listar().get(i).getId() == Integer.parseInt(textDataInicial.getText().toString())){
+                        String Cliente = MockVenda.listar().get(i).getCliente();
 
-                        textDataInicial.setText(nome + " " + sobrenome);
+                       
                     }
                 }
             }
@@ -182,12 +182,11 @@ public class Relatorio extends javax.swing.JPanel {
                 
            if (!textDataFinal.getText().toString().isEmpty()) {
             try{
-                for (int i = 0; i < MockCliente.listar().size(); i++) {
-                    if (MockCliente.listar().get(i).getId() == Integer.parseInt(textDataFinal.getText().toString())){
-                        String nome = MockCliente.listar().get(i).getNome();
-                        String sobrenome = MockCliente.listar().get(i).getSobrenome();
+                for (int i = 0; i < MockVenda.listar().size(); i++) {
+                    if (MockVenda.listar().get(i).getId() == Integer.parseInt(textDataFinal.getText().toString())){
+                        String produto = MockVenda.listar().get(i).getProduto();
 
-                        textDataFinal.setText(nome + " " + sobrenome);
+                        textDataFinal.setText(produto + " " );
                     }
                 }
             } catch (Exception ex) {

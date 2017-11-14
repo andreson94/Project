@@ -21,6 +21,8 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import model.produto.Produto;
+import model.venda.Venda;
+import service.ServicoVenda;
 import service.cliente.ServicoCliente;
 import service.produto.ServicoProduto;
 
@@ -58,7 +60,7 @@ public class VendasProdutos extends javax.swing.JPanel {
         btnCancelar = new javax.swing.JButton();
         ButtonConsultar = new javax.swing.JToggleButton();
         labelData = new javax.swing.JLabel();
-        textData = new javax.swing.JTextField();
+        txtData = new javax.swing.JTextField();
         txtValorPagamento = new javax.swing.JTextField();
         textConsultaCliente = new javax.swing.JTextField();
 
@@ -148,8 +150,8 @@ public class VendasProdutos extends javax.swing.JPanel {
 
         labelData.setText("Data:");
 
-        textData.setEditable(false);
-        textData.setFocusable(false);
+        txtData.setEditable(false);
+        txtData.setFocusable(false);
 
         txtValorPagamento.setEditable(false);
         txtValorPagamento.setText("0,0");
@@ -211,7 +213,7 @@ public class VendasProdutos extends javax.swing.JPanel {
                                 .addComponent(labelData)
                                 .addGap(25, 25, 25)))
                         .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(8, 8, 8))
                     .addComponent(PaneVendas))
@@ -248,7 +250,7 @@ public class VendasProdutos extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(vendasLancamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelData)
-                            .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(60, 60, 60))))
         );
 
@@ -320,7 +322,7 @@ public class VendasProdutos extends javax.swing.JPanel {
         String data = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 
         System.out.println(data);
-        textData.setText(data);
+        txtData.setText(data);
 
         float total = 0;
 
@@ -332,6 +334,27 @@ public class VendasProdutos extends javax.swing.JPanel {
         System.out.println("A Pagar: " + total);
 
         txtValorPagamento.setText("" + total);
+        
+        Venda venda = new Venda();
+        
+        
+            
+        venda.setData(data);
+        venda.setCliente(TextCliente.getText());
+        venda.setProduto(txtCodProd.getText());
+        venda.setValor(Float.parseFloat(txtValorPagamento.getText()));
+        
+              
+        try {
+                //Chama o serviço para cadastro do cliente
+                ServicoVenda.cadastrarVenda(venda);
+            } catch (Exception ev) {
+                //Exibe mensagens de erro para o usuário
+                JOptionPane.showMessageDialog(null, ev.getMessage(),
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+
+            }
     }//GEN-LAST:event_ButtonFinalVendaActionPerformed
 
     private void TextClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextClienteActionPerformed
@@ -405,8 +428,8 @@ public class VendasProdutos extends javax.swing.JPanel {
     private javax.swing.JLabel labelData;
     private javax.swing.JLabel labelPagamento;
     private javax.swing.JTextField textConsultaCliente;
-    private javax.swing.JTextField textData;
     private javax.swing.JTextField txtCodProd;
+    private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtValorPagamento;
     private javax.swing.JPanel vendasLancamento;
     // End of variables declaration//GEN-END:variables
