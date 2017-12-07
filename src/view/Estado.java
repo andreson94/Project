@@ -7,10 +7,18 @@ package view;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import utilitarios.ConectaBanco;
+import utilitarios.ModeloTabela;
+import java.util.ArrayList;
+import javax.swing.ListSelectionModel;
+import utilitarios.ModeloTabela;
+import java.util.ArrayList;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -25,6 +33,7 @@ public class Estado extends javax.swing.JFrame {
         initComponents();
         conecta.conexao();
         preencherTabela("select * from estados order by id_estados");
+        preencherTabela("select * from estados order by id_estado");
     }
 
     /**
@@ -362,6 +371,33 @@ public class Estado extends javax.swing.JFrame {
         btnNovo.setEnabled(false);
         
     }//GEN-LAST:event_btnNovoActionPerformed
+        public void preencherTabela(String SQL){
+           ArrayList dados = new ArrayList();
+           
+           String [] Colunas =  new String[]{"ID", "Nome", "Sigla"};
+         
+           conecta.executaSQL(SQL);
+        try {
+            conecta.rs.first();
+            do{
+                dados.add(new Object[]{conecta.rs.getInt("id_estado"),conecta.rs.getString("nome_estado"), conecta.rs.getString("sigla_estado")});
+                
+            }while(conecta.rs.next());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao preencher a tabela");
+        }
+            ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+           tableEstado.setModel(modelo);
+           tableEstado.getColumnModel().getColumn(0).setPreferredWidth(110);
+           tableEstado.getColumnModel().getColumn(0).setResizable(false);
+           tableEstado.getColumnModel().getColumn(1).setPreferredWidth(280);
+           tableEstado.getColumnModel().getColumn(1).setResizable(false);
+           tableEstado.getColumnModel().getColumn(2).setPreferredWidth(110);
+           tableEstado.getColumnModel().getColumn(2).setResizable(false);
+           tableEstado.getTableHeader().setReorderingAllowed(false);
+           tableEstado.setAutoResizeMode(tableEstado.AUTO_RESIZE_OFF);
+           tableEstado.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        }
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
