@@ -21,6 +21,7 @@ public class Estado extends javax.swing.JFrame {
     
     public Estado() {
         initComponents();
+        conecta.conexao();
     }
 
     /**
