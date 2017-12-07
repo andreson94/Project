@@ -37,12 +37,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaPrincpal = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        itemEstado = new javax.swing.JMenuItem();
+        itemCidade = new javax.swing.JMenuItem();
+        itemBairro = new javax.swing.JMenuItem();
+        itemTelefone = new javax.swing.JMenuItem();
+        itemClientes = new javax.swing.JMenuItem();
+        itemProdutos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -67,28 +67,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastro");
 
-        jMenuItem1.setText("Estados");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        itemEstado.setText("Estados");
+        itemEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                itemEstadoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(itemEstado);
 
-        jMenuItem2.setText("Cidades");
-        jMenu1.add(jMenuItem2);
+        itemCidade.setText("Cidades");
+        jMenu1.add(itemCidade);
 
-        jMenuItem3.setText("Bairro");
-        jMenu1.add(jMenuItem3);
+        itemBairro.setText("Bairro");
+        jMenu1.add(itemBairro);
 
-        jMenuItem4.setText("Telefones");
-        jMenu1.add(jMenuItem4);
+        itemTelefone.setText("Telefones");
+        itemTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemTelefoneActionPerformed(evt);
+            }
+        });
+        jMenu1.add(itemTelefone);
 
-        jMenuItem5.setText("Clientes");
-        jMenu1.add(jMenuItem5);
+        itemClientes.setText("Clientes");
+        jMenu1.add(itemClientes);
 
-        jMenuItem6.setText("Produtos");
-        jMenu1.add(jMenuItem6);
+        itemProdutos.setText("Produtos");
+        jMenu1.add(itemProdutos);
 
         jMenuBar1.add(jMenu1);
 
@@ -130,15 +135,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        CadEstado cad = new CadEstado();
-        cad.setVisible(true);
+    private void itemEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstadoActionPerformed
+        Estado estado = new Estado();
+        estado.setVisible(true);
         
-        CardLayout card = (CardLayout) panelPrincipal.getLayout();
-        card.show(panelPrincipal,"telaPrincipal");
-        
-        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_itemEstadoActionPerformed
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
        conecta.desconecta();
@@ -148,6 +149,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void itemTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemTelefoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,17 +190,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem itemBairro;
+    private javax.swing.JMenuItem itemCidade;
+    private javax.swing.JMenuItem itemClientes;
+    private javax.swing.JMenuItem itemEstado;
+    private javax.swing.JMenuItem itemProdutos;
+    private javax.swing.JMenuItem itemTelefone;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel telaPrincpal;
     // End of variables declaration//GEN-END:variables

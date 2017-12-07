@@ -5,15 +5,20 @@
  */
 package view;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import utilitarios.ConectaBanco;
+
 /**
  *
  * @author andreson.csilva
  */
 public class Estado extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Estado
-     */
+    ConectaBanco conecta = new ConectaBanco();
+    
+    
     public Estado() {
         initComponents();
     }
@@ -207,7 +212,8 @@ public class Estado extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pack();
+        setSize(new java.awt.Dimension(777, 402));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
