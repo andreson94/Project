@@ -48,7 +48,7 @@ public class Estado extends javax.swing.JFrame {
         btnNovo = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
         btnPrimeiro = new javax.swing.JButton();
         btnUltimo = new javax.swing.JButton();
         btnAnterior = new javax.swing.JButton();
@@ -107,10 +107,10 @@ public class Estado extends javax.swing.JFrame {
 
         btnAlterar.setText("ALTERAR");
 
-        btnCancelar.setText("CANCELAR");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletar.setText("Deletar");
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnDeletarActionPerformed(evt);
             }
         });
 
@@ -155,7 +155,7 @@ public class Estado extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar)
+                        .addComponent(btnDeletar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPrimeiro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,7 +186,7 @@ public class Estado extends javax.swing.JFrame {
                     .addComponent(btnNovo)
                     .addComponent(btnSalvar)
                     .addComponent(btnAlterar)
-                    .addComponent(btnCancelar)
+                    .addComponent(btnDeletar)
                     .addComponent(btnPrimeiro)
                     .addComponent(btnUltimo)
                     .addComponent(btnAnterior)
@@ -237,7 +237,7 @@ public class Estado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         try {
             PreparedStatement pst = conecta.conn.prepareStatement("delete from estados where sigla_estado= ?");
             pst.setString(1, txtSigla.getText());
@@ -246,7 +246,7 @@ public class Estado extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Estado.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_btnDeletarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,7 +286,7 @@ public class Estado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnAnterior;
-    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnPrimeiro;
     private javax.swing.JButton btnProximo;
