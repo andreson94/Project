@@ -27,6 +27,7 @@ public class Estado extends javax.swing.JFrame {
     public Estado() {
         initComponents();
         conecta.conexao();
+        preencherTabela("select * from estados order by id_estados");
         preencherTabela("select * from estados order by id_estado");
     }
 
@@ -251,6 +252,7 @@ public class Estado extends javax.swing.JFrame {
             pst.setString(2,txtSigla.getText());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this,"Salvo com sucesso");
+            preencherTabela("select * from estados order by id_estados");
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(this,"Erro");
         }
@@ -262,6 +264,7 @@ public class Estado extends javax.swing.JFrame {
             pst.setString(1, txtSigla.getText());
             pst.execute();
             JOptionPane.showMessageDialog(rootPane,"Excluido com sucesso");
+            preencherTabela("select * from estados order by id_estados");
         } catch (SQLException ex) {
             Logger.getLogger(Estado.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -275,6 +278,7 @@ public class Estado extends javax.swing.JFrame {
             pst.setInt(3,Integer.parseInt(txtCodigo.getText()));
             pst.execute();
             JOptionPane.showMessageDialog(rootPane,"Excluido com sucesso");
+            preencherTabela("select * from estados order by id_estados");
         } catch (SQLException ex) {
             Logger.getLogger(Estado.class.getName()).log(Level.SEVERE, null, ex);
         }
