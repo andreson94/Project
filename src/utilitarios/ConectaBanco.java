@@ -6,6 +6,8 @@
 package utilitarios;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -33,6 +35,14 @@ public class ConectaBanco {
            JOptionPane.showMessageDialog(null, "erro de conexão:\n Erro:" + ex.getMessage());
         }
         
+    }
+    public void executaSQL(String sql){
+        try {
+            stm = conn.createStatement(rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+            rs = stm.executeQuery(sql);
+        } catch (SQLException ex) {
+            //JOptionPane.showMessageDialog(null, "erro de conexão:\n Erro:" + ex.getMessage());
+        }
     }
     public void desconecta(){//metodo para fechar conexão
         try {

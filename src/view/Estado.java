@@ -7,6 +7,8 @@ package view;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import utilitarios.ConectaBanco;
 
@@ -106,6 +108,11 @@ public class Estado extends javax.swing.JFrame {
         btnAlterar.setText("ALTERAR");
 
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnPrimeiro.setText("PRIMEIRO");
 
@@ -229,6 +236,17 @@ public class Estado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Erro");
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        try {
+            PreparedStatement pst = conecta.conn.prepareStatement("delete from estados where sigla_estado= ?");
+            pst.setString(1, txtSigla.getText());
+            pst.execute();
+            JOptionPane.showMessageDialog(rootPane,"Excluido com sucesso");
+        } catch (SQLException ex) {
+            Logger.getLogger(Estado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
