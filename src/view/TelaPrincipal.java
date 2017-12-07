@@ -16,6 +16,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        //Comando maximizar tela
+        this.setExtendedState(this.getExtendedState()|TelaPrincipal.MAXIMIZED_BOTH);
+        
     }
 
     /**
@@ -40,7 +43,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Vendas");
         getContentPane().setLayout(new java.awt.CardLayout());
 
