@@ -294,7 +294,11 @@ public class Cidade extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cidade().setVisible(true);
+                try {
+                    new Cidade().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Cidade.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utilitarios.ConectaBanco;
 
 /**
@@ -141,8 +144,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstadoActionPerformed
-        Estado estado = new Estado();
-        estado.setVisible(true);
+        Estado frm = new Estado();
+        frm.setVisible(true);
         
     }//GEN-LAST:event_itemEstadoActionPerformed
 
@@ -160,8 +163,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemTelefoneActionPerformed
 
     private void itemCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadeActionPerformed
-        Cidade cidade = new Cidade();
-        cidade.setVisible(true);
+        
+        try {
+            Cidade frm = new Cidade();
+            frm.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_itemCidadeActionPerformed
 
     /**
