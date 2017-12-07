@@ -5,17 +5,20 @@
  */
 package view;
 
+import utilitarios.ConectaBanco;
+
 /**
  *
  * @author andreson.csilva
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+    ConectaBanco conecta = new ConectaBanco();
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        conecta.conexao();
         //Comando maximizar tela
         this.setExtendedState(this.getExtendedState()|TelaPrincipal.MAXIMIZED_BOTH);
         
@@ -99,6 +102,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMenu4MouseClicked(evt);
             }
         });
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -112,8 +120,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+       conecta.desconecta();
         System.exit(0);
     }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4ActionPerformed
 
     /**
      * @param args the command line arguments
