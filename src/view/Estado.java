@@ -96,6 +96,11 @@ public class Estado extends javax.swing.JFrame {
         });
 
         btnAlterar.setText("ALTERAR");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnDeletar.setText("Deletar");
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,12 +110,32 @@ public class Estado extends javax.swing.JFrame {
         });
 
         btnPrimeiro.setText("PRIMEIRO");
+        btnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrimeiroActionPerformed(evt);
+            }
+        });
 
         btnUltimo.setText("ULTIMO");
+        btnUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUltimoActionPerformed(evt);
+            }
+        });
 
         btnAnterior.setText("ANTERIOR");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
+            }
+        });
 
         btnProximo.setText("PROXIMO");
+        btnProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProximoActionPerformed(evt);
+            }
+        });
 
         btnSair.setText("SAIR");
 
@@ -238,8 +263,95 @@ public class Estado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeletarActionPerformed
 
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        try {
+            PreparedStatement pst = conecta.conn.prepareStatement("update estados set nome_estado =?, sigla_estado = ? where id_estado= ?");
+            pst.setString(1, txtNome.getText());
+            pst.setString(2, txtSigla.getText());
+            pst.setInt(3,Integer.parseInt(txtCodigo.getText()));
+            pst.execute();
+            JOptionPane.showMessageDialog(rootPane,"Excluido com sucesso");
+        } catch (SQLException ex) {
+            Logger.getLogger(Estado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
+        btnAlterar.setVisible(true);
+        btnDeletar.setVisible(true);
+        txtNome.setVisible(true);
+        txtSigla.setVisible(true);
+        try {
+            conecta.executaSQL("select * from estados");
+            conecta.rs.first();
+            txtCodigo.setText(String.valueOf(conecta.rs.getInt("id_estado")));
+            txtNome.setText(conecta.rs.getString("nome_estado"));
+            txtSigla.setText(conecta.rs.getString("sigla_estado"));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane,"Erro ao alterar dados");
+        }
+    }//GEN-LAST:event_btnPrimeiroActionPerformed
+
+    private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
+        btnAlterar.setVisible(true);
+        btnDeletar.setVisible(true);
+        txtNome.setVisible(true);
+        txtSigla.setVisible(true);
+        try {
+            conecta.executaSQL("select * from estados");
+            conecta.rs.last();
+            txtCodigo.setText(String.valueOf(conecta.rs.getInt("id_estado")));
+            txtNome.setText(conecta.rs.getString("nome_estado"));
+            txtSigla.setText(conecta.rs.getString("sigla_estado"));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane,"Erro ao mostrar dados");
+        }
+    }//GEN-LAST:event_btnUltimoActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        btnAlterar.setVisible(true);
+        btnDeletar.setVisible(true);
+        txtNome.setVisible(true);
+        txtSigla.setVisible(true);
+        try {
+            conecta.executaSQL("select * from estados");
+            conecta.rs.previous();
+            txtCodigo.setText(String.valueOf(conecta.rs.getInt("id_estado")));
+            txtNome.setText(conecta.rs.getString("nome_estado"));
+            txtSigla.setText(conecta.rs.getString("sigla_estado"));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane,"Erro ao mostrar dados");
+        }
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+        btnAlterar.setVisible(true);
+        btnDeletar.setVisible(true);
+        txtNome.setVisible(true);
+        txtSigla.setVisible(true);
+        
+        try {
+            conecta.rs.next();
+            txtCodigo.setText(String.valueOf(conecta.rs.getInt("id_estado")));
+            txtNome.setText(conecta.rs.getString("nome_estado"));
+            txtSigla.setText(conecta.rs.getString("sigla_estado"));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane,"Erro ao mostrar dados");
+        }
+        
+    }//GEN-LAST:event_btnProximoActionPerformed
+
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
+        txtCodigo.setText("");
+        txtNome.setText("");
+        txtSigla.setText("");
+        txtNome.setEnabled(true);
+        txtSigla.setEnabled(true);
+        btnAlterar.setEnabled(true);
+        btnDeletar.setEnabled(true);
+        btnSalvar.setEnabled(true);
+        btnNovo.setEnabled(false);
+        
     }//GEN-LAST:event_btnNovoActionPerformed
 
     /**
