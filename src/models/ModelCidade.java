@@ -9,7 +9,7 @@ package models;
  *
  * @author andreson.csilva
  */
-public class Cidade {
+public class ModelCidade {
 
     private int cod;
     private String nome;

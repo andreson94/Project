@@ -76,6 +76,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.add(itemEstado);
 
         itemCidade.setText("Cidades");
+        itemCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCidadeActionPerformed(evt);
+            }
+        });
         jMenu1.add(itemCidade);
 
         itemBairro.setText("Bairro");
@@ -153,6 +158,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void itemTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTelefoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemTelefoneActionPerformed
+
+    private void itemCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadeActionPerformed
+        Cidade cidade = new Cidade();
+        cidade.setVisible(true);
+    }//GEN-LAST:event_itemCidadeActionPerformed
 
     /**
      * @param args the command line arguments
