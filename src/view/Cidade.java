@@ -7,19 +7,22 @@ package view;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import models.ModelCidade;
 import utilitarios.ConectaBanco;
 import utilitarios.ControleCidade;
+import utilitarios.ModeloTabela;
 
 /**
  *
  * @author andreson.csilva
  */
 public class Cidade extends javax.swing.JFrame {
-
+    
     ConectaBanco connEstado = new ConectaBanco();
     ConectaBanco connCidade = new ConectaBanco();
     
@@ -29,6 +32,8 @@ public class Cidade extends javax.swing.JFrame {
     public Cidade() throws SQLException {
         initComponents();
         connEstado.conexao();
+        connCidade.conexao();
+        preencherTabela("select * from cidade inner join estados on cidade.id_estado = estados.id_estado");
         connEstado.executaSQL("select * from estados order by nome_estados");
         cbEstados.removeAllItems();//remove todos os itens da cbox
         try{
@@ -58,7 +63,7 @@ public class Cidade extends javax.swing.JFrame {
         btnDeletar = new javax.swing.JButton();
         btnPrimeiro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableCidade = new javax.swing.JTable();
         btnAnterior = new javax.swing.JButton();
         btnUltimo = new javax.swing.JButton();
         btnProximo = new javax.swing.JButton();
@@ -124,7 +129,7 @@ public class Cidade extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableCidade.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -132,7 +137,7 @@ public class Cidade extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableCidade);
 
         btnAnterior.setText("ANTERIOR");
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +154,11 @@ public class Cidade extends javax.swing.JFrame {
         });
 
         btnProximo.setText("PROXIMO");
+        btnProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProximoActionPerformed(evt);
+            }
+        });
 
         txtNome.setEnabled(false);
 
@@ -176,9 +186,6 @@ public class Cidade extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblCodigo)
@@ -196,24 +203,29 @@ public class Cidade extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDeletar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPrimeiro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUltimo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAnterior)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnProximo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnSalvar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAlterar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDeletar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnPrimeiro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUltimo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAnterior)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnProximo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)))
                         .addComponent(btnSair)
-                        .addContainerGap(12, Short.MAX_VALUE))))
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,20 +262,20 @@ public class Cidade extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(224, 224, 224)
-                .addComponent(jLabel6)
-                .addContainerGap(430, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(251, 251, 251))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -294,14 +306,30 @@ public class Cidade extends javax.swing.JFrame {
             connEstado.rs.first();
             mod.setCod_Estado(connEstado.rs.getInt("id_estado"));
             control.inserirCidade(mod);
+            preencherTabela("select * from cidade inner join estados on cidade.id_estado = estados.id_estado");
+        
+            txtCodigo.setText("");
+            txtNome.setText("");
+            txtNome.setEnabled(false);
+            cbEstados.setEnabled(false);
+            btnAlterar.setEnabled(false);
+            btnDeletar.setEnabled(false);
+            btnSalvar.setEnabled(false);
+            btnCancelar.setEnabled(false);
+            btnNovo.setEnabled(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane,"Erro ao Salvar");
         }
+        
         
        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
+        txtNome.setVisible(true);
+        btnAlterar.setEnabled(true);
+        btnDeletar.setEnabled(true);
+        btnCancelar.setEnabled(true);
         try {
             connCidade.executaSQL("select * from cidade order by id_cidade");
             connCidade.rs.first();
@@ -325,26 +353,53 @@ public class Cidade extends javax.swing.JFrame {
             connCidade.rs.first();
             mod.setCod_Estado(connCidade.rs.getInt("id_estado"));
             control.alterarCidade(mod);
-        
+            preencherTabela("select * from cidade inner join estados on cidade.id_estado = estados.id_estado");
+            
+            txtCodigo.setText("");
+            txtNome.setText("");
+            txtNome.setEnabled(false);
+            cbEstados.setEnabled(false);
+            btnAlterar.setEnabled(false);
+            btnDeletar.setEnabled(false);
+            btnSalvar.setEnabled(false);
+            btnCancelar.setEnabled(false);
+            btnNovo.setEnabled(true);
         }catch(SQLException ex) {
             JOptionPane.showMessageDialog(rootPane,"Erro ao Alterar");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        // TODO add your handling code here:
+        
+        btnAlterar.setEnabled(true);
+        btnDeletar.setEnabled(true);
+        btnCancelar.setEnabled(true);
         try {
             mod.setCod(Integer.parseInt(txtCodigo.getText()));
             mod.setNome(txtNome.getText());
             mod.setCod_Estado(connCidade.rs.getInt("id_estado"));
             control.ExcluiCidade(mod);
+            preencherTabela("select * from cidade inner join estados on cidade.id_estado = estados.id_estado");
+            
+            txtCodigo.setText("");
+            txtNome.setText("");
+            txtNome.setEnabled(false);
+            cbEstados.setEnabled(false);
+            btnAlterar.setEnabled(false);
+            btnDeletar.setEnabled(false);
+            btnSalvar.setEnabled(false);
+            btnCancelar.setEnabled(false);
+            btnNovo.setEnabled(true);
         } catch (SQLException ex) {
             Logger.getLogger(Cidade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
-                                                
+        txtNome.setVisible(true);      
+        btnAlterar.setEnabled(true);
+        btnDeletar.setEnabled(true);
+        btnCancelar.setEnabled(true);                                  
         try {
             connCidade.executaSQL("select * from cidade order by id_cidade");
             connCidade.rs.last();
@@ -359,7 +414,10 @@ public class Cidade extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        // TODO add your handling code here:
+        txtNome.setVisible(true);      
+        btnAlterar.setEnabled(true);
+        btnDeletar.setEnabled(true);
+        btnCancelar.setEnabled(true); 
         try {
             //connCidade.executaSQL("select * from cidade order by id_cidade");
             connCidade.rs.previous();
@@ -381,9 +439,54 @@ public class Cidade extends javax.swing.JFrame {
         btnAlterar.setEnabled(false);
         btnDeletar.setEnabled(false);
         btnSalvar.setEnabled(false);
+        btnCancelar.setEnabled(false);
         btnNovo.setEnabled(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+        txtCodigo.setText("");
+        btnAlterar.setEnabled(true);
+        btnDeletar.setEnabled(true);
+        btnCancelar.setEnabled(true);
+        try {
+            //connCidade.executaSQL("select * from cidade order by id_cidade");
+            connCidade.rs.next();
+            txtCodigo.setText(String.valueOf(connCidade.rs.getInt("id_cidade")));
+            txtNome.setText(connCidade.rs.getString("nome_cidades"));
+            connEstado.executaSQL("select * from estados where id_estado="+connCidade.rs.getInt("id_estado"));
+            connEstado.rs.first();
+            cbEstados.setSelectedItem(connEstado.rs.getString("nome_estado"));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao setar o proximo registro" + ex);
+        }
+    }//GEN-LAST:event_btnProximoActionPerformed
+    public void preencherTabela(String SQL){
+           ArrayList dados = new ArrayList();
+           
+           String [] Colunas =  new String[]{"ID", "Nome", "Estado"};
+         
+           connCidade.executaSQL(SQL);
+        try {
+            connCidade.rs.first();
+            do{
+                dados.add(new Object[]{connCidade.rs.getInt("id_cidade"),connCidade.rs.getString("nome_cidade"), connCidade.rs.getString("sigla_estado")});
+                
+            }while(connCidade.rs.next());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao preencher a tabela");
+        }
+            ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+           tableCidade.setModel(modelo);
+           tableCidade.getColumnModel().getColumn(0).setPreferredWidth(110);
+           tableCidade.getColumnModel().getColumn(0).setResizable(false);
+           tableCidade.getColumnModel().getColumn(1).setPreferredWidth(200);
+           tableCidade.getColumnModel().getColumn(1).setResizable(false);
+           tableCidade.getColumnModel().getColumn(2).setPreferredWidth(110);
+           tableCidade.getColumnModel().getColumn(2).setResizable(false);
+           tableCidade.getTableHeader().setReorderingAllowed(false);
+           tableCidade.setAutoResizeMode(tableCidade.AUTO_RESIZE_OFF);
+           tableCidade.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        }
     
     public static void main(String args[]) {
         
@@ -413,15 +516,13 @@ public class Cidade extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblEstados;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JTable tableCidade;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 
-    private void preencherTabela(String select__from_estados_order_by_id_cidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 }
