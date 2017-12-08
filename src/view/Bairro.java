@@ -93,22 +93,31 @@ public class Bairro extends javax.swing.JFrame {
 
         jButton11.setText("jButton5");
 
+        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/NOVO.png"))); // NOI18N
         btnNovo.setText("NOVO");
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SALVAR.png"))); // NOI18N
         jButton2.setText("SALVAR");
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ALTERAR.png"))); // NOI18N
         jButton3.setText("ALTERAR");
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CANCELAR VENDA.png"))); // NOI18N
         jButton4.setText("CANCELAR");
 
-        jButton5.setText("PRIMEIRO");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PRIMEIRO1.png"))); // NOI18N
+        jButton5.setToolTipText("Primeiro");
 
-        jButton7.setText("ULTIMO");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ULTIMO1.png"))); // NOI18N
+        jButton7.setToolTipText("Último");
 
-        jButton6.setText("ANTERIOR");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PRIMEIRO.png"))); // NOI18N
+        jButton6.setToolTipText("Anterior");
 
-        jButton8.setText("PROXIMO");
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ULTIMO.png"))); // NOI18N
+        jButton8.setToolTipText("Próximo");
 
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SAIR.png"))); // NOI18N
         jButton9.setText("SAIR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

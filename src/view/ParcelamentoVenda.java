@@ -78,10 +78,13 @@ public class ParcelamentoVenda extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/BUSCAR.png"))); // NOI18N
         jButton1.setText("Buscar");
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PARCELAR.png"))); // NOI18N
         jButton2.setText("Parcelar");
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/GERAR DUPLICATA.png"))); // NOI18N
         jButton3.setText("Gerar Duplicatas");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -188,7 +191,7 @@ public class ParcelamentoVenda extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

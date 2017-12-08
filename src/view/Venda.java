@@ -142,8 +142,10 @@ public class Venda extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("Valor:");
 
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FINALIZAR VENDA.png"))); // NOI18N
         jButton8.setText("Finalizar Venda");
 
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CANCELAR VENDA.png"))); // NOI18N
         jButton9.setText("Cancelar Venda");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -196,9 +198,9 @@ public class Venda extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton8)
-                .addGap(140, 140, 140)
+                .addGap(88, 88, 88)
                 .addComponent(jButton9)
-                .addGap(151, 151, 151))
+                .addGap(203, 203, 203))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

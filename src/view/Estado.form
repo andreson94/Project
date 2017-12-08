@@ -42,7 +42,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="11" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -94,7 +94,7 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="btnNovo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
@@ -210,6 +210,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnNovo">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/NOVO.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="NOVO"/>
           </Properties>
           <Events>
@@ -218,6 +221,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSalvar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/SALVAR.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SALVAR"/>
           </Properties>
           <Events>
@@ -226,6 +232,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAlterar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/ALTERAR.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ALTERAR"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -235,6 +244,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnDeletar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/EXCLUIR.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Deletar"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -244,7 +256,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnPrimeiro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PRIMEIRO"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/PRIMEIRO1.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Primeiro"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrimeiroActionPerformed"/>
@@ -252,7 +267,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnUltimo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ULTIMO"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/ULTIMO1.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="&#xda;ltimo"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUltimoActionPerformed"/>
@@ -260,7 +278,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAnterior">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ANTERIOR"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/PRIMEIRO.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Anterior"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnteriorActionPerformed"/>
@@ -268,7 +289,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnProximo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="PROXIMO"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagens/ULTIMO.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Pr&#xf3;ximo"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProximoActionPerformed"/>
