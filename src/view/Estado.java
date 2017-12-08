@@ -33,7 +33,7 @@ public class Estado extends javax.swing.JFrame {
         initComponents();
         conecta.conexao();
         preencherTabela("select * from estados order by id_estados");
-        preencherTabela("select * from estados order by id_estado");
+        
     }
 
     /**

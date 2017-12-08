@@ -98,6 +98,11 @@ public class Cidade extends javax.swing.JFrame {
         btnDeletar.setText("DELETAR");
 
         btnPrimeiro.setText("PRIMEIRO");
+        btnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrimeiroActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -248,6 +253,7 @@ public class Cidade extends javax.swing.JFrame {
             connEstado.rs.first();
             mod.setCod_Estado(connEstado.rs.getInt("id_estado"));
             ControleCidade control = new ControleCidade();
+            control.inserirCidade(mod);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane,"Erro");
         }
@@ -263,6 +269,10 @@ public class Cidade extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Erro");
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     /**
      * @param args the command line arguments
