@@ -110,6 +110,11 @@ public class Cidade extends javax.swing.JFrame {
 
         btnDeletar.setText("DELETAR");
         btnDeletar.setEnabled(false);
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
 
         btnPrimeiro.setText("PRIMEIRO");
         btnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
@@ -129,8 +134,18 @@ public class Cidade extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         btnAnterior.setText("ANTERIOR");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
+            }
+        });
 
         btnUltimo.setText("ULTIMO");
+        btnUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUltimoActionPerformed(evt);
+            }
+        });
 
         btnProximo.setText("PROXIMO");
 
@@ -276,7 +291,17 @@ public class Cidade extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
-        
+        try {
+            connCidade.executaSQL("select * from cidade order by id_cidade");
+            connCidade.rs.first();
+            txtCodigo.setText(String.valueOf(connCidade.rs.getInt("id_cidade")));
+            txtNome.setText(connCidade.rs.getString("nome_cidades"));
+            connEstado.executaSQL("select * from estados where id_estado="+connCidade.rs.getInt("id_estado"));
+            connEstado.rs.first();
+            cbEstados.setSelectedItem(connEstado.rs.getString("nome_estado"));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao setar o primeiro registro" + ex);
+        }
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -294,6 +319,48 @@ public class Cidade extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,"Erro ao Alterar");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        // TODO add your handling code here:
+        try {
+            mod.setCod(Integer.parseInt(txtCodigo.getText()));
+            mod.setNome(txtNome.getText());
+            mod.setCod_Estado(connCidade.rs.getInt("id_estado"));
+            control.ExcluiCidade(mod);
+        } catch (SQLException ex) {
+            Logger.getLogger(Cidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
+                                                
+        try {
+            connCidade.executaSQL("select * from cidade order by id_cidade");
+            connCidade.rs.last();
+            txtCodigo.setText(String.valueOf(connCidade.rs.getInt("id_cidade")));
+            txtNome.setText(connCidade.rs.getString("nome_cidades"));
+            connEstado.executaSQL("select * from estados where id_estado="+connCidade.rs.getInt("id_estado"));
+            connEstado.rs.first();
+            cbEstados.setSelectedItem(connEstado.rs.getString("nome_estado"));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao setar o ultimo registro" + ex);
+        }
+    }//GEN-LAST:event_btnUltimoActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        // TODO add your handling code here:
+        try {
+            //connCidade.executaSQL("select * from cidade order by id_cidade");
+            connCidade.rs.previous();
+            txtCodigo.setText(String.valueOf(connCidade.rs.getInt("id_cidade")));
+            txtNome.setText(connCidade.rs.getString("nome_cidades"));
+            connEstado.executaSQL("select * from estados where id_estado="+connCidade.rs.getInt("id_estado"));
+            connEstado.rs.first();
+            cbEstados.setSelectedItem(connEstado.rs.getString("nome_estado"));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao setar o registro anterior" + ex);
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_btnAnteriorActionPerformed
 
     
     public static void main(String args[]) {

@@ -34,4 +34,16 @@ public class ControleCidade {
         pst.setInt(3,mod.getCod());
         pst.execute();
     }
+    public void ExcluiCidade(ModelCidade mod){
+        connCidade.conexao();
+        try {
+            PreparedStatement pst = connCidade.conn.prepareStatement("delete from cidade where id cidade =?");
+            pst.setInt(1, mod.getCod());
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro no delete");
+        }
+        
+    }
 }
