@@ -21,6 +21,10 @@ import utilitarios.ControleCidade;
 public class Cidade extends javax.swing.JFrame {
 
     ConectaBanco connEstado = new ConectaBanco();
+    ConectaBanco connCidade = new ConectaBanco();
+    
+    ModelCidade mod = new ModelCidade();
+    ControleCidade control = new ControleCidade();
     
     public Cidade() throws SQLException {
         initComponents();
@@ -79,6 +83,8 @@ public class Cidade extends javax.swing.JFrame {
         lblEstados.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblEstados.setText("Estados:");
 
+        txtCodigo.setEnabled(false);
+
         btnNovo.setText("NOVO");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +93,7 @@ public class Cidade extends javax.swing.JFrame {
         });
 
         btnSalvar.setText("SALVAR");
+        btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -94,8 +101,15 @@ public class Cidade extends javax.swing.JFrame {
         });
 
         btnAlterar.setText("ALTERAR");
+        btnAlterar.setEnabled(false);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnDeletar.setText("DELETAR");
+        btnDeletar.setEnabled(false);
 
         btnPrimeiro.setText("PRIMEIRO");
         btnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +133,8 @@ public class Cidade extends javax.swing.JFrame {
         btnUltimo.setText("ULTIMO");
 
         btnProximo.setText("PROXIMO");
+
+        txtNome.setEnabled(false);
 
         cbEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -247,52 +263,41 @@ public class Cidade extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         //chamando o estado na tela de Cidade e inserindo a Cidade pelo metodo inserir
         try {
-            ModelCidade mod = new ModelCidade();
             mod.setNome(txtNome.getText());
-            connEstado.executaSQL("select * from estados where nome_estados="+cbEstados.getSelectedItem());
+            connEstado.executaSQL("select * from estados where nome_estado="+cbEstados.getSelectedItem()+"");
             connEstado.rs.first();
             mod.setCod_Estado(connEstado.rs.getInt("id_estado"));
-            ControleCidade control = new ControleCidade();
             control.inserirCidade(mod);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane,"Erro");
+            JOptionPane.showMessageDialog(rootPane,"Erro ao Salvar");
         }
         
        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        
+        try{
+            
+            mod.setCod(Integer.parseInt(txtCodigo.getText()));
+            mod.setNome(txtNome.getText());
+            connCidade.executaSQL("select * from estados where nome_estados = " + cbEstados.getSelectedItem()+"");
+            connCidade.rs.first();
+            mod.setCod_Estado(connCidade.rs.getInt("id_estado"));
+            control.alterarCidade(mod);
+        
+        }catch(SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane,"Erro ao Alterar");
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
-        /* Create and display the form */
+    
+    public static void main(String args[]) {
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

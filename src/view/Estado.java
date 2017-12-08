@@ -76,6 +76,8 @@ public class Estado extends javax.swing.JFrame {
         lblSigla.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblSigla.setText("Sigla");
 
+        txtSigla.setEnabled(false);
+
         tableEstado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -85,6 +87,8 @@ public class Estado extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tableEstado);
+
+        txtNome.setEnabled(false);
 
         btnNovo.setText("NOVO");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +105,7 @@ public class Estado extends javax.swing.JFrame {
         });
 
         btnAlterar.setText("ALTERAR");
+        btnAlterar.setEnabled(false);
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
@@ -108,6 +113,7 @@ public class Estado extends javax.swing.JFrame {
         });
 
         btnDeletar.setText("Deletar");
+        btnDeletar.setEnabled(false);
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeletarActionPerformed(evt);
