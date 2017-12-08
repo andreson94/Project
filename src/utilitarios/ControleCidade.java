@@ -5,16 +5,23 @@
  */
 package utilitarios;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import models.ModelCidade;
 
 /**
  *
  * @author andreson.csilva
- */
+ *///metodo para inserir cidade altomaticamente
 public class ControleCidade {
-    public void inserirCidade(ModelCidade mod){
-        
-        JOptionPane.showMessageDialog(null,mod.getNome());
+    ConectaBanco connCidade = new ConectaBanco();
+    
+    public void inserirCidade(ModelCidade mod) throws SQLException{
+        connCidade.conexao();
+        PreparedStatement pst = connCidade.conn.prepareStatement("insert into cidade(nome_cidade,id_estado)values()");
+        pst.setString(1,mod.getNome());
+        pst.setInt(2,mod.getCod_Estado());
+        pst.execute();
     }
 }
