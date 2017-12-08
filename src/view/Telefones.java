@@ -5,8 +5,15 @@
  */
 package view;
 
-import models.ModelCidade;
-import utilitarios.ControleCidade;
+
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+import models.ModelTelefone;
+import utilitarios.ControleTelefone;
 
 /**
  *
@@ -14,11 +21,16 @@ import utilitarios.ControleCidade;
  */
 public class Telefones extends javax.swing.JFrame {
     
-    ModelCidade mod = new ModelCidade();
-    ControleCidade control = new ControleCidade();
+    ModelTelefone mod = new ModelTelefone();
+    ControleTelefone control = new ControleTelefone();
     
     public Telefones() {
         initComponents();
+        try{
+            MaskFormatter form = new MaskFormatter("(##)# ####-####");
+        }catch(ParseException ex){
+            txtNumero.setFormatterFactory(new DefaultFormatterFactory(form));
+        } catch
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -48,6 +60,8 @@ public class Telefones extends javax.swing.JFrame {
 
         lblCod.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblCod.setText("Código:");
+
+        txtCod.setEditable(false);
 
         lblNome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblNome.setText("Numero:");
@@ -107,6 +121,9 @@ public class Telefones extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
+
+        txtNumero.setEditable(false);
+        txtNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("( ) 0 0000 - 0000 "))));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -207,11 +224,30 @@ public class Telefones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        
+        txtCod.setText("");
+        txtNumero.setText("");
+        txtNumero.setEnabled(true);
+        btnAlterar.setEnabled(true);
+        btnExcluir.setEnabled(true);
+        btnSalvar.setEnabled(true);
+        btnNovo.setEnabled(false);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        
+       
+        try {
+            mod.setTel(txtNumero.getText());
+            control.inserirTel(mod);
+            txtNumero.setEnabled(!true);
+            btnAlterar.setEnabled(true);
+            btnExcluir.setEnabled(!true);
+            btnSalvar.setEnabled(!true);
+            btnNovo.setEnabled(!false);
+        } catch (SQLException ex) {
+            Logger.getLogger(Telefones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
