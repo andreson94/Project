@@ -240,7 +240,7 @@ public class Cidade extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+        //chamando o estado na tela de Cidade e inserindo a Cidade pelo metodo inserir
         try {
             ModelCidade mod = new ModelCidade();
             mod.setNome(txtNome.getText());
@@ -248,20 +248,12 @@ public class Cidade extends javax.swing.JFrame {
             connEstado.rs.first();
             mod.setCod_Estado(connEstado.rs.getInt("id_estado"));
             ControleCidade control = new ControleCidade();
+            control.inserirCidade(mod);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane,"Erro");
         }
         
-        try{
-
-            PreparedStatement pst = connEstado.conn.prepareStatement("insert into cidade (nome_cidade)values(?)");
-            pst.setString(1,txtNome.getText());
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Salvo com sucesso");
-            preencherTabela("select * from estados order by id_cidade");
-        }catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this,"Erro");
-        }
+       
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
