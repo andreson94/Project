@@ -88,11 +88,21 @@ public class Venda extends javax.swing.JFrame {
         lblData.setText("Data:");
 
         btnBuscaCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PESQUISAR.png"))); // NOI18N
+        btnBuscaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaClienteActionPerformed(evt);
+            }
+        });
 
         lblProduto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblProduto.setText("Produto:");
 
         btnBuscaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PESQUISAR.png"))); // NOI18N
+        btnBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaProdutoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Quantidade:");
@@ -270,13 +280,21 @@ public class Venda extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void preencherTabela(){
+    private void btnBuscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaClienteActionPerformed
+        preencherTabelaCliente("select * from clientes where nome_cliente like '%"+txtCliente.getText()+"%'");
+    }//GEN-LAST:event_btnBuscaClienteActionPerformed
+
+    private void btnBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaProdutoActionPerformed
+        preencherTabelaCliente("select * from produto where nome_produto like '%"+txtProduto.getText()+"%'");
+    }//GEN-LAST:event_btnBuscaProdutoActionPerformed
+
+    public void preencherTabelaCliente(String sql){
         
         ArrayList dados = new ArrayList();
         
         String [] Colunas = new String[]{"Código","Nome"};
         conn.conexao();
-        conn.executaSQL("select * from clientes where nome_cliente =%'"+txtCliente.getText());
+        conn.executaSQL(sql);
         try{
             conn.rs.first();
             do{
@@ -287,14 +305,38 @@ public class Venda extends javax.swing.JFrame {
         }
        ModeloTabela modelo = new ModeloTabela(dados, Colunas);
         tablePesquisa.setModel(modelo);
-        tablePesquisa.getColumnModel().getColumn(0).setPreferredWidth(250);
+        tablePesquisa.getColumnModel().getColumn(0).setPreferredWidth(100);
         tablePesquisa.getColumnModel().getColumn(0).setResizable(false);
-        tablePesquisa.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tablePesquisa.getColumnModel().getColumn(1).setPreferredWidth(300);
         tablePesquisa.getColumnModel().getColumn(1).setResizable(false);
-        tablePesquisa.getColumnModel().getColumn(2).setPreferredWidth(115);
-        tablePesquisa.getColumnModel().getColumn(2).setResizable(false);
-        tablePesquisa.getColumnModel().getColumn(3).setPreferredWidth(115);
-        tablePesquisa.getColumnModel().getColumn(2).setResizable(false);
+        tablePesquisa.getTableHeader().setReorderingAllowed(false);
+        tablePesquisa.setAutoResizeMode(tablePesquisa.AUTO_RESIZE_OFF);
+        tablePesquisa.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+    }
+    public void preencherTabelaProduto(String sql){
+        
+        ArrayList dados = new ArrayList();
+        
+        String [] Colunas = new String[]{"Código","Nome","Qtde"};
+        conn.conexao();
+        conn.executaSQL(sql);
+        try{
+            conn.rs.first();
+            do{
+                dados.add(new Object[]{conn.rs.getString("id_produto"), conn.rs.getString("nome_produto"), conn.rs.getString("quantidade")});
+            }while(conn.rs.next());
+        }catch(SQLException ex){
+            
+        }
+       ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+        tablePesquisa.setModel(modelo);
+        tablePesquisa.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tablePesquisa.getColumnModel().getColumn(0).setResizable(false);
+        tablePesquisa.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tablePesquisa.getColumnModel().getColumn(1).setResizable(false);
+        tablePesquisa.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tablePesquisa.getColumnModel().getColumn(1).setResizable(false);
         tablePesquisa.getTableHeader().setReorderingAllowed(false);
         tablePesquisa.setAutoResizeMode(tablePesquisa.AUTO_RESIZE_OFF);
         tablePesquisa.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
