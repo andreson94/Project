@@ -156,6 +156,7 @@ public class Estado extends javax.swing.JFrame {
             }
         });
 
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SAIR.png"))); // NOI18N
         btnSair.setText("SAIR");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +260,7 @@ public class Estado extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(777, 402));
+        setSize(new java.awt.Dimension(881, 402));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
