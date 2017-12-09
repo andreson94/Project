@@ -567,6 +567,7 @@ public class Clientes extends javax.swing.JFrame {
         preencherTabela();
 
     }//GEN-LAST:event_BpnExcluirActionPerformed
+    
     public void preencherTabela(){
         ArrayList dados = new ArrayList();
         

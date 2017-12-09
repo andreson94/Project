@@ -28,6 +28,7 @@ public class Produtos extends javax.swing.JFrame {
     
     public Produtos() {
         initComponents();
+        preencherTabela("select * from produtos order by nome_produto");
         
     }
 
@@ -65,7 +66,7 @@ public class Produtos extends javax.swing.JFrame {
         txtCor = new javax.swing.JTextField();
         lblCor = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Produtos");
         setResizable(false);
 
@@ -335,7 +336,7 @@ public class Produtos extends javax.swing.JFrame {
             mod.setQuantidade(Integer.parseInt(txtQtd.getText()));
             control.inserirProduto(mod);
         } catch (SQLException ex) {
-            Logger.getLogger(Produtos.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         txtModelo.setText("");
         txtModelo.setEnabled(false);
@@ -370,7 +371,7 @@ public class Produtos extends javax.swing.JFrame {
             mod.setQuantidade(Integer.parseInt(txtQtd.getText()));
             control.alterarProduto(mod);
         } catch (SQLException ex) {
-            Logger.getLogger(Produtos.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         txtModelo.setText("");
         txtModelo.setEnabled(false);
@@ -389,6 +390,7 @@ public class Produtos extends javax.swing.JFrame {
         btnSalvar.setEnabled(false);
         btnNovo.setEnabled(true);
         btnCancelar.setEnabled(false);
+        preencherTabela("select * from produtos order by nome_produto");
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -411,7 +413,7 @@ public class Produtos extends javax.swing.JFrame {
         btnSalvar.setEnabled(false);
         btnNovo.setEnabled(true);
         btnCancelar.setEnabled(false);
-        
+        preencherTabela("select * from produtos order by nome_produto");
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -436,7 +438,36 @@ public class Produtos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void tableProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProdutoMouseClicked
+        //adcionando o evento para quando clicar na tablea em cima de algum produto aparecer nos campos
+        
         String nome_Produto = (String) tableProduto.getValueAt(tableProduto.getSelectedRow(),0); 
+        conexao.conexao();
+        conexao.executaSQL("select * from produto where nome_produto=" + nome_Produto + "'");
+        try {
+            conexao.rs.first();
+            txtCod.setText(String.valueOf(conexao.rs.getInt("id_produto")));
+            txtModelo.setText(conexao.rs.getString("nome_produto"));
+            txtMarca.setText(conexao.rs.getString("marca"));
+            txtCor.setText(conexao.rs.getString("cor"));
+            txtTamanho.setText(conexao.rs.getString("tamanho"));
+            txtPreco.setText(String.valueOf(conexao.rs.getFloat("preco_venda")));
+            txtQtd.setText(String.valueOf(conexao.rs.getInt("quantidade")));
+            conexao.desconecta();
+            txtModelo.setText("");
+            txtModelo.setEnabled(true);
+            txtMarca.setText("");
+            txtMarca.setEnabled(true);
+            txtCor.setText("");
+            txtCor.setEnabled(true);
+            txtTamanho.setText("");
+            txtTamanho.setEnabled(true);
+            txtQtd.setText("");
+            txtQtd.setEnabled(true);
+            txtPreco.setText("");
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(rootPane, "erro ao carregar");
+           conexao.desconecta();
+        }
     }//GEN-LAST:event_tableProdutoMouseClicked
 public void preencherTabela(String SQL){
            ArrayList dados = new ArrayList();
