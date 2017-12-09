@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -13,7 +14,9 @@ import java.util.logging.Logger;
 import javax.swing.ListSelectionModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import models.ModelVenda;
 import utilitarios.ConectaBanco;
+import utilitarios.ControleVenda;
 import utilitarios.ModeloTabela;
 
 /**
@@ -23,10 +26,24 @@ import utilitarios.ModeloTabela;
 public class Venda extends javax.swing.JFrame {
 
     ConectaBanco conn = new ConectaBanco();
-    int flag =1;
+    ControleVenda control = new ControleVenda();
+    ModelVenda mod = new ModelVenda();
+    int flag =1, codVenda;
+    float preco_produto;
 
     public Venda() {
         initComponents();
+        conn.conexao();
+        try {
+            PreparedStatement pst = conn.conn.prepareStatement("insert into venda (valor_venda)values(?)");
+            pst.setFloat(1, 0);
+            pst.execute();
+            conn.executaSQL("select * from venda");
+            conn.rs.last();
+            codVenda = conn.rs.getInt("id_venda");
+        } catch (SQLException ex) {
+            Logger.getLogger(Venda.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         try {
             MaskFormatter form;
@@ -70,7 +87,7 @@ public class Venda extends javax.swing.JFrame {
         tableVenda = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         txtData = new javax.swing.JFormattedTextField();
         jButton10 = new javax.swing.JButton();
@@ -149,7 +166,12 @@ public class Venda extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("Valor:");
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/NOVO.png"))); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/NOVO.png"))); // NOI18N
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CANCELAR VENDA.png"))); // NOI18N
         jButton9.setText("Cancelar Venda");
@@ -194,7 +216,7 @@ public class Venda extends javax.swing.JFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(txtValorItem, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtProduto)
@@ -252,7 +274,7 @@ public class Venda extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addComponent(btnBuscaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton8)))
+                        .addComponent(btnAdd)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addGap(12, 12, 12)
@@ -322,6 +344,17 @@ public class Venda extends javax.swing.JFrame {
              txtProduto.setText(nome_Produto);
         }
     }//GEN-LAST:event_tablePesquisaMouseClicked
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        mod.setNomeProduto(txtProduto.getText());
+        mod.setQtdItem(Integer.parseInt(txtQtd.getText()));
+        mod.setId_Venda(codVenda);
+        control.adicionaItem(mod);
+        
+        
+        
+    }//GEN-LAST:event_btnAddActionPerformed
 
     public void preencherTabelaCliente(String sql){
         
@@ -412,10 +445,10 @@ public class Venda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBuscaCliente;
     private javax.swing.JButton btnBuscaProduto;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
