@@ -5,8 +5,15 @@
  */
 package view;
 
-import models.ModelCidade;
-import utilitarios.ControleCidade;
+
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+import models.ModelTelefone;
+import utilitarios.ControleTelefone;
 
 /**
  *
@@ -14,11 +21,17 @@ import utilitarios.ControleCidade;
  */
 public class Telefones extends javax.swing.JFrame {
     
-    ModelCidade mod = new ModelCidade();
-    ControleCidade control = new ControleCidade();
+    ModelTelefone mod = new ModelTelefone();
+    ControleTelefone control = new ControleTelefone();
     
     public Telefones() {
         initComponents();
+        try{
+            MaskFormatter form = new MaskFormatter("(##)# ####-####");
+            txtNumero.setFormatterFactory(new DefaultFormatterFactory(form));
+        }catch(ParseException ex){
+           
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -49,9 +62,12 @@ public class Telefones extends javax.swing.JFrame {
         lblCod.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblCod.setText("Código:");
 
+        txtCod.setEditable(false);
+
         lblNome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblNome.setText("Numero:");
 
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/EXCLUIR.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +76,7 @@ public class Telefones extends javax.swing.JFrame {
             }
         });
 
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SALVAR.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +85,7 @@ public class Telefones extends javax.swing.JFrame {
             }
         });
 
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ALTERAR.png"))); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -76,27 +94,47 @@ public class Telefones extends javax.swing.JFrame {
             }
         });
 
+        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/NOVO.png"))); // NOI18N
         btnNovo.setText("Novo");
+        btnNovo.setToolTipText("");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovoActionPerformed(evt);
             }
         });
 
-        jButton7.setText("<<");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PRIMEIRO1.png"))); // NOI18N
+        jButton7.setToolTipText("Primeiro");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
-        jButton8.setText("<");
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PRIMEIRO.png"))); // NOI18N
+        jButton8.setToolTipText("Anterior");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
-        jButton9.setText(">>");
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ULTIMO1.png"))); // NOI18N
+        jButton9.setToolTipText("Último");
 
-        jButton10.setText(">");
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ULTIMO.png"))); // NOI18N
+        jButton10.setToolTipText("Próximo");
 
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SAIR.png"))); // NOI18N
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
             }
         });
+
+        txtNumero.setEditable(false);
+        txtNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("( ) 0 0000 - 0000 "))));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,7 +219,7 @@ public class Telefones extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(208, 208, 208)
                 .addComponent(jLabel1)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,25 +235,73 @@ public class Telefones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        
+        txtCod.setText("");
+        txtNumero.setEnabled(true);
+        btnAlterar.setEnabled(true);
+        btnExcluir.setEnabled(true);
+        btnSalvar.setEnabled(true);
+        btnNovo.setEnabled(false);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        
+       
+        try {
+            mod.setTel(txtNumero.getText());
+            control.inserirTel(mod);
+            txtNumero.setEnabled(!true);
+            btnAlterar.setEnabled(true);
+            btnExcluir.setEnabled(!true);
+            btnSalvar.setEnabled(!true);
+            btnNovo.setEnabled(!false);
+        } catch (SQLException ex) {
+            Logger.getLogger(Telefones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
+       
+        try {
+         mod.setCod(Integer.parseInt(txtCod.getText()));
+        mod.setTel(txtNumero.getText());
+        control.alterarTel(mod);
+        txtNumero.setEditable(!true);
+        btnExcluir.setEnabled(!true);
+        btnSalvar.setEnabled(!true);
+        btnAlterar.setEnabled(!true);
+        btnNovo.setEnabled(!false);
+        } catch (SQLException ex) {
+            Logger.getLogger(Telefones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         mod.setCod(Integer.parseInt(txtCod.getText()));
+        control.ExcluirTel(mod);
+        txtNumero.setEditable(!true);
+        btnExcluir.setEnabled(!true);
+        btnSalvar.setEnabled(!true);
+        btnAlterar.setEnabled(!true);
+        btnNovo.setEnabled(!false);
         //control.excluir(mod);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+       // TODO add your handling code here:
+      
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments

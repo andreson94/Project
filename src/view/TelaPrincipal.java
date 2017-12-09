@@ -160,6 +160,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void itemTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTelefoneActionPerformed
         // TODO add your handling code here:
+        
+            Telefones frm = new Telefones();
+            frm.setVisible(true);
+      
     }//GEN-LAST:event_itemTelefoneActionPerformed
 
     private void itemCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadeActionPerformed

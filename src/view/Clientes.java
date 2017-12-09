@@ -5,17 +5,36 @@
  */
 package view;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+import models.ModelCliente;
+import utilitarios.ConectaBanco;
+
 /**
  *
  * @author andreson.csilva
  */
 public class Clientes extends javax.swing.JFrame {
+    ModelCliente mod = new ModelCliente();
+    ControleCliente control = new ControleCliente();
+    ConectaBanco conn = new ConectaBanco();
+    int flag = 1;
 
     /**
      * Creates new form Clientes
      */
-    public Clientes() {
+    public Clientes() throws ParseException {
         initComponents();
+        MaskFormatter form = new MaskFormatter("##.###.###-##");
+        txtRg.setFormatterFactory(new DefaultFormatterFactory(form));
+        form = new MaskFormatter("###.###.###-##");
+        txtCpf.setFormatterFactory(new DefaultFormatterFactory(form));
+       
+        preencherCombobox();
+        preencherTabela();
     }
 
     /**
@@ -30,60 +49,75 @@ public class Clientes extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelNome = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        txtCod = new javax.swing.JTextField();
+        bpnNovo = new javax.swing.JButton();
+        bpnSalvar = new javax.swing.JButton();
+        BpnEditar = new javax.swing.JButton();
+        BpnExcluir = new javax.swing.JButton();
+        bpnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        bpnAnterior = new javax.swing.JButton();
+        bpnPrimeiro = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        txtNome = new javax.swing.JTextField();
+        cbBairro = new javax.swing.JComboBox<>();
+        bpnUltimo = new javax.swing.JButton();
+        bpnSair = new javax.swing.JButton();
+        bpnBairro = new javax.swing.JButton();
+        labelTel = new javax.swing.JLabel();
+        cbTel = new javax.swing.JComboBox<>();
         jButton12 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        labelEnd = new javax.swing.JLabel();
+        txtEnd = new javax.swing.JTextField();
+        labelRg = new javax.swing.JLabel();
+        txtRg = new javax.swing.JFormattedTextField();
+        txtCpf = new javax.swing.JFormattedTextField();
+        labelCpf = new javax.swing.JLabel();
+        labelCidade = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("Cadastro de Bairros");
+        jLabel6.setText("Cadastro de Clientes");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Código");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("Nome");
+        labelNome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelNome.setText("Nome");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Bairro:");
 
-        jButton1.setText("jButton1");
+        bpnNovo.setText("Novo");
+        bpnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpnNovoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        bpnSalvar.setText("Salvar");
+        bpnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpnSalvarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        BpnEditar.setText("Editar");
+        BpnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BpnEditarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("jButton4");
+        BpnExcluir.setText("Excluir");
 
-        jButton5.setText("jButton5");
+        bpnCancelar.setText("Cancelar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,38 +144,53 @@ public class Clientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton6.setText("jButton5");
+        bpnAnterior.setText("<");
 
-        jButton7.setText("jButton5");
+        bpnPrimeiro.setText("<<");
 
-        jButton8.setText("jButton5");
+        jButton8.setText(">");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbBairro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton9.setText("jButton5");
+        bpnUltimo.setText(">>");
 
-        jButton10.setText("jButton5");
+        bpnSair.setText("Sair");
+        bpnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpnSairActionPerformed(evt);
+            }
+        });
 
-        jButton11.setText("jButton5");
+        bpnBairro.setText("jButton5");
+        bpnBairro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpnBairroActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("Tel:");
+        labelTel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelTel.setText("Tel:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton12.setText("jButton5");
+        jButton12.setText("+");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("Endereço:");
+        labelEnd.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelEnd.setText("Endereço:");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("RG:");
+        labelRg.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelRg.setText("RG:");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel9.setText("CPF:");
+        labelCpf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelCpf.setText("CPF:");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel10.setText("Cidade:");
+        labelCidade.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelCidade.setText("Cidade:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,41 +202,41 @@ public class Clientes extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addComponent(labelEnd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField6))
+                                .addComponent(txtEnd))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
+                                .addComponent(labelNome)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8))
+                            .addComponent(labelTel)
+                            .addComponent(labelRg))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbTel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton12))
-                            .addComponent(jFormattedTextField1))
+                            .addComponent(txtRg))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(labelCpf)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField2)
+                        .addComponent(txtCpf)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bpnBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(168, 168, 168))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -195,25 +244,25 @@ public class Clientes extends javax.swing.JFrame {
                 .addGap(41, 41, 41))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(jButton1)
+                .addComponent(bpnNovo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(bpnSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(BpnEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(BpnExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(bpnCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
+                .addComponent(bpnPrimeiro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
+                .addComponent(bpnAnterior)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
+                .addComponent(bpnUltimo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10)
+                .addComponent(bpnSair)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -222,40 +271,40 @@ public class Clientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNome)
+                    .addComponent(labelTel)
+                    .addComponent(cbTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton12))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel8))
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelEnd)
+                        .addComponent(labelRg))
+                    .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
+                    .addComponent(labelCpf)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton11)
-                        .addComponent(jLabel10)))
+                        .addComponent(cbBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bpnBairro)
+                        .addComponent(labelCidade)))
                 .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton7)
-                    .addComponent(jButton6)
+                    .addComponent(bpnNovo)
+                    .addComponent(bpnSalvar)
+                    .addComponent(BpnEditar)
+                    .addComponent(BpnExcluir)
+                    .addComponent(bpnCancelar)
+                    .addComponent(bpnPrimeiro)
+                    .addComponent(bpnAnterior)
                     .addComponent(jButton8)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10))
+                    .addComponent(bpnUltimo)
+                    .addComponent(bpnSair))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -288,6 +337,98 @@ public class Clientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bpnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpnNovoActionPerformed
+        // TODO add your handling code here:
+        bpnSalvar.setEnabled(true);
+        bpnCancelar.setEnabled(true);
+        txtEnd.setEnabled(true);
+        txtNome.setEnabled(true);
+        txtCpf.setEnabled(true);
+        txtRg.setEnabled(true);
+        bpnNovo.setEnabled(false);
+        txtEnd.setText("");
+        txtEnd.setText("");
+        txtNome.setText("");
+    }//GEN-LAST:event_bpnNovoActionPerformed
+
+    private void bpnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpnSairActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_bpnSairActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        Telefones frm = new Telefones();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void bpnBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpnBairroActionPerformed
+        // TODO add your handling code here:
+        Bairro frm = new Bairro();
+        frm.setVisible(true);
+    }//GEN-LAST:event_bpnBairroActionPerformed
+
+    private void bpnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpnSalvarActionPerformed
+        // TODO add your handling code here:
+        if(flag==1){
+            mod.setId(Integer.parseInt(txtCod.getText()));
+            mod.setNome(txtNome.getText());
+            mod.setEndereco(txtEnd.getText());
+            mod.setRg(txtRg.getText());
+            mod.setCpf(txtCpf.getText());
+            mod.setBairro((String) cbBairro.getSelectedItem());
+            mod.setCidade((String) labelCidade.getText());
+            mod.setTelefone((String)  cbTel.getSelectedItem());
+            control.Inserir(mod);
+            bpnSalvar.setEnabled(!true);
+            bpnCancelar.setEnabled(!true);
+            txtEnd.setEnabled(!true);
+            txtNome.setEnabled(!true);
+            txtCpf.setEnabled(!true);
+            txtRg.setEnabled(!true);
+            bpnNovo.setEnabled(!false);
+            txtEnd.setText("");
+            txtEnd.setText("");
+            txtNome.setText("");
+            preecherTabela();
+            
+        }else{
+             mod.setId(Integer.parseInt(txtCod.getText()));
+            mod.setNome(txtNome.getText());
+            mod.setEndereco(txtEnd.getText());
+            mod.setRg(txtRg.getText());
+            mod.setCpf(txtCpf.getText());
+            mod.setBairro((String) cbBairro.getSelectedItem());
+            mod.setCidade((String) labelCidade.getText());
+            mod.setTelefone((String)  cbTel.getSelectedItem());
+            control.alterar(mod);
+            bpnSalvar.setEnabled(!true);
+            bpnCancelar.setEnabled(!true);
+            txtEnd.setEnabled(!true);
+            txtNome.setEnabled(!true);
+            txtCpf.setEnabled(!true);
+            txtRg.setEnabled(!true);
+            bpnNovo.setEnabled(!false);
+            txtEnd.setText("");
+            txtEnd.setText("");
+            txtNome.setText("");
+            flag = 1;
+            preecherTabela();
+            
+        }
+    }//GEN-LAST:event_bpnSalvarActionPerformed
+
+    private void BpnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BpnEditarActionPerformed
+        // TODO add your handling code here:
+        txtEnd.setEnabled(true);
+        txtNome.setEnabled(true);
+        txtCpf.setEnabled(true);
+        txtRg.setEnabled(true);
+        bpnSalvar.setEnabled(true);
+        BpnEditar.setEnabled(false);
+        flag = 2;
+    }//GEN-LAST:event_BpnEditarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -318,42 +459,46 @@ public class Clientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Clientes().setVisible(true);
+                try {
+                    new Clientes().setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
+    private javax.swing.JButton BpnEditar;
+    private javax.swing.JButton BpnExcluir;
+    private javax.swing.JButton bpnAnterior;
+    private javax.swing.JButton bpnBairro;
+    private javax.swing.JButton bpnCancelar;
+    private javax.swing.JButton bpnNovo;
+    private javax.swing.JButton bpnPrimeiro;
+    private javax.swing.JButton bpnSair;
+    private javax.swing.JButton bpnSalvar;
+    private javax.swing.JButton bpnUltimo;
+    private javax.swing.JComboBox<String> cbBairro;
+    private javax.swing.JComboBox<String> cbTel;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel labelCidade;
+    private javax.swing.JLabel labelCpf;
+    private javax.swing.JLabel labelEnd;
+    private javax.swing.JLabel labelNome;
+    private javax.swing.JLabel labelRg;
+    private javax.swing.JLabel labelTel;
+    private javax.swing.JTextField txtCod;
+    private javax.swing.JFormattedTextField txtCpf;
+    private javax.swing.JTextField txtEnd;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JFormattedTextField txtRg;
     // End of variables declaration//GEN-END:variables
 }

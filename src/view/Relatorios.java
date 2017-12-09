@@ -45,6 +45,7 @@ public class Relatorios extends javax.swing.JFrame {
 
         jLabel2.setText("Data:");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PESQUISAR.png"))); // NOI18N
         jButton1.setText("Pesquisa");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

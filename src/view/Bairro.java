@@ -5,9 +5,16 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import models.ModelBairro;
 import utilitarios.ConectaBanco;
 import utilitarios.ControleBairro;
+import utilitarios.ModeloTabela;
 
 /**
  *
@@ -23,6 +30,9 @@ public class Bairro extends javax.swing.JFrame {
      */
     public Bairro() {
         initComponents();
+        conn.conexao();
+        preencherTabela("select * from bairro inner join cidade on bairro.id_cidade = cidade.id_cidade");
+        AtualizarCombo();
     }
 
     /**
@@ -99,7 +109,13 @@ public class Bairro extends javax.swing.JFrame {
         cbCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
+        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/NOVO.png"))); // NOI18N
         btnNovo.setText("NOVO");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +123,7 @@ public class Bairro extends javax.swing.JFrame {
             }
         });
 
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SALVAR.png"))); // NOI18N
         btnSalvar.setText("SALVAR");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,18 +131,55 @@ public class Bairro extends javax.swing.JFrame {
             }
         });
 
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ALTERAR.png"))); // NOI18N
         btnAlterar.setText("ALTERAR");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CANCELAR VENDA.png"))); // NOI18N
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
-        btnPrimeiro.setText("PRIMEIRO");
+        btnPrimeiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PRIMEIRO1.png"))); // NOI18N
+        btnPrimeiro.setToolTipText("Primeiro");
+        btnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrimeiroActionPerformed(evt);
+            }
+        });
 
-        btnUltimo.setText("ULTIMO");
+        btnUltimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ULTIMO1.png"))); // NOI18N
+        btnUltimo.setToolTipText("Último");
+        btnUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUltimoActionPerformed(evt);
+            }
+        });
 
-        btnAnterior.setText("ANTERIOR");
+        btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PRIMEIRO.png"))); // NOI18N
+        btnAnterior.setToolTipText("Anterior");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
+            }
+        });
 
-        btnProximo.setText("PROXIMO");
+        btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ULTIMO.png"))); // NOI18N
+        btnProximo.setToolTipText("Próximo");
+        btnProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProximoActionPerformed(evt);
+            }
+        });
 
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SAIR.png"))); // NOI18N
         btnSair.setText("SAIR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -170,7 +224,7 @@ public class Bairro extends javax.swing.JFrame {
                 .addComponent(btnPrimeiro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUltimo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(31, 31, 31)
                 .addComponent(btnAnterior)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnProximo)
@@ -214,7 +268,7 @@ public class Bairro extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 883, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -249,10 +303,140 @@ public class Bairro extends javax.swing.JFrame {
            mod.setNome(txtNome.getText());
            mod.setCidade("" + cbCidade.getSelectedItem());
            control.Grava(mod);
-           preecherTabela()
+            preencherTabela("select * from bairro inner join cidade on bairro.id_cidade = cidade.id_cidade");
+           
+       }else{
+           mod.setNome(txtNome.getText());
+           mod.setCidade("" + cbCidade.getSelectedItem());
+           control.Editar(mod);
+            preencherTabela("select * from bairro inner join cidade on bairro.id_cidade = cidade.id_cidade");
        }
+       btnSalvar.setEnabled(!true);
+       btnNovo.setEnabled(!false);
+       txtNome.setEnabled(!true);
+       btnCancelar.setEnabled(false);
+       btnAlterar.setEnabled(false);
+       txtNome.setText("");
+       txtCod.setText("");
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+        flag = 2;
+        txtNome.setEditable(true);
+        btnSalvar.setEnabled(true);
+        btnAlterar.setEnabled(false);
+        btnNovo.setEnabled(false);
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        mod.setCod(Integer.parseInt(txtCod.getText()));
+        control.Excluir(mod);
+         btnSalvar.setEnabled(true);
+        btnNovo.setEnabled(false);
+        txtCod.setText("");
+        txtNome.setText("");
+        txtNome.setEnabled(true);
+        btnCancelar.setEnabled(true);
+        preencherTabela("select * from bairro inner join cidade on bairro.id_cidade = cidade.id_cidade");
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
+        // TODO add your handling code here:
+        mod = control.Primeiro();
+        txtCod.setText(String.valueOf(mod.getCod()));
+        txtNome.setText(mod.getNome());
+        cbCidade.setSelectedItem(mod.getCidade());
+        btnAlterar.setEnabled(true);
+        btnCancelar.setEnabled(true);
+        
+       
+        
+    }//GEN-LAST:event_btnPrimeiroActionPerformed
+
+    private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
+        // TODO add your handling code here:
+         mod = control.Ult();
+        txtCod.setText(String.valueOf(mod.getCod()));
+        txtNome.setText(mod.getNome());
+        cbCidade.setSelectedItem(mod.getCidade());
+        btnAlterar.setEnabled(true);
+        btnCancelar.setEnabled(true);
+        
+    }//GEN-LAST:event_btnUltimoActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        // TODO add your handling code here:
+         mod = control.Ant();
+        txtCod.setText(String.valueOf(mod.getCod()));
+        txtNome.setText(mod.getNome());
+        cbCidade.setSelectedItem(mod.getCidade());
+        btnAlterar.setEnabled(true);
+        btnCancelar.setEnabled(true);
+        
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+        // TODO add your handling code here:
+         mod = control.Prox();
+        txtCod.setText(String.valueOf(mod.getCod()));
+        txtNome.setText(mod.getNome());
+        cbCidade.setSelectedItem(mod.getCidade());
+        btnAlterar.setEnabled(true);
+        btnCancelar.setEnabled(true);
+        
+    }//GEN-LAST:event_btnProximoActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        try {
+            Cidade frm = new Cidade();
+            frm.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnAddActionPerformed
+public void preencherTabela(String SQL){
+           ArrayList dados = new ArrayList();
+           
+           String [] Colunas =  new String[]{"ID", "Bairro", "Cidade"};
+         
+           conn.executaSQL(SQL);
+        try {
+            conn.rs.first();
+            do{
+                dados.add(new Object[]{conn.rs.getInt("id_cidade"),conn.rs.getString("nome_bairro"), conn.rs.getString("nome_cidade")});
+                
+            }while(conn.rs.next());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao preencher a tabela");
+        }
+            ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+           jTable1.setModel(modelo);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+           jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+           jTable1.getColumnModel().getColumn(2).setPreferredWidth(110);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getTableHeader().setReorderingAllowed(false);
+            jTable1.setAutoResizeMode( jTable1.AUTO_RESIZE_OFF);
+           jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        }
+      public void AtualizarCombo(){
+          cbCidade.removeAllItems();
+          try{
+              conn.executaSQL("select * from cidade order by nome_cidades");
+              conn.rs.first();
+          do{
+              cbCidade.addItem(conn.rs.getString("nome_cidades"));
+          }while(conn.rs.next());
+          }catch (SQLException ex){
+              
+          }
+      }
     /**
      * @param args the command line arguments
      */
