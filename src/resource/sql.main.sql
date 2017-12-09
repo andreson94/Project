@@ -120,6 +120,9 @@ CREATE TABLE produto
 (
   id_produto serial NOT NULL,
   nome_produto character varying(50),
+  marca character varying(50),
+  cor character varying(30),
+  tamanho integer,
   preco_venda numeric,
   quantidade integer,
   CONSTRAINT pk_produto PRIMARY KEY (id_produto)
