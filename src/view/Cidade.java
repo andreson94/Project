@@ -91,6 +91,7 @@ public class Cidade extends javax.swing.JFrame {
 
         txtCodigo.setEnabled(false);
 
+        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/NOVO.png"))); // NOI18N
         btnNovo.setText("NOVO");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +99,7 @@ public class Cidade extends javax.swing.JFrame {
             }
         });
 
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SALVAR.png"))); // NOI18N
         btnSalvar.setText("SALVAR");
         btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +108,7 @@ public class Cidade extends javax.swing.JFrame {
             }
         });
 
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ALTERAR.png"))); // NOI18N
         btnAlterar.setText("ALTERAR");
         btnAlterar.setEnabled(false);
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +117,7 @@ public class Cidade extends javax.swing.JFrame {
             }
         });
 
+        btnDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/EXCLUIR.png"))); // NOI18N
         btnDeletar.setText("DELETAR");
         btnDeletar.setEnabled(false);
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +126,8 @@ public class Cidade extends javax.swing.JFrame {
             }
         });
 
-        btnPrimeiro.setText("PRIMEIRO");
+        btnPrimeiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PRIMEIRO1.png"))); // NOI18N
+        btnPrimeiro.setToolTipText("Primeiro");
         btnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrimeiroActionPerformed(evt);
@@ -139,21 +144,24 @@ public class Cidade extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableCidade);
 
-        btnAnterior.setText("ANTERIOR");
+        btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PRIMEIRO.png"))); // NOI18N
+        btnAnterior.setToolTipText("Anterior");
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnteriorActionPerformed(evt);
             }
         });
 
-        btnUltimo.setText("ULTIMO");
+        btnUltimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ULTIMO1.png"))); // NOI18N
+        btnUltimo.setToolTipText("Último");
         btnUltimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUltimoActionPerformed(evt);
             }
         });
 
-        btnProximo.setText("PROXIMO");
+        btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ULTIMO.png"))); // NOI18N
+        btnProximo.setToolTipText("Próximo");
         btnProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProximoActionPerformed(evt);
@@ -164,6 +172,7 @@ public class Cidade extends javax.swing.JFrame {
 
         cbEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SAIR.png"))); // NOI18N
         btnSair.setText("SAIR");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +180,7 @@ public class Cidade extends javax.swing.JFrame {
             }
         });
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CANCELAR VENDA.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +235,7 @@ public class Cidade extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(53, 53, 53)))
                         .addComponent(btnSair)
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
