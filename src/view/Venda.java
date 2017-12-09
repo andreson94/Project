@@ -30,29 +30,11 @@ public class Venda extends javax.swing.JFrame {
     ControleVenda control = new ControleVenda();
     ModelVenda mod = new ModelVenda();
     int flag =1, codVenda;
-    float preco_produto;
+    float preco_produto,total=0;
 
     public Venda() {
         initComponents();
-        conn.conexao();
-        try {
-            PreparedStatement pst = conn.conn.prepareStatement("insert into venda (valor_venda)values(?)");
-            pst.setFloat(1, 0);
-            pst.execute();
-            conn.executaSQL("select * from venda");
-            conn.rs.last();
-            codVenda = conn.rs.getInt("id_venda");
-        } catch (SQLException ex) {
-            Logger.getLogger(Venda.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
-        try {
-            MaskFormatter form;
-            form = new MaskFormatter("##/##/#####");
-            txtData.setFormatterFactory(new DefaultFormatterFactory(form));
-        } catch (ParseException ex) {
-            Logger.getLogger(Venda.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
     }
 
@@ -345,6 +327,25 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscaClienteActionPerformed
 
     private void btnBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaProdutoActionPerformed
+        conn.conexao();
+        try {
+            PreparedStatement pst = conn.conn.prepareStatement("insert into venda (valor_venda)values(?)");
+            pst.setFloat(1, 0);
+            pst.execute();
+            conn.executaSQL("select * from venda");
+            conn.rs.last();
+            codVenda = conn.rs.getInt("id_venda");
+        } catch (SQLException ex) {
+            
+        }
+        
+        try {
+            MaskFormatter form;
+            form = new MaskFormatter("##/##/#####");
+            txtData.setFormatterFactory(new DefaultFormatterFactory(form));
+        } catch (ParseException ex) {
+            Logger.getLogger(Venda.class.getName()).log(Level.SEVERE, null, ex);
+        }
         flag = 2;
         preencherTabelaCliente("select * from produto where nome_produto like '%"+txtProduto.getText()+"%'");
     }//GEN-LAST:event_btnBuscaProdutoActionPerformed
@@ -374,12 +375,17 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_tablePesquisaMouseClicked
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        // adciona o produto na venda
+        int idVenda;
         mod.setNomeProduto(txtProduto.getText());
         mod.setQtdItem(Integer.parseInt(txtQtd.getText()));
         mod.setId_Venda(codVenda);
         control.adicionaItem(mod);
-        
+        total=total+Float.parseFloat(txtValorItem.getText())*Integer.parseInt(txtQtd.getText());
+        txtValor.setText(String.valueOf(total));
+        preencherItensVenda("select * from produto inner join itens_venda_produto"
+                + " on produto.id_produto = itens_venda_produto.id_produto"
+                + "inner join venda on venda.id_venda = itens_venda_produto.id_venda where venda.id_venda="+codVenda);
         
         
     }//GEN-LAST:event_btnAddActionPerformed
@@ -387,7 +393,7 @@ public class Venda extends javax.swing.JFrame {
     private void txtDataFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataFocusGained
         float valorTotal;
         valorTotal = Float.parseFloat(txtValorItem.getText())*Integer.parseInt(txtQtd.getText());
-        txtValor.setText(String.valueOf(valorTotal));
+        txtValor.setText(String.valueOf(total));
     }//GEN-LAST:event_txtDataFocusGained
 
     private void txtQtdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtdFocusGained
@@ -455,7 +461,35 @@ public class Venda extends javax.swing.JFrame {
         tablePesquisa.setAutoResizeMode(tablePesquisa.AUTO_RESIZE_OFF);
         tablePesquisa.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
+    }
+    public void preencherItensVenda(String sql){
         
+        ArrayList dados = new ArrayList();
+        
+        String [] Colunas = new String[]{"Descrição","Quantidade","Valor Total"};
+        conn.conexao();
+        conn.executaSQL(sql);
+        try{
+            conn.rs.first();
+            do{
+                float valorProduto = conn.rs.getFloat("preco_venda");
+                int qtdVendida = conn.rs.getInt("quantidade_produto");
+                dados.add(new Object[]{conn.rs.getString("nome_produto"), conn.rs.getString("quantidade_produto"),valorProduto*qtdVendida});
+            }while(conn.rs.next());
+        }catch(SQLException ex){
+            
+        }
+       ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+        tableVenda.setModel(modelo);
+        tableVenda.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tableVenda.getColumnModel().getColumn(0).setResizable(false);
+        tableVenda.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tableVenda.getColumnModel().getColumn(1).setResizable(false);
+        tableVenda.getColumnModel().getColumn(2).setPreferredWidth(300);
+        tableVenda.getColumnModel().getColumn(2).setResizable(false);
+        tableVenda.getTableHeader().setReorderingAllowed(false);
+        tableVenda.setAutoResizeMode(tablePesquisa.AUTO_RESIZE_OFF);
+        tableVenda.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
     }
     public static void main(String args[]) {
