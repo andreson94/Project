@@ -190,17 +190,19 @@
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="bpnNovo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bpnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="BpnEditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="BpnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bpnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="bpnPrimeiro" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="bpnAnterior" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton8" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="bpnUltimo" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="bpnSair" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="bpnNovo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bpnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BpnEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BpnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bpnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="177" max="-2" attributes="0"/>
@@ -276,6 +278,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BpnExcluirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bpnCancelar">
           <Properties>
@@ -314,8 +319,10 @@
               <Image iconType="3" name="/Imagens/PRIMEIRO.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Anterior"/>
-            <Property name="actionCommand" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bpnAnteriorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bpnPrimeiro">
           <Properties>
@@ -324,6 +331,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Primeiro"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bpnPrimeiroActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton8">
           <Properties>
@@ -332,6 +342,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Pr&#xf3;ximo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNome">
         </Component>
@@ -357,6 +370,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="&#xda;ltimo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bpnUltimoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bpnSair">
           <Properties>

@@ -5,13 +5,18 @@
  */
 package view;
 
+import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ListSelectionModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import models.ModelCliente;
 import utilitarios.ConectaBanco;
+import utilitarios.ControleCliente;
+import utilitarios.ModeloTabela;
 
 /**
  *
@@ -120,6 +125,11 @@ public class Clientes extends javax.swing.JFrame {
 
         BpnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/EXCLUIR.png"))); // NOI18N
         BpnExcluir.setText("Excluir");
+        BpnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BpnExcluirActionPerformed(evt);
+            }
+        });
 
         bpnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CANCELAR VENDA.png"))); // NOI18N
         bpnCancelar.setText("Cancelar");
@@ -151,18 +161,37 @@ public class Clientes extends javax.swing.JFrame {
 
         bpnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PRIMEIRO.png"))); // NOI18N
         bpnAnterior.setToolTipText("Anterior");
-        bpnAnterior.setActionCommand("");
+        bpnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpnAnteriorActionPerformed(evt);
+            }
+        });
 
         bpnPrimeiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/PRIMEIRO1.png"))); // NOI18N
         bpnPrimeiro.setToolTipText("Primeiro");
+        bpnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpnPrimeiroActionPerformed(evt);
+            }
+        });
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ULTIMO.png"))); // NOI18N
         jButton8.setToolTipText("Próximo");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         cbBairro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         bpnUltimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ULTIMO1.png"))); // NOI18N
         bpnUltimo.setToolTipText("Último");
+        bpnUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpnUltimoActionPerformed(evt);
+            }
+        });
 
         bpnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SAIR.png"))); // NOI18N
         bpnSair.setText("Sair");
@@ -306,17 +335,18 @@ public class Clientes extends javax.swing.JFrame {
                         .addComponent(bpnBairro)
                         .addComponent(labelCidade)))
                 .addGap(67, 67, 67)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bpnNovo)
-                    .addComponent(bpnSalvar)
-                    .addComponent(BpnEditar)
-                    .addComponent(BpnExcluir)
-                    .addComponent(bpnCancelar)
-                    .addComponent(bpnPrimeiro)
-                    .addComponent(bpnAnterior)
-                    .addComponent(jButton8)
-                    .addComponent(bpnUltimo)
-                    .addComponent(bpnSair))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bpnPrimeiro, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bpnAnterior, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bpnUltimo, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bpnSair, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bpnNovo)
+                        .addComponent(bpnSalvar)
+                        .addComponent(BpnEditar)
+                        .addComponent(BpnExcluir)
+                        .addComponent(bpnCancelar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -402,7 +432,7 @@ public class Clientes extends javax.swing.JFrame {
             txtEnd.setText("");
             txtEnd.setText("");
             txtNome.setText("");
-            preecherTabela();
+            preencherTabela();
             
         }else{
              mod.setId(Integer.parseInt(txtCod.getText()));
@@ -425,7 +455,7 @@ public class Clientes extends javax.swing.JFrame {
             txtEnd.setText("");
             txtNome.setText("");
             flag = 1;
-            preecherTabela();
+            preencherTabela();
             
         }
     }//GEN-LAST:event_bpnSalvarActionPerformed
@@ -440,6 +470,158 @@ public class Clientes extends javax.swing.JFrame {
         BpnEditar.setEnabled(false);
         flag = 2;
     }//GEN-LAST:event_BpnEditarActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        BpnEditar.setEnabled(true);
+        BpnExcluir.setEnabled(true);
+        bpnCancelar.setEnabled(true);
+        bpnNovo.setEnabled(false);
+        mod = control.prox();
+        txtEnd.setText(mod.getEndereco());
+        txtNome.setText(mod.getNome());
+        txtCod.setText(String.valueOf(mod.getId()));
+        txtCpf.setText(mod.getCpf());
+        txtRg.setText(mod.getRg());
+        cbBairro.setSelectedItem(mod.getBairro());
+        labelCidade.setText(mod.getCidade());
+        cbTel.setSelectedItem(mod.getTelefone());
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void bpnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpnAnteriorActionPerformed
+        // TODO add your handling code here:
+        BpnEditar.setEnabled(true);
+        BpnExcluir.setEnabled(true);
+        bpnCancelar.setEnabled(true);
+        bpnNovo.setEnabled(false);
+        mod = control.ant();
+        txtEnd.setText(mod.getEndereco());
+        txtNome.setText(mod.getNome());
+        txtCod.setText(String.valueOf(mod.getId()));
+        txtCpf.setText(mod.getCpf());
+        txtRg.setText(mod.getRg());
+        cbBairro.setSelectedItem(mod.getBairro());
+        labelCidade.setText(mod.getCidade());
+        cbTel.setSelectedItem(mod.getTelefone());
+
+    }//GEN-LAST:event_bpnAnteriorActionPerformed
+
+    private void bpnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpnUltimoActionPerformed
+        // TODO add your handling code here:
+        BpnEditar.setEnabled(true);
+        BpnExcluir.setEnabled(true);
+        bpnCancelar.setEnabled(true);
+        bpnNovo.setEnabled(false);
+        mod = control.ult();
+        txtEnd.setText(mod.getEndereco());
+        txtNome.setText(mod.getNome());
+        txtCod.setText(String.valueOf(mod.getId()));
+        txtCpf.setText(mod.getCpf());
+        txtRg.setText(mod.getRg());
+        cbBairro.setSelectedItem(mod.getBairro());
+        labelCidade.setText(mod.getCidade());
+        cbTel.setSelectedItem(mod.getTelefone());
+
+    }//GEN-LAST:event_bpnUltimoActionPerformed
+
+    private void bpnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpnPrimeiroActionPerformed
+        // TODO add your handling code here:
+        BpnEditar.setEnabled(true);
+        BpnExcluir.setEnabled(true);
+        bpnCancelar.setEnabled(true);
+        bpnNovo.setEnabled(false);
+        mod = control.primeiro();
+        txtEnd.setText(mod.getEndereco());
+        txtNome.setText(mod.getNome());
+        txtCod.setText(String.valueOf(mod.getId()));
+        txtCpf.setText(mod.getCpf());
+        txtRg.setText(mod.getRg());
+        cbBairro.setSelectedItem(mod.getBairro());
+        labelCidade.setText(mod.getCidade());
+        cbTel.setSelectedItem(mod.getTelefone());
+
+    }//GEN-LAST:event_bpnPrimeiroActionPerformed
+
+    private void BpnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BpnExcluirActionPerformed
+        // TODO add your handling code here:
+        mod.setId(Integer.parseInt(txtCod.getText()));
+        mod.setNome(txtNome.getText());
+        mod.setEndereco(txtEnd.getText());
+        mod.setRg(txtRg.getText());
+        mod.setCpf(txtCpf.getText());
+        mod.setBairro((String) cbBairro.getSelectedItem());
+        mod.setCidade((String) labelCidade.getText());
+        mod.setTelefone((String) cbTel.getSelectedItem());
+        control.excluir(mod);
+        bpnSalvar.setEnabled(!true);
+        bpnCancelar.setEnabled(!true);
+        txtEnd.setEnabled(!true);
+        txtNome.setEnabled(!true);
+        txtCpf.setEnabled(!true);
+        txtRg.setEnabled(!true);
+        bpnNovo.setEnabled(!false);
+        txtEnd.setText("");
+        txtEnd.setText("");
+        txtNome.setText("");
+        preencherTabela();
+
+    }//GEN-LAST:event_BpnExcluirActionPerformed
+    public void preencherTabela(){
+        ArrayList dados = new ArrayList();
+        
+        String [] Colunas = new String[]{"Cliente", "Endereço", "Telefone", "Cidade"};
+        conn.conexao();
+        conn.executaSQL("select * from clientes inner join itens_cli_tel on clientes.id_cliente = itens_cli_tel.id_cliente inner join telefone on itens_cli_tel.id_tel = telefone.id_telefone inner join bairro on clientes.id_bairro = bairro.id_bairro inner join cidade on bairro.id_cidade = cidade.id_cidade");
+        try{
+            conn.rs.first();
+            do{
+                dados.add(new Object[]{conn.rs.getString("nome_cliente"), conn.rs.getString("endereco_cliente"), conn.rs.getString("numero_tel"),conn.rs.getString("nome_cidades")});
+            }while(conn.rs.next());
+        }catch(SQLException ex){
+            
+        }
+       ModeloTabela modelo = new ModeloTabela(dados, Colunas);
+        jTable1.setModel(modelo);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(250);
+        jTable1.getColumnModel().getColumn(0).setResizable(false);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
+        jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(115);
+        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(115);
+        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
+        jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        
+        
+    }
+
+
+      public void preencherCombobox(){
+      cbBairro.removeAllItems();
+      
+      cbTel.removeAllItems();
+      conn.conexao();
+      conn.executaSQL("select * from bairro order by nome_bairro");
+      try{
+          conn.rs.first();
+          do{
+              cbBairro.addItem(conn.rs.getString("nome_bairro"));
+          }while(conn.rs.next());
+          
+          conn.executaSQL("select * from telefone order by numero_tel");
+          conn.rs.first();
+          do{
+              cbTel.addItem(conn.rs.getString("nomero_tel"));
+          }while(conn.rs.next());
+      }catch (SQLException ex){
+          
+      }
+      conn.desconecta();
+  }
 
     /**
      * @param args the command line arguments
