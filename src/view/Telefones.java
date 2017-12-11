@@ -53,7 +53,7 @@ public class Telefones extends javax.swing.JFrame {
         txtNumero = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Telefone");
         setResizable(false);
 
@@ -264,7 +264,7 @@ public class Telefones extends javax.swing.JFrame {
         // TODO add your handling code here:
        
         try {
-         mod.setCod(Integer.parseInt(txtCod.getText()));
+        mod.setCod(Integer.parseInt(txtCod.getText()));
         mod.setTel(txtNumero.getText());
         control.alterarTel(mod);
         txtNumero.setEditable(!true);

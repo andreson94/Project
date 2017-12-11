@@ -431,7 +431,7 @@ public void preencherTabela(String SQL){
                 
             }while(conn.rs.next());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Erro ao preencher a tabela");
+            
         }
             ModeloTabela modelo = new ModeloTabela(dados, Colunas);
            jTable1.setModel(modelo);

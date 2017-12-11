@@ -23,10 +23,10 @@ public class ControleBairro {
     String cidade;
     
     public void Grava(ModelBairro mod){
-    conex.conexao();
     try{
+        conex.conexao();
         conex.executaSQL("select * from cidade where nome_cidades='" + mod.getCidade() + " ' ");
-        conex.rs.first();
+        conex.rs.next();
         codCid  = conex.rs.getInt("id_cidade");
         PreparedStatement pst = conex.conn.prepareStatement("insert into bairro(nome_bairro, id_cidade)values(?,?) ");
         pst.setString(1, mod.getNome());

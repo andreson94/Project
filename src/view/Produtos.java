@@ -28,7 +28,7 @@ public class Produtos extends javax.swing.JFrame {
     
     public Produtos() {
         initComponents();
-        preencherTabela("select * from produtos order by nome_produto");
+        preencherTabela("select * from produto order by nome_produto");
         
     }
 
@@ -483,7 +483,7 @@ public void preencherTabela(String SQL){
                 
             }while(conexao.rs.next());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Erro ao preencher a tabela");
+            
         }
             ModeloTabela modelo = new ModeloTabela(dados, Colunas);
             tableProduto.setModel(modelo);

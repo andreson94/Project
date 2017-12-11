@@ -306,7 +306,7 @@ public class Cidade extends javax.swing.JFrame {
         //chamando o estado na tela de Cidade e inserindo a Cidade pelo metodo inserir
         try {
             mod.setNome(txtNome.getText());
-            connEstado.executaSQL("select * from estados where nome_estado="+cbEstados.getSelectedItem()+"'");
+            connEstado.executaSQL("select * from estados where nome_estado="+cbEstados.getSelectedItem()+"");
             connEstado.rs.first();
             mod.setCod_Estado(connEstado.rs.getInt("id_estado"));
             control.inserirCidade(mod);
@@ -321,6 +321,7 @@ public class Cidade extends javax.swing.JFrame {
             btnSalvar.setEnabled(false);
             btnCancelar.setEnabled(false);
             btnNovo.setEnabled(true);
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane,"Erro ao Salvar");
         }
@@ -411,7 +412,7 @@ public class Cidade extends javax.swing.JFrame {
             txtNome.setText(connCidade.rs.getString("nome_cidades"));
             connEstado.executaSQL("select * from estados where id_estado="+connCidade.rs.getInt("id_estado"));
             connEstado.rs.first();
-            cbEstados.setSelectedItem(connEstado.rs.getString("nome_estado"));
+            cbEstados.setSelectedItem(connEstado.rs.getString("nome_estados"));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Erro ao setar o ultimo registro" + ex);
         }
@@ -473,7 +474,7 @@ public class Cidade extends javax.swing.JFrame {
         try {
             connCidade.rs.first();
             do{
-                dados.add(new Object[]{connCidade.rs.getInt("id_cidade"),connCidade.rs.getString("nome_cidade"), connCidade.rs.getString("sigla_estado")});
+                dados.add(new Object[]{connCidade.rs.getInt("id_cidade"),connCidade.rs.getString("nome_cidades"), connCidade.rs.getString("sigla_estado")});
                 
             }while(connCidade.rs.next());
         } catch (SQLException ex) {

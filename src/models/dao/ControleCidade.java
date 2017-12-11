@@ -19,7 +19,7 @@ public class ControleCidade {
     
     public void inserirCidade(ModelCidade mod) throws SQLException{
         connCidade.conexao();
-        PreparedStatement pst = connCidade.conn.prepareStatement("insert into cidade(nome_cidade,id_estado)values()");
+        PreparedStatement pst = connCidade.conn.prepareStatement("insert into cidade(nome_cidades,id_estado)values(?,?)");
         pst.setString(1,mod.getNome());
         pst.setInt(2,mod.getCod_Estado());
         pst.execute();
@@ -29,7 +29,7 @@ public class ControleCidade {
     //função para alterar a cidade
     public void alterarCidade(ModelCidade mod) throws SQLException{
         connCidade.conexao();
-        PreparedStatement pst = connCidade.conn.prepareStatement("update cidade set nome_cidade=?, id_estado=? where id_cidade =? ");
+        PreparedStatement pst = connCidade.conn.prepareStatement("update cidade set nome_cidades=?, id_estado=? where id_cidade =? ");
         pst.setString(1,mod.getNome());
         pst.setInt(2,mod.getCod_Estado());
         pst.setInt(3,mod.getCod());
