@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.JOniException;
 import models.ModelVenda;
 
 /**
@@ -79,4 +78,37 @@ public class ControleVenda {
         }
         conexao.desconecta();
  }
+    public void cancelarVenda() throws SQLException{
+        //metodo para deletar as vendas cujo o valor seja igual a zero. ou seja ele estorna o item que nao foi vendido  
+        conexao.conexao();
+        PreparedStatement pst;
+        conexao.executaSQL("select *from venda inner join itens_vendas_produto on venda.id_venda = itens_venda_produto.id_venda"
+                + "inner join produto on itens_venda_produto.id_produto = produto.id_produto where valor_venda = 0");
+        
+        try{
+            conexao.rs.first();
+            /*codigo para pegar a quantidade de estoque e a de vendida e soma-las para obter o valor anterior simulando um estorno
+            */
+            do{
+                int qtdeProd = conexao.rs.getInt("quantidade");
+                int qtdevend = conexao.rs.getInt("quantidade_produto");
+                int soma = qtdeProd+qtdevend;
+                //atualiza os valores com a quantidade correta de acordo com o que foi foito anteriormente  
+                pst = conexao.conn.prepareStatement("update produto set quantidade = ? where id_produto =?");
+                pst.setInt(1, soma);
+                pst.setInt(2, conexao.rs.getInt("id_produto"));
+                pst.execute();
+                pst = conexao.conn.prepareStatement("delete from itens_venda_produto where id_venda=?");
+                pst.setInt(1,conexao.rs.getInt("id_venda"));
+                pst.execute();
+                
+            }while(conexao.rs.next());
+            
+            pst = conexao.conn  .prepareStatement("delete from venda where calor_venda=?");
+            pst.setInt(1, 0);
+            pst.execute();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Erro ao cancelar");
+        }
+    }
     }

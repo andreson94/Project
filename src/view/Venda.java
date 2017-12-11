@@ -82,12 +82,13 @@ public class Venda extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        btnCancelVenda = new javax.swing.JButton();
         txtData = new javax.swing.JFormattedTextField();
-        jButton10 = new javax.swing.JButton();
+        btnFinalizarVenda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tela de Vendas");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Vendas");
@@ -173,11 +174,11 @@ public class Venda extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CANCELAR VENDA.png"))); // NOI18N
-        jButton9.setText("Cancelar Venda");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CANCELAR VENDA.png"))); // NOI18N
+        btnCancelVenda.setText("Cancelar Venda");
+        btnCancelVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnCancelVendaActionPerformed(evt);
             }
         });
 
@@ -188,8 +189,8 @@ public class Venda extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FINALIZAR VENDA.png"))); // NOI18N
-        jButton10.setText("Finalizar Venda");
+        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FINALIZAR VENDA.png"))); // NOI18N
+        btnFinalizarVenda.setText("Finalizar Venda");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -225,9 +226,9 @@ public class Venda extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton10)
+                                .addComponent(btnFinalizarVenda)
                                 .addGap(29, 29, 29)
-                                .addComponent(jButton9))
+                                .addComponent(btnCancelVenda))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNome)
@@ -298,8 +299,8 @@ public class Venda extends javax.swing.JFrame {
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10))
+                    .addComponent(btnCancelVenda)
+                    .addComponent(btnFinalizarVenda))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -438,9 +439,13 @@ public class Venda extends javax.swing.JFrame {
         txtValor.setText(String.valueOf(valorTotal));
     }//GEN-LAST:event_txtQtdFocusGained
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void btnCancelVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelVendaActionPerformed
+        try {
+            control.cancelarVenda();
+        } catch (SQLException ex) {
+        }
+        dispose();
+    }//GEN-LAST:event_btnCancelVendaActionPerformed
 
     public void preencherTabelaCliente(String sql){
         
@@ -585,8 +590,8 @@ public class Venda extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBuscaCliente;
     private javax.swing.JButton btnBuscaProduto;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton btnCancelVenda;
+    private javax.swing.JButton btnFinalizarVenda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
