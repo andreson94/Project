@@ -31,18 +31,19 @@ public class Cidade extends javax.swing.JFrame {
     
     public Cidade() throws SQLException {
         initComponents();
+   
+        try{
         connEstado.conexao();
         connCidade.conexao();
         preencherTabela("select * from cidade inner join estados on cidade.id_estado = estados.id_estado");
-        connEstado.executaSQL("select * from estados order by nome_estados");
+        connEstado.executaSQL("select * from estados order by nome_estado");
         cbEstados.removeAllItems();//remove todos os itens da cbox
-        try{
-            connEstado.rs.first();
+        connEstado.rs.first();
             do{
                 cbEstados.addItem(connEstado.rs.getString("nome_estado"));
             }while(connEstado.rs.next());
             }catch(SQLException ex){
-                JOptionPane.showMessageDialog(rootPane,"Erro ao Preencher os estados");
+                
         }
     }
 
