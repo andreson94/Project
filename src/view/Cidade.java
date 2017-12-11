@@ -244,17 +244,18 @@ public class Cidade extends javax.swing.JFrame {
                     .addComponent(lblEstados)
                     .addComponent(cbEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovo)
-                    .addComponent(btnSalvar)
-                    .addComponent(btnAlterar)
-                    .addComponent(btnDeletar)
-                    .addComponent(btnPrimeiro)
-                    .addComponent(btnUltimo)
-                    .addComponent(btnAnterior)
-                    .addComponent(btnProximo)
-                    .addComponent(btnSair)
-                    .addComponent(btnCancelar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSair, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNovo)
+                        .addComponent(btnSalvar)
+                        .addComponent(btnAlterar)
+                        .addComponent(btnDeletar)
+                        .addComponent(btnPrimeiro)
+                        .addComponent(btnUltimo)
+                        .addComponent(btnAnterior)
+                        .addComponent(btnProximo)
+                        .addComponent(btnCancelar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                 .addContainerGap())
@@ -305,7 +306,7 @@ public class Cidade extends javax.swing.JFrame {
         //chamando o estado na tela de Cidade e inserindo a Cidade pelo metodo inserir
         try {
             mod.setNome(txtNome.getText());
-            connEstado.executaSQL("select * from estados where nome_estado="+cbEstados.getSelectedItem()+"");
+            connEstado.executaSQL("select * from estados where nome_estado="+cbEstados.getSelectedItem()+"'");
             connEstado.rs.first();
             mod.setCod_Estado(connEstado.rs.getInt("id_estado"));
             control.inserirCidade(mod);

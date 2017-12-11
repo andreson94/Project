@@ -83,7 +83,7 @@ public class Clientes extends javax.swing.JFrame {
         labelCpf = new javax.swing.JLabel();
         labelCidade = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Cadastro de Clientes");

@@ -47,7 +47,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemTelefone = new javax.swing.JMenuItem();
         itemClientes = new javax.swing.JMenuItem();
         itemProdutos = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jmVenda = new javax.swing.JMenu();
         jmRelatorio = new javax.swing.JMenu();
         jmSair = new javax.swing.JMenu();
 
@@ -121,15 +121,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Venda");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
+        jmVenda.setText("Venda");
+        jmVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmVendaMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jmVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmVendaActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jmVenda);
 
         jmRelatorio.setText("Relatorios");
+        jmRelatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmRelatorioMouseClicked(evt);
+            }
+        });
         jmRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmRelatorioActionPerformed(evt);
@@ -204,10 +214,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_itemCidadeActionPerformed
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+    private void jmVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmVendaActionPerformed
         Venda frm = new Venda();
         frm.setVisible(true);
-    }//GEN-LAST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_jmVendaActionPerformed
 
     private void jmRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRelatorioActionPerformed
        Relatorios frm = new Relatorios();
@@ -234,6 +244,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
        Produtos frm = new Produtos();
        frm.setVisible(true);
     }//GEN-LAST:event_itemProdutosActionPerformed
+
+    private void jmVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmVendaMouseClicked
+        Venda frm = new Venda();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jmVendaMouseClicked
+
+    private void jmRelatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmRelatorioMouseClicked
+        Relatorios frm = new Relatorios();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jmRelatorioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -278,10 +298,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemProdutos;
     private javax.swing.JMenuItem itemTelefone;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jmRelatorio;
     private javax.swing.JMenu jmSair;
+    private javax.swing.JMenu jmVenda;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel telaPrincpal;
     // End of variables declaration//GEN-END:variables

@@ -60,7 +60,7 @@ public class Estado extends javax.swing.JFrame {
         btnProximo = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Estados");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

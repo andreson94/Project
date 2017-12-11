@@ -138,17 +138,19 @@
                       <Component id="cbEstados" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnNovo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnDeletar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnPrimeiro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnUltimo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnProximo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnSair" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnNovo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnDeletar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnPrimeiro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnUltimo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnProximo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="104" max="32767" attributes="0"/>
