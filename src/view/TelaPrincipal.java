@@ -6,9 +6,10 @@
 package view;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utilitarios.ConectaBanco;
+import models.dao.ConectaBanco;
 
 /**
  *
@@ -47,8 +48,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemClientes = new javax.swing.JMenuItem();
         itemProdutos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        jmRelatorio = new javax.swing.JMenu();
+        jmSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema de Vendas");
@@ -87,6 +88,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.add(itemCidade);
 
         itemBairro.setText("Bairro");
+        itemBairro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemBairroActionPerformed(evt);
+            }
+        });
         jMenu1.add(itemBairro);
 
         itemTelefone.setText("Telefones");
@@ -98,31 +104,51 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.add(itemTelefone);
 
         itemClientes.setText("Clientes");
+        itemClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemClientesActionPerformed(evt);
+            }
+        });
         jMenu1.add(itemClientes);
 
         itemProdutos.setText("Produtos");
+        itemProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemProdutosActionPerformed(evt);
+            }
+        });
         jMenu1.add(itemProdutos);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Venda");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Relatorios");
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Sair");
-        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu4MouseClicked(evt);
-            }
-        });
-        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+        jmRelatorio.setText("Relatorios");
+        jmRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu4ActionPerformed(evt);
+                jmRelatorioActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jmRelatorio);
+
+        jmSair.setText("Sair");
+        jmSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmSairMouseClicked(evt);
+            }
+        });
+        jmSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSairActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jmSair);
 
         setJMenuBar(jMenuBar1);
 
@@ -149,14 +175,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_itemEstadoActionPerformed
 
-    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-       conecta.desconecta();
+    private void jmSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSairMouseClicked
+        conecta.desconecta();
         System.exit(0);
-    }//GEN-LAST:event_jMenu4MouseClicked
+    }//GEN-LAST:event_jmSairMouseClicked
 
-    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu4ActionPerformed
+    private void jmSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSairActionPerformed
+        conecta.desconecta();
+        System.exit(0);
+    }//GEN-LAST:event_jmSairActionPerformed
 
     private void itemTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTelefoneActionPerformed
         // TODO add your handling code here:
@@ -176,6 +203,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_itemCidadeActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        Venda frm = new Venda();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jmRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRelatorioActionPerformed
+       Relatorios frm = new Relatorios();
+       frm.setVisible(true);
+    }//GEN-LAST:event_jmRelatorioActionPerformed
+
+    private void itemBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBairroActionPerformed
+        Bairro frm = new Bairro();
+        frm.setVisible(true);
+    }//GEN-LAST:event_itemBairroActionPerformed
+
+    private void itemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClientesActionPerformed
+        Clientes frm;
+        try {
+            frm = new Clientes();
+            frm.setVisible(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_itemClientesActionPerformed
+
+    private void itemProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemProdutosActionPerformed
+       Produtos frm = new Produtos();
+       frm.setVisible(true);
+    }//GEN-LAST:event_itemProdutosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,9 +279,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemTelefone;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jmRelatorio;
+    private javax.swing.JMenu jmSair;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel telaPrincpal;
     // End of variables declaration//GEN-END:variables

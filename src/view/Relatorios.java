@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.ListSelectionModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
-import utilitarios.ConectaBanco;
+import models.dao.ConectaBanco;
 import utilitarios.ModeloTabela;
 
 /**

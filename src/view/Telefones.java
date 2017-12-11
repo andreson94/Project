@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import models.ModelTelefone;
-import utilitarios.ControleTelefone;
+import models.dao.ControleTelefone;
 
 /**
  *

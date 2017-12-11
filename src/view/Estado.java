@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
-import utilitarios.ConectaBanco;
+import models.dao.ConectaBanco;
 import utilitarios.ModeloTabela;
 import java.util.ArrayList;
 import javax.swing.ListSelectionModel;

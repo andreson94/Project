@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import models.ModelBairro;
-import utilitarios.ConectaBanco;
-import utilitarios.ControleBairro;
+import models.dao.ConectaBanco;
+import models.dao.ControleBairro;
 import utilitarios.ModeloTabela;
 
 /**
