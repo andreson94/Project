@@ -18,7 +18,8 @@ import models.ModelVenda;
  * @author joao.vrevangelista
  */
 public class ControleVenda {
-    int codProd;
+    int codProd,codCliente;
+   
     
     ConectaBanco conexao = new ConectaBanco();
     public void adicionaItem(ModelVenda mod){
@@ -54,4 +55,27 @@ public class ControleVenda {
         }
     
     }
+    public void FechaVenda(ModelVenda mod){
+            AchaCliente(mod.getNomeCliente());
+    conexao.conexao();
+        try {
+            PreparedStatement pst = conexao.conn.prepareStatement("update venda set data_venda=?, valor_venda=?, id_cliente=? where id_venda=?");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleVenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conexao.desconecta();
 }
+    public void AchaCliente(String nome){
+            
+    conexao.conexao();
+        try {
+           conexao.executaSQL("select * from clientes where nome cliente="+nome+"");
+           conexao.rs.first();
+           codCliente = conexao.rs.getInt("id_cliente");
+        } catch (SQLException ex) {
+            Logger.getLogger(ControleVenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conexao.desconecta();
+ }
+    }

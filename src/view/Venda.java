@@ -5,10 +5,13 @@
  */
 package view;
 
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -35,7 +38,15 @@ public class Venda extends javax.swing.JFrame {
     public Venda() {
         initComponents();
         
+        //try{
+          //  MaskFormatter form = new MaskFormatter("##/##/####");
+            //txtData.setFormatterFactory(new DefaultFormatterFactory(form));
+        //}catch(ParseException ex){
+            
         
+        SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+        Date hoje = new Date();
+        txtData.setText(df.format(hoje));
     }
 
     /**
@@ -376,13 +387,39 @@ public class Venda extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // adciona o produto na venda
-        int idVenda;
+        
+        
+        try {
+            int idVenda,quantidade=0;
+            conn.conexao();
+        conn.executaSQL("select * from produto where nome_produto='"+txtProduto.getText()+"'");
+        conn.rs.first();
+        quantidade = conn.rs.getInt("quantidade");
+        if(quantidade>=Integer.parseInt(txtQtd.getText())){
         mod.setNomeProduto(txtProduto.getText());
         mod.setQtdItem(Integer.parseInt(txtQtd.getText()));
         mod.setId_Venda(codVenda);
         control.adicionaItem(mod);
-        total=total+Float.parseFloat(txtValorItem.getText())*Integer.parseInt(txtQtd.getText());
-        txtValor.setText(String.valueOf(total));
+        mod.setNomeProduto(txtProduto.getText());
+        mod.setQtdItem(Integer.parseInt(txtQtd.getText()));
+        mod.setId_Venda(codVenda);
+        control.adicionaItem(mod);
+        preencherItensVenda("select * from produto inner join itens_venda_produto"
+                + " on produto.id_produto = itens_venda_produto.id_produto"
+                + "inner join venda on venda.id_venda = itens_venda_produto.id_venda where venda.id_venda="+codVenda);
+        
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Indisponivel");
+        }
+        //total=total+Float.parseFloat(txtValorItem.getText())*Integer.parseInt(txtQtd.getText());
+        //txtValor.setText(String.valueOf(total));
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Venda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //total=total+Float.parseFloat(txtValorItem.getText())*Integer.parseInt(txtQtd.getText());
+        //txtValor.setText(String.valueOf(total));
         preencherItensVenda("select * from produto inner join itens_venda_produto"
                 + " on produto.id_produto = itens_venda_produto.id_produto"
                 + "inner join venda on venda.id_venda = itens_venda_produto.id_venda where venda.id_venda="+codVenda);
@@ -490,7 +527,24 @@ public class Venda extends javax.swing.JFrame {
         tableVenda.getTableHeader().setReorderingAllowed(false);
         tableVenda.setAutoResizeMode(tablePesquisa.AUTO_RESIZE_OFF);
         tableVenda.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+        SomaProduto();
+    }
+    public void SomaProduto(){
+        total=0;
+        int qtd=0;
+        float valor=0;
+        conn.executaSQL("select * from itens_venda_produto inner join produto on itens_venda_produto.id_produto = produto.id_produto where id_venda"+ codVenda);
+        try {
+            //conn.rs.first();
+            while(conn.rs.next()){
+                qtd = conn.rs.getInt("quantidade");
+                valor = conn.rs.getFloat("preco_venda");
+                total = total + conn.rs.getFloat("preco_venda")*conn.rs.getInt("quantidade_produto");
+            }
+            txtValor.setText(String.valueOf(total));
+        } catch (SQLException ex) {
+            Logger.getLogger(Venda.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
