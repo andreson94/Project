@@ -355,7 +355,7 @@ public class Produtos extends javax.swing.JFrame {
         btnSalvar.setEnabled(false);
         btnNovo.setEnabled(true);
         btnCancelar.setEnabled(false);
-        preencherTabela("select * from produtos order by nome_produto");
+        preencherTabela("select * from produto order by nome_produto");
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -390,7 +390,7 @@ public class Produtos extends javax.swing.JFrame {
         btnSalvar.setEnabled(false);
         btnNovo.setEnabled(true);
         btnCancelar.setEnabled(false);
-        preencherTabela("select * from produtos order by nome_produto");
+        preencherTabela("select * from produto order by nome_produto");
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -413,7 +413,7 @@ public class Produtos extends javax.swing.JFrame {
         btnSalvar.setEnabled(false);
         btnNovo.setEnabled(true);
         btnCancelar.setEnabled(false);
-        preencherTabela("select * from produtos order by nome_produto");
+        preencherTabela("select * from produto order by nome_produto");
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -466,7 +466,7 @@ public class Produtos extends javax.swing.JFrame {
             txtPreco.setText("");
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(rootPane, "erro ao carregar");
-           conexao.desconecta();
+           //conexao.desconecta();
         }
     }//GEN-LAST:event_tableProdutoMouseClicked
 public void preencherTabela(String SQL){
@@ -504,7 +504,7 @@ public void preencherTabela(String SQL){
             tableProduto.getTableHeader().setReorderingAllowed(false);
             tableProduto.setAutoResizeMode( tableProduto.AUTO_RESIZE_OFF);
             tableProduto.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            conexao.desconecta();
+            //conexao.desconecta();
         }
     /**
      * @param args the command line arguments

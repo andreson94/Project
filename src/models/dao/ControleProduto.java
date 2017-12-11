@@ -19,6 +19,7 @@ public class ControleProduto {
     public void inserirProduto(ModelProduto mod) throws SQLException{
         
         try {
+            conexao.conexao();
         PreparedStatement pst = conexao.conn.prepareStatement("insert into produto(nome_produto,"
                 + "marca,cor,tamanho,preco_venda,quantidade)values(?,?,?,?,?,?)");
         pst.setString(1,mod.getModelo());
@@ -28,7 +29,7 @@ public class ControleProduto {
         pst.setFloat(5,mod.getPreco_venda());
         pst.setInt(6,mod.getQuantidade());  
         pst.execute();
-        conexao.desconecta();
+        //conexao.desconecta();
         JOptionPane.showMessageDialog(null, "Salvo com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao Salvar");
