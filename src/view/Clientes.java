@@ -429,12 +429,11 @@ public class Clientes extends javax.swing.JFrame {
             txtRg.setEnabled(!true);
             bpnNovo.setEnabled(!false);
             txtEnd.setText("");
-            txtEnd.setText("");
             txtNome.setText("");
             preencherTabela();
             
         }else{
-             mod.setId(Integer.parseInt(txtCod.getText()));
+            mod.setId(Integer.parseInt(txtCod.getText()));
             mod.setNome(txtNome.getText());
             mod.setEndereco(txtEnd.getText());
             mod.setRg(txtRg.getText());
@@ -450,7 +449,6 @@ public class Clientes extends javax.swing.JFrame {
             txtCpf.setEnabled(!true);
             txtRg.setEnabled(!true);
             bpnNovo.setEnabled(!false);
-            txtEnd.setText("");
             txtEnd.setText("");
             txtNome.setText("");
             flag = 1;
@@ -590,7 +588,7 @@ public class Clientes extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(115);
         jTable1.getColumnModel().getColumn(2).setResizable(false);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(115);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jTable1.getColumnModel().getColumn(3).setResizable(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
         jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

@@ -336,7 +336,7 @@ public class Produtos extends javax.swing.JFrame {
             mod.setQuantidade(Integer.parseInt(txtQtd.getText()));
             control.inserirProduto(mod);
         } catch (SQLException ex) {
-            
+            ex.printStackTrace();
         }
         txtModelo.setText("");
         txtModelo.setEnabled(false);

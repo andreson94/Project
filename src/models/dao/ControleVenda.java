@@ -82,7 +82,7 @@ public class ControleVenda {
         //metodo para deletar as vendas cujo o valor seja igual a zero. ou seja ele estorna o item que nao foi vendido  
         conexao.conexao();
         PreparedStatement pst;
-        conexao.executaSQL("select *from venda inner join itens_vendas_produto on venda.id_venda = itens_venda_produto.id_venda"
+        conexao.executaSQL("select *from venda inner join itens_venda_produto on venda.id_venda = itens_venda_produto.id_venda"
                 + "inner join produto on itens_venda_produto.id_produto = produto.id_produto where valor_venda = 0");
         
         try{

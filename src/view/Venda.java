@@ -334,7 +334,7 @@ public class Venda extends javax.swing.JFrame {
 
     private void btnBuscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaClienteActionPerformed
         flag = 1;
-        preencherTabelaCliente("select * from clientes where nome_cliente like '%"+txtCliente.getText()+"%'");
+        preencherTabelaCliente("select * from clientes where nome_cliente like %"+txtCliente.getText()+"%'");
     }//GEN-LAST:event_btnBuscaClienteActionPerformed
 
     private void btnBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaProdutoActionPerformed

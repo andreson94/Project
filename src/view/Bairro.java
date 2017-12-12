@@ -58,15 +58,16 @@ public class Bairro extends javax.swing.JFrame {
         btnNovo = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         btnPrimeiro = new javax.swing.JButton();
         btnUltimo = new javax.swing.JButton();
         btnAnterior = new javax.swing.JButton();
         btnProximo = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Cadastro de Bairros");
@@ -124,6 +125,7 @@ public class Bairro extends javax.swing.JFrame {
         });
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SALVAR.png"))); // NOI18N
+        btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -131,16 +133,18 @@ public class Bairro extends javax.swing.JFrame {
         });
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ALTERAR.png"))); // NOI18N
+        btnAlterar.setEnabled(false);
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/EXCLUIR.png"))); // NOI18N
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/EXCLUIR.png"))); // NOI18N
+        btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -183,8 +187,14 @@ public class Bairro extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CANCELAR VENDA.png"))); // NOI18N
-        jButton7.setToolTipText("Deletar");
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/CANCELAR VENDA.png"))); // NOI18N
+        btnCancelar.setToolTipText("Deletar");
+        btnCancelar.setEnabled(false);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -221,9 +231,9 @@ public class Bairro extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnPrimeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
@@ -267,9 +277,9 @@ public class Bairro extends javax.swing.JFrame {
                     .addComponent(btnProximo)
                     .addComponent(btnPrimeiro)
                     .addComponent(btnSair)
-                    .addComponent(jButton7)
-                    .addComponent(btnAlterar)
                     .addComponent(btnCancelar)
+                    .addComponent(btnAlterar)
+                    .addComponent(btnExcluir)
                     .addComponent(btnSalvar)
                     .addComponent(btnNovo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -310,7 +320,10 @@ public class Bairro extends javax.swing.JFrame {
         txtCod.setText("");
         txtNome.setText("");
         txtNome.setEnabled(true);
-        btnCancelar.setEnabled(true);
+        btnExcluir.setEnabled(true);
+        btnCancelar.setVisible(true);
+        btnAlterar.setVisible(true);
+        
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -330,7 +343,7 @@ public class Bairro extends javax.swing.JFrame {
        btnSalvar.setEnabled(!true);
        btnNovo.setEnabled(!false);
        txtNome.setEnabled(!true);
-       btnCancelar.setEnabled(false);
+       btnExcluir.setEnabled(false);
        btnAlterar.setEnabled(false);
        txtNome.setText("");
        txtCod.setText("");
@@ -345,7 +358,7 @@ public class Bairro extends javax.swing.JFrame {
         btnNovo.setEnabled(false);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
         mod.setCod(Integer.parseInt(txtCod.getText()));
         control.Excluir(mod);
@@ -354,9 +367,9 @@ public class Bairro extends javax.swing.JFrame {
         txtCod.setText("");
         txtNome.setText("");
         txtNome.setEnabled(true);
-        btnCancelar.setEnabled(true);
+        btnExcluir.setEnabled(true);
         preencherTabela("select * from bairro inner join cidade on bairro.id_cidade = cidade.id_cidade");
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
         // TODO add your handling code here:
@@ -365,7 +378,7 @@ public class Bairro extends javax.swing.JFrame {
         txtNome.setText(mod.getNome());
         cbCidade.setSelectedItem(mod.getCidade());
         btnAlterar.setEnabled(true);
-        btnCancelar.setEnabled(true);
+        btnExcluir.setEnabled(true);
         
        
         
@@ -378,7 +391,7 @@ public class Bairro extends javax.swing.JFrame {
         txtNome.setText(mod.getNome());
         cbCidade.setSelectedItem(mod.getCidade());
         btnAlterar.setEnabled(true);
-        btnCancelar.setEnabled(true);
+        btnExcluir.setEnabled(true);
         
     }//GEN-LAST:event_btnUltimoActionPerformed
 
@@ -389,7 +402,7 @@ public class Bairro extends javax.swing.JFrame {
         txtNome.setText(mod.getNome());
         cbCidade.setSelectedItem(mod.getCidade());
         btnAlterar.setEnabled(true);
-        btnCancelar.setEnabled(true);
+        btnExcluir.setEnabled(true);
         
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -400,7 +413,7 @@ public class Bairro extends javax.swing.JFrame {
         txtNome.setText(mod.getNome());
         cbCidade.setSelectedItem(mod.getCidade());
         btnAlterar.setEnabled(true);
-        btnCancelar.setEnabled(true);
+        btnExcluir.setEnabled(true);
         
     }//GEN-LAST:event_btnProximoActionPerformed
 
@@ -418,6 +431,17 @@ public class Bairro extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        btnSalvar.setEnabled(!true);
+       btnNovo.setEnabled(!false);
+       txtNome.setEnabled(!true);
+       btnExcluir.setEnabled(false);
+       btnAlterar.setEnabled(false);
+       btnExcluir.setEnabled(!true);
+       txtNome.setText("");
+       txtCod.setText("");
+    }//GEN-LAST:event_btnCancelarActionPerformed
 public void preencherTabela(String SQL){
            ArrayList dados = new ArrayList();
            
@@ -497,6 +521,7 @@ public void preencherTabela(String SQL){
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnPrimeiro;
     private javax.swing.JButton btnProximo;
@@ -504,7 +529,6 @@ public void preencherTabela(String SQL){
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUltimo;
     private javax.swing.JComboBox<String> cbCidade;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

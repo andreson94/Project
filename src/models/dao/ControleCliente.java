@@ -30,8 +30,9 @@ import models.ModelCliente;
         buscaCod(mod.getBairro(), mod.getCidade(), mod.getTelefone());
         
         try {
-            PreparedStatement pst = conex.conn.prepareStatement("inset into clientes (nome_clientes, endereco_clienre, rg_cliente, cpf_cliente,"
+            PreparedStatement pst = conex.conn.prepareStatement("insert into clientes (nome_cliente, endereco_cliente, rg_cliente, cpf_cliente,"
                     + "id_bairro) values(?,?,?,?,?");
+            
             pst.setString(1, mod.getNome());
             pst.setString(2, mod.getEndereco());
             pst.setString(3, mod.getRg());
@@ -44,7 +45,7 @@ import models.ModelCliente;
             conex.rs.first();
             codTel = conex.rs.getInt("id_telefone");
             
-            conex.executaSQL("select * from clientes where nome_clientes='"+ mod.getNome()+ "'");
+            conex.executaSQL("select * from clientes where nome_cliente='"+ mod.getNome()+ "'");
             conex.rs.first();
             int codCli = conex.rs.getInt("id_cliente");
             pst = conex.conn.prepareStatement("insert into itens_cli_tel(id_cliente, id_tel)values(?,?)");
@@ -58,7 +59,7 @@ import models.ModelCliente;
         } catch (SQLException ex) {
             Logger.getLogger(ControleCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        conex.desconecta();
+       // conex.desconecta();
     }
     public void buscaCod(String Bairro, String Cidade, String tel){
         try{
@@ -101,7 +102,7 @@ import models.ModelCliente;
         }catch(SQLException ex){
             
         }
-        conex.desconecta();
+       // conex.desconecta();
     }
     public void excluir(ModelCliente mod){
         conex.conexao();
@@ -134,7 +135,7 @@ import models.ModelCliente;
         }catch(SQLException ex){
             
         }
-        conex.desconecta();
+       // conex.desconecta();
         return modCli;
     }
     public ModelCliente ult(){
@@ -153,7 +154,7 @@ import models.ModelCliente;
         }catch(SQLException ex){
             
         }
-        conex.desconecta();
+       // conex.desconecta();
         return modCli;
     }
     public ModelCliente ant(){
